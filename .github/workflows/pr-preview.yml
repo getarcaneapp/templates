@@ -55,6 +55,7 @@ jobs:
           REGISTRY_DESCRIPTION: Community Docker Compose Templates for Arcane — PR ${{ github.event.pull_request.number }}
           REGISTRY_AUTHOR: ${{ github.event.pull_request.user.login }}
           REGISTRY_URL: https://github.com/ofkm/arcane-templates
+          PUBLIC_BASE: https://templates.arcane.ofkm.dev/templates
           DOCS_BASE: https://github.com/ofkm/arcane-templates/tree/${{ github.head_ref || github.ref_name }}/templates
           BUMP_PART: patch
         run: pnpm run generate
@@ -78,13 +79,20 @@ jobs:
           deploymentName: ${{ env.PREVIEW_ALIAS }}
           directory: build
 
-      - name: Patch $schema to preview alias
+      - name: Patch $schema and PUBLIC_BASE to preview alias
         env:
-          SCHEMA_URL: ${{ steps.deploy.outputs.alias }}/schema.json
+          ALIAS: ${{ steps.deploy.outputs.alias }}
         run: |
-          jq --arg url "$SCHEMA_URL" '.["$schema"] = $url' build/registry.json > build/registry.json.tmp
+          BASE="$ALIAS/templates"
+          jq --arg schema "$ALIAS/schema.json" --arg base "$BASE" '
+            .["$schema"] = $schema
+            | .templates = (.templates | map(
+                .compose_url = ($base + "/" + .id + "/" + (.compose_url | split("/") | last))
+                | .env_url    = ($base + "/" + .id + "/.env.example")
+              ))
+          ' build/registry.json > build/registry.json.tmp
           mv build/registry.json.tmp build/registry.json
-          cat build/registry.json | head -n 5
+          head -n 10 build/registry.json
 
       - name: Redeploy updated registry.json
         id: deploy2
