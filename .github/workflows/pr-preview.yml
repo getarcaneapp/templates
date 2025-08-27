@@ -86,8 +86,8 @@ jobs:
           body: |
             Preview deployed successfully!
 
-            - **Pages**: https://${{ env.PREVIEW_ALIAS }}.arcane-templates.ofkm.pages.dev
-            - **Registry**: https://${{ env.PREVIEW_ALIAS }}.arcane-templates.ofkm.pages.dev/registry.json
-            - **Templates**: https://${{ env.PREVIEW_ALIAS }}.arcane-templates.ofkm.pages.dev/templates/
+            - **Pages**: https://${{ env.PREVIEW_ALIAS }}.arcane-templates.pages.dev
+            - **Registry**: https://${{ env.PREVIEW_ALIAS }}.arcane-templates.pages.dev/registry.json
+            - **Templates**: https://${{ env.PREVIEW_ALIAS }}.arcane-templates.pages.dev/templates/
 
             Built from commit ${{ github.sha }}
