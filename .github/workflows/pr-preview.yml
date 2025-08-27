@@ -1,4 +1,4 @@
-name: Build Preview Registry
+name: Build and Deploy Preview Registry
 
 on:
   pull_request:
@@ -11,16 +11,21 @@ on:
       - 'package.json'
       - 'pnpm-lock.yaml'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
+  deployments: write
   pull-requests: write
 
 jobs:
-  build-preview:
+  build-and-deploy-preview:
     environment: pr-preview
     runs-on: ubuntu-latest
     env:
-      PREVIEW_ALIAS: pr-${{ github.event.number }}
+      PREVIEW_ALIAS: pr-${{ github.event.pull_request.number }}
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -47,7 +52,7 @@ jobs:
       - name: Generate registry.json (preview)
         env:
           REGISTRY_NAME: Arcane Community Templates (Preview)
-          REGISTRY_DESCRIPTION: Community Docker Compose Templates for Arcane — PR #${{ github.event.number }}
+          REGISTRY_DESCRIPTION: Community Docker Compose Templates for Arcane — PR #${{ github.event.pull_request.number }}
           REGISTRY_AUTHOR: OFKM
           REGISTRY_URL: https://github.com/ofkm/arcane-templates
           PUBLIC_BASE: https://${{ env.PREVIEW_ALIAS }}.arcane-templates.ofkm.pages.dev/templates
@@ -62,10 +67,28 @@ jobs:
           cp -v registry.json build/
           rsync -a --delete templates/ build/templates/
 
-      - name: Upload preview-build artifact
-        uses: actions/upload-artifact@v4
+      - name: Deploy to Cloudflare Pages
+        id: deploy
+        uses: AdrianGonz97/refined-cf-pages-action@v1
         with:
-          name: preview-build
-          path: build
-          if-no-files-found: error
-          retention-days: 7
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          projectName: 'arcane-templates'
+          deploymentName: '${{ env.PREVIEW_ALIAS }}'
+          directory: build
+          wranglerVersion: '3'
+
+      - name: Comment preview URL
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            🚀 Preview deployed successfully!
+
+            - **Pages**: https://${{ env.PREVIEW_ALIAS }}.arcane-templates.ofkm.pages.dev
+            - **Registry**: https://${{ env.PREVIEW_ALIAS }}.arcane-templates.ofkm.pages.dev/registry.json
+            - **Templates**: https://${{ env.PREVIEW_ALIAS }}.arcane-templates.ofkm.pages.dev/templates/
+
+            Built from commit ${{ github.sha }}
