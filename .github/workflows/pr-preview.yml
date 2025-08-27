@@ -16,13 +16,13 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  contents: read
+  actions: read
   deployments: write
+  contents: read
   pull-requests: write
 
 jobs:
   build-and-deploy-preview:
-    environment: pr-preview
     runs-on: ubuntu-latest
     env:
       PREVIEW_ALIAS: pr-${{ github.event.pull_request.number }}
@@ -74,10 +74,9 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-          projectName: 'arcane-templates'
-          deploymentName: '${{ env.PREVIEW_ALIAS }}'
+          projectName: arcane-templates
+          deploymentName: ${{ env.PREVIEW_ALIAS }}
           directory: build
-          wranglerVersion: '3'
 
       - name: Comment preview URL
         uses: peter-evans/create-or-update-comment@v4
@@ -85,7 +84,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            🚀 Preview deployed successfully!
+            Preview deployed successfully!
 
             - **Pages**: https://${{ env.PREVIEW_ALIAS }}.arcane-templates.ofkm.pages.dev
             - **Registry**: https://${{ env.PREVIEW_ALIAS }}.arcane-templates.ofkm.pages.dev/registry.json
