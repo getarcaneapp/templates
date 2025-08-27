@@ -1,0 +1,87 @@
+name: Cleanup old preview environments
+
+on:
+  schedule:
+    - cron: '17 3 * * *' # daily at 03:17 UTC
+  workflow_dispatch:
+    inputs:
+      retention_days:
+        description: 'Delete environments older than N days'
+        required: false
+        default: '14'
+      dry_run:
+        description: 'Dry run (true/false)'
+        required: false
+        default: 'true'
+      keep:
+        description: 'Comma-separated envs to keep'
+        required: false
+        default: 'production'
+
+permissions:
+  actions: read
+  contents: read
+  deployments: write
+
+concurrency:
+  group: cleanup-environments
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete old environments
+        uses: actions/github-script@v7
+        env:
+          RETENTION_DAYS: ${{ github.event.inputs.retention_days || '14' }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'true' }}
+          KEEP: ${{ github.event.inputs.keep || 'production' }}
+        with:
+          script: |
+            const keep = (process.env.KEEP || 'production')
+              .split(',')
+              .map(s => s.trim())
+              .filter(Boolean);
+            const retentionDays = parseInt(process.env.RETENTION_DAYS || '14', 10);
+            const dryRun = String(process.env.DRY_RUN || 'true').toLowerCase() === 'true';
+            const cutoffMs = retentionDays * 24 * 60 * 60 * 1000;
+            const now = Date.now();
+
+            const envs = await github.paginate('GET /repos/{owner}/{repo}/environments', {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 100
+            });
+
+            let deleted = 0;
+            for (const env of envs) {
+              if (keep.includes(env.name)) continue;
+              const updatedAt = env.updated_at || env.created_at;
+              if (!updatedAt) continue;
+
+              const ageMs = now - new Date(updatedAt).getTime();
+              if (ageMs >= cutoffMs) {
+                core.info(`${dryRun ? '[DRY-RUN] Would delete' : 'Deleting'} environment "${env.name}" (updated ${updatedAt})`);
+                if (!dryRun) {
+                  try {
+                    await github.request('DELETE /repos/{owner}/{repo}/environments/{environment_name}', {
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      environment_name: env.name
+                    });
+                    deleted++;
+                  } catch (e) {
+                    core.warning(`Failed to delete "${env.name}": ${e.message}`);
+                  }
+                }
+              }
+            }
+
+            core.summary
+              .addHeading('Environment cleanup')
+              .addRaw(`Retention: ${retentionDays} days\n`)
+              .addRaw(`Dry-run: ${dryRun}\n`)
+              .addRaw(`Checked: ${envs.length}\n`)
+              .addRaw(`Deleted: ${deleted}\n`);
+            await core.summary.write();
