@@ -55,8 +55,8 @@ jobs:
 
       - name: Generate registry.json
         env:
-          REGISTRY_NAME: Arcane Community Templates (Preview)
-          REGISTRY_DESCRIPTION: Community Docker Compose Templates for Arcane — PR ${{ github.event.pull_request.number }}
+          REGISTRY_NAME: ${{ github.event.pull_request.user.login }}s Arcane Templates Preview
+          REGISTRY_DESCRIPTION: Pull Request \#${{ github.event.pull_request.number }}
           REGISTRY_AUTHOR: ${{ github.event.pull_request.user.login }}
           REGISTRY_URL: https://github.com/ofkm/arcane-templates
           PUBLIC_BASE: ${{ env.PREVIEW_BASE }}/templates
@@ -79,7 +79,6 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           pnpm exec wrangler versions upload --preview-alias "$PREVIEW_ALIAS"
-          pnpm exec wrangler version deploy
 
       - name: Find Comment
         uses: peter-evans/find-comment@v3
