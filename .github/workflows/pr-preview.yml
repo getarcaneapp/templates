@@ -52,10 +52,9 @@ jobs:
       - name: Generate registry.json (preview)
         env:
           REGISTRY_NAME: Arcane Community Templates (Preview)
-          REGISTRY_DESCRIPTION: Community Docker Compose Templates for Arcane — PR #${{ github.event.pull_request.number }}
-          REGISTRY_AUTHOR: OFKM
+          REGISTRY_DESCRIPTION: Community Docker Compose Templates for Arcane — PR ${{ github.event.pull_request.number }}
+          REGISTRY_AUTHOR: ${{ github.event.pull_request.user.login }}
           REGISTRY_URL: https://github.com/ofkm/arcane-templates
-          PUBLIC_BASE: https://${{ env.PREVIEW_ALIAS }}.arcane-templates.ofkm.pages.dev/templates
           DOCS_BASE: https://github.com/ofkm/arcane-templates/tree/${{ github.head_ref || github.ref_name }}/templates
           BUMP_PART: patch
         run: pnpm run generate
@@ -78,11 +77,20 @@ jobs:
           deploymentName: ${{ env.PREVIEW_ALIAS }}
           directory: build
 
+      - name: Find Comment
+        uses: peter-evans/find-comment@v3
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: Preview deployed successfully!
+
       - name: Comment preview URL
         uses: peter-evans/create-or-update-comment@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           body: |
             Preview deployed successfully!
 
@@ -90,3 +98,4 @@ jobs:
             - **Registry**: ${{ steps.deploy.outputs.alias }}/registry.json
 
             Built from commit ${{ github.sha }}
+          edit-mode: replace
