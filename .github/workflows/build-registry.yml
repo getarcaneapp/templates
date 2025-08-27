@@ -2,14 +2,8 @@ name: Build registry.json
 
 on:
   push:
-    paths:
-      - 'templates/**'
-      - 'scripts/build-registry.ts'
-      - 'schema.json'
-      - 'tsconfig.json'
-      - 'package.json'
-      - 'pnpm-lock.yaml'
-  workflow_dispatch: {}
+    branches:
+      - main
 
 permissions:
   contents: write
