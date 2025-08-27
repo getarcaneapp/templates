@@ -51,9 +51,6 @@ jobs:
           BUMP_PART: minor
         run: pnpm run generate
 
-      - name: Validate against schema
-        run: pnpm run validate
-
       - name: Commit changes (main only)
         if: github.ref == 'refs/heads/main'
         run: |

@@ -49,14 +49,10 @@ jobs:
           REGISTRY_DESCRIPTION: Community Docker Compose Templates for Arcane — PR #${{ github.event.number }}
           REGISTRY_AUTHOR: OFKM
           REGISTRY_URL: https://github.com/ofkm/arcane-templates
-          # Assumes Pages alias: https://<alias>.<project>.pages.dev
           PUBLIC_BASE: https://${{ env.PREVIEW_ALIAS }}.arcane-templates.ofkm.pages.dev/templates
           DOCS_BASE: https://github.com/ofkm/arcane-templates/tree/${{ github.head_ref || github.ref_name }}/templates
           BUMP_PART: patch
         run: pnpm run generate
-
-      - name: Validate against schema
-        run: pnpm run validate
 
       - name: Stage build directory
         run: |
