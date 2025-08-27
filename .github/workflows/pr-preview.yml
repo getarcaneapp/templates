@@ -24,6 +24,9 @@ permissions:
 jobs:
   build-and-deploy-preview:
     runs-on: macos-latest
+    environment:
+      name: ${{ github.event.pull_request.number }}
+      url: ${{ env.PREVIEW_BASE }}
     env:
       PREVIEW_ALIAS: pr-${{ github.event.pull_request.number }}
       PREVIEW_BASE: https://pr-${{ github.event.pull_request.number }}-arcane-templates.ofkm.workers.dev
@@ -100,5 +103,6 @@ jobs:
             - Preview: ${{ env.PREVIEW_BASE }}
             - Registry: ${{ env.PREVIEW_BASE }}/registry.json
             - Schema: ${{ env.PREVIEW_BASE }}/schema.json
+
             Built from commit ${{ github.sha }}
           edit-mode: replace

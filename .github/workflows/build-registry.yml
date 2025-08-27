@@ -1,4 +1,4 @@
-name: Build registry.json
+name: Deploy Production Registry
 
 on:
   push:
@@ -6,11 +6,17 @@ on:
       - main
 
 permissions:
+  actions: read
+  deployments: write
   contents: write
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    if: ${{ github.actor != 'github-actions[bot]' }} # prevent re-run loop on bot commits
+    runs-on: macos-latest
+    environment:
+      name: production
+      url: https://templates.arcane.ofkm.dev
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -58,17 +64,18 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: pnpm wrangler deploy
+        run: pnpm exec wrangler deploy
 
       - name: Commit changes
         if: github.ref == 'refs/heads/main'
-        run: |
-          if ! git diff --quiet registry.json; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add -f registry.json
-            git commit -m "chore: auto-build registry.json"
-            git push
-          else
-            echo "No changes to commit."
-          fi
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'registry.json'
+          message: 'chore: auto-build registry.json [skip ci]'
+          default_author: github_actions
+          pull: '--rebase --autostash'
+          fetch: false
+          push: true
+          pathspec_error_handling: ignore
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
