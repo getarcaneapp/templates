@@ -25,7 +25,7 @@ jobs:
   build-and-deploy-preview:
     runs-on: macos-latest
     environment:
-      name: ${{ github.event.pull_request.number }}
+      name: ${{ github.event.pull_request.user.login }}-pr-${{ github.event.pull_request.number }}
       url: ${{ env.PREVIEW_BASE }}
     env:
       PREVIEW_ALIAS: pr-${{ github.event.pull_request.number }}
