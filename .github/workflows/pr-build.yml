@@ -1,4 +1,4 @@
-name: Build Pull Request Preview
+name: Build Preview Registry
 
 on:
   pull_request:
@@ -17,6 +17,7 @@ permissions:
 
 jobs:
   build-preview:
+    environment: pr-preview
     runs-on: ubuntu-latest
     env:
       PREVIEW_ALIAS: pr-${{ github.event.number }}
