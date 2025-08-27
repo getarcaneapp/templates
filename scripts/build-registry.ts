@@ -40,6 +40,7 @@ const REGISTRY = {
 
 const PUBLIC_BASE = process.env.PUBLIC_BASE || 'https://templates.arcane.ofkm.dev/templates';
 const DOCS_BASE = process.env.DOCS_BASE || `${REGISTRY.url}/tree/main/templates`;
+const SCHEMA_URL = process.env.SCHEMA_URL || 'https://templates.arcane.ofkm.dev/schema.json';
 
 const BUMP_PART: BumpPart = (process.env.BUMP_PART || 'minor').toLowerCase() as BumpPart;
 
@@ -152,7 +153,7 @@ async function build(): Promise<void> {
   }
 
   const registry: RegistryFile = {
-    $schema: './schema.json',
+    $schema: SCHEMA_URL,
     name: prev?.name ?? REGISTRY.name,
     description: prev?.description ?? REGISTRY.description,
     author: prev?.author ?? REGISTRY.author,

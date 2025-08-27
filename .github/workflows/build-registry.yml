@@ -43,6 +43,7 @@ jobs:
           PUBLIC_BASE: https://templates.arcane.ofkm.dev/templates
           DOCS_BASE: https://github.com/ofkm/arcane-templates/tree/main/templates
           BUMP_PART: minor
+          SCHEMA_URL: https://templates.arcane.ofkm.dev/schema.json
         run: pnpm run generate
 
       - name: Commit changes (main only)

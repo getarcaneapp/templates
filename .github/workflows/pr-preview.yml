@@ -64,10 +64,30 @@ jobs:
           rm -rf build
           mkdir -p build/templates
           cp -v registry.json build/
+          cp -v schema.json build/
           rsync -a --delete templates/ build/templates/
 
       - name: Deploy to Cloudflare Pages
         id: deploy
+        uses: AdrianGonz97/refined-cf-pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          projectName: arcane-templates
+          deploymentName: ${{ env.PREVIEW_ALIAS }}
+          directory: build
+
+      - name: Patch $schema to preview alias
+        env:
+          SCHEMA_URL: ${{ steps.deploy.outputs.alias }}/schema.json
+        run: |
+          jq --arg url "$SCHEMA_URL" '.["$schema"] = $url' build/registry.json > build/registry.json.tmp
+          mv build/registry.json.tmp build/registry.json
+          cat build/registry.json | head -n 5
+
+      - name: Redeploy updated registry.json
+        id: deploy2
         uses: AdrianGonz97/refined-cf-pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -96,6 +116,6 @@ jobs:
 
             - **Pages**: ${{ steps.deploy.outputs.alias }} 
             - **Registry**: ${{ steps.deploy.outputs.alias }}/registry.json
-
+            - **Schema**: ${{ steps.deploy.outputs.alias }}/schema.json
             Built from commit ${{ github.sha }}
           edit-mode: replace
