@@ -1,0 +1,55 @@
+name: Deploy Pull Request Preview
+
+on:
+  workflow_run:
+    workflows: ['Build Pull Request Preview']
+    types: [completed]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+  cancel-in-progress: true
+
+permissions:
+  actions: read
+  deployments: write
+  contents: read
+  pull-requests: write
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    env:
+      PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
+      PROJECT_NAME: pocket-id-website
+      DEPLOYMENT_NAME: Preview
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: preview-build
+          path: build
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+
+      - name: Deploy to Cloudflare Pages
+        uses: AdrianGonz97/refined-cf-pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          projectName: 'arcane-templates'
+          deploymentName: 'pr-preview'
+          directory: build
+          wranglerVersion: '3'
+
+      - name: Comment preview URL
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ env.PR_NUMBER }}
+          body: |
+            Preview available:
+
+            - Pages: https://${{ env.DEPLOYMENT_NAME }}.arcane-templates.ofkm.pages.dev
+            - registry.json: https://${{ env.DEPLOYMENT_NAME }}.arcane-templates.ofkm.pages.dev/registry.json
