@@ -46,7 +46,21 @@ jobs:
           SCHEMA_URL: https://templates.arcane.ofkm.dev/schema.json
         run: pnpm run generate
 
-      - name: Commit changes (main only)
+      - name: Stage build directory
+        run: |
+          rm -rf build
+          mkdir -p build/templates
+          cp -v registry.json build/
+          cp -v schema.json build/
+          rsync -a --delete templates/ build/templates/
+
+      - name: Deploy to Cloudflare Workers
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: pnpm wrangler deploy
+
+      - name: Commit changes
         if: github.ref == 'refs/heads/main'
         run: |
           if ! git diff --quiet registry.json; then

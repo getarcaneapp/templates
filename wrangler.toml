@@ -1,7 +1,0 @@
-name = "arcane-templates"
-compatibility_date = "2025-06-03"
-
-[assets]
-directory = "./"
-include = ["*.json", "*.md", "README*"]
-exclude = ["node_modules/**", ".git/**", "wrangler.toml"]

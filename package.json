@@ -8,12 +8,13 @@
     "preinstall": "npx only-allow pnpm",
     "type-check": "tsc --noEmit",
     "generate": "tsx scripts/build-registry.ts",
-    "validate": "ajv -s schema.json -d registry.json --spec=draft7 -c ajv-formats",
-    "ci": "pnpm run type-check && pnpm run generate"
+    "ci": "pnpm run type-check && pnpm run generate",
+    "deploy": "wrangler version deploy"
   },
   "devDependencies": {
     "@types/node": "^24.3.0",
     "tsx": "^4.20.5",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "wrangler": "^4.33.0"
   }
 }

@@ -23,9 +23,10 @@ permissions:
 
 jobs:
   build-and-deploy-preview:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     env:
       PREVIEW_ALIAS: pr-${{ github.event.pull_request.number }}
+      PREVIEW_BASE: https://pr-${{ github.event.pull_request.number }}-arcane-templates.ofkm.workers.dev
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -46,18 +47,22 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Check Wrangler version
+        run: pnpm exec wrangler --version
+
       - name: Type-check
         run: pnpm run type-check
 
-      - name: Generate registry.json (preview)
+      - name: Generate registry.json
         env:
           REGISTRY_NAME: Arcane Community Templates (Preview)
           REGISTRY_DESCRIPTION: Community Docker Compose Templates for Arcane — PR ${{ github.event.pull_request.number }}
           REGISTRY_AUTHOR: ${{ github.event.pull_request.user.login }}
           REGISTRY_URL: https://github.com/ofkm/arcane-templates
-          PUBLIC_BASE: https://templates.arcane.ofkm.dev/templates
+          PUBLIC_BASE: ${{ env.PREVIEW_BASE }}/templates
           DOCS_BASE: https://github.com/ofkm/arcane-templates/tree/${{ github.head_ref || github.ref_name }}/templates
           BUMP_PART: patch
+          SCHEMA_URL: ${{ env.PREVIEW_BASE }}/schema.json
         run: pnpm run generate
 
       - name: Stage build directory
@@ -68,42 +73,13 @@ jobs:
           cp -v schema.json build/
           rsync -a --delete templates/ build/templates/
 
-      - name: Deploy to Cloudflare Pages
-        id: deploy
-        uses: AdrianGonz97/refined-cf-pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          projectName: arcane-templates
-          deploymentName: ${{ env.PREVIEW_ALIAS }}
-          directory: build
-
-      - name: Patch $schema and PUBLIC_BASE to preview alias
+      - name: Upload and Deploy Preview
         env:
-          ALIAS: ${{ steps.deploy.outputs.alias }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          BASE="$ALIAS/templates"
-          jq --arg schema "$ALIAS/schema.json" --arg base "$BASE" '
-            .["$schema"] = $schema
-            | .templates = (.templates | map(
-                .compose_url = ($base + "/" + .id + "/" + (.compose_url | split("/") | last))
-                | .env_url    = ($base + "/" + .id + "/.env.example")
-              ))
-          ' build/registry.json > build/registry.json.tmp
-          mv build/registry.json.tmp build/registry.json
-          head -n 10 build/registry.json
-
-      - name: Redeploy updated registry.json
-        id: deploy2
-        uses: AdrianGonz97/refined-cf-pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          projectName: arcane-templates
-          deploymentName: ${{ env.PREVIEW_ALIAS }}
-          directory: build
+          pnpm exec wrangler versions upload --preview-alias "$PREVIEW_ALIAS"
+          pnpm exec wrangler version deploy
 
       - name: Find Comment
         uses: peter-evans/find-comment@v3
@@ -122,8 +98,8 @@ jobs:
           body: |
             Preview deployed successfully!
 
-            - **Pages**: ${{ steps.deploy.outputs.alias }} 
-            - **Registry**: ${{ steps.deploy.outputs.alias }}/registry.json
-            - **Schema**: ${{ steps.deploy.outputs.alias }}/schema.json
+            - Preview: ${{ env.PREVIEW_BASE }}
+            - Registry: ${{ env.PREVIEW_BASE }}/registry.json
+            - Schema: ${{ env.PREVIEW_BASE }}/schema.json
             Built from commit ${{ github.sha }}
           edit-mode: replace
