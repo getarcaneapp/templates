@@ -1,0 +1,7 @@
+{
+  "name": "Pocket ID",
+  "description": "A simple and easy-to-use OIDC provider that allows users to authenticate with their passkeys to your services.",
+  "version": "1.1.0",
+  "author": "Community",
+  "tags": ["oidc"]
+}

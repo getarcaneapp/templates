@@ -1,0 +1,7 @@
+{
+  "name": "Wireguard",
+  "description": "WireGuard is a secure, fast, and relatively simple VPN protocol used to establish encrypted connections between devices",
+  "version": "1.0.0",
+  "author": "Community",
+  "tags": ["networking", "vpn"]
+}

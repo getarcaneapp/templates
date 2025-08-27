@@ -1,0 +1,21 @@
+{
+  "name": "arcane-templates",
+  "private": true,
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "type-check": "tsc --noEmit",
+    "generate": "tsx scripts/build-registry.ts",
+    "validate": "ajv -s schema.json -d registry.json --spec=draft7 -c ajv-formats",
+    "ci": "pnpm run type-check && pnpm run generate && pnpm run validate"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "ajv-cli": "^5.0.0",
+    "ajv-formats": "^3.0.1",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}

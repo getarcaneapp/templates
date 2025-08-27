@@ -6,117 +6,73 @@
   "type": "object",
   "properties": {
     "$schema": {
-      "type": "string"
-    },
-    "name": {
-      "description": "The name of the template registry.",
       "type": "string",
-      "minLength": 1
+      "description": "Optional JSON Schema meta reference in the registry file."
     },
+    "name": { "description": "The name of the template registry.", "type": "string", "minLength": 1 },
     "description": {
       "description": "A brief description of the template registry and its purpose.",
       "type": "string",
       "minLength": 1
     },
-    "version": {
-      "description": "The version of the registry using semantic versioning.",
-      "type": "string",
-      "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[a-zA-Z0-9-]+)?(?:\\+[a-zA-Z0-9-]+)?$"
-    },
-    "author": {
-      "description": "The author or organization maintaining the registry.",
-      "type": "string",
-      "minLength": 1
-    },
-    "url": {
-      "description": "The URL to the registry repository or homepage.",
-      "type": "string",
-      "format": "uri"
-    },
+    "version": { "description": "The version of the registry using semantic versioning.", "$ref": "#/definitions/semver" },
+    "author": { "description": "The author or organization maintaining the registry.", "type": "string", "minLength": 1 },
+    "url": { "description": "The URL to the registry repository or homepage.", "$ref": "#/definitions/url" },
     "templates": {
       "description": "An array of Docker Compose templates available in the registry.",
       "type": "array",
-      "items": {
-        "$ref": "#/$defs/template"
-      }
+      "items": { "$ref": "#/definitions/template" },
+      "minItems": 1
     }
   },
   "required": ["name", "description", "version", "author", "url", "templates"],
   "additionalProperties": false,
-  "$defs": {
+  "definitions": {
+    "semver": {
+      "type": "string",
+      "description": "Semantic Versioning 2.0.0",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
+    },
+    "slug": {
+      "type": "string",
+      "description": "Lowercase slug with hyphens only.",
+      "pattern": "^[a-z0-9-]+$",
+      "minLength": 1
+    },
+    "url": { "type": "string", "format": "uri" },
     "template": {
       "type": "object",
       "properties": {
         "id": {
           "description": "A unique identifier for the template. Must be lowercase with hyphens only.",
-          "type": "string",
-          "pattern": "^[a-z0-9-]+$",
-          "minLength": 1
+          "$ref": "#/definitions/slug"
         },
-        "name": {
-          "description": "The human-readable name of the template.",
-          "type": "string",
-          "minLength": 1
-        },
+        "name": { "description": "The human-readable name of the template.", "type": "string", "minLength": 1 },
         "description": {
           "description": "A detailed description of what the template provides and its use case.",
           "type": "string",
           "minLength": 1
         },
-        "version": {
-          "description": "The version of the template using semantic versioning.",
-          "type": "string",
-          "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[a-zA-Z0-9-]+)?(?:\\+[a-zA-Z0-9-]+)?$"
-        },
-        "author": {
-          "description": "The author or organization that created the template.",
-          "type": "string",
-          "minLength": 1
-        },
+        "version": { "description": "The version of the template using semantic versioning.", "$ref": "#/definitions/semver" },
+        "author": { "description": "The author or organization that created the template.", "type": "string", "minLength": 1 },
         "compose_url": {
           "description": "The direct URL to the docker-compose.yml file for this template.",
-          "type": "string",
-          "format": "uri"
+          "$ref": "#/definitions/url"
         },
         "env_url": {
           "description": "The direct URL to the environment variables example file (.env.example).",
-          "type": "string",
-          "format": "uri"
+          "$ref": "#/definitions/url"
         },
-        "documentation_url": {
-          "description": "The URL to the template's documentation or README.",
-          "type": "string",
-          "format": "uri"
-        },
+        "documentation_url": { "description": "The URL to the template's documentation or README.", "$ref": "#/definitions/url" },
         "tags": {
           "description": "An array of tags for categorizing and searching templates. Tags should be lowercase with hyphens.",
           "type": "array",
-          "items": {
-            "type": "string",
-            "pattern": "^[a-z0-9-]+$",
-            "minLength": 1
-          },
+          "items": { "$ref": "#/definitions/slug" },
           "minItems": 1,
           "uniqueItems": true
-        },
-        "updated_at": {
-          "description": "The ISO 8601 timestamp of when the template was last updated.",
-          "type": "string",
-          "format": "date-time"
         }
       },
-      "required": [
-        "id",
-        "name",
-        "description",
-        "version",
-        "author",
-        "compose_url",
-        "env_url",
-        "documentation_url",
-        "tags",
-        "updated_at"
-      ],
+      "required": ["id", "name", "description", "version", "author", "compose_url", "env_url", "documentation_url", "tags"],
       "additionalProperties": false
     }
   }

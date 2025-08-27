@@ -1,62 +1,82 @@
 # Arcane Templates Registry
 
-This repository serves as the community template registry for [Arcane](https://github.com/ofkm/arcane).
+Community-curated Docker Compose templates for [Arcane](https://github.com/ofkm/arcane).
 
-## 🔧 Using Templates
+## Using the Registry
 
-Add the following url to the Templates Setting section in Arcane:
+Add this URL in Arcane’s Templates settings:
 
 `https://templates.arcane.ofkm.dev/registry.json`
 
-## 🤝 Contributing Templates
+## How It Works
 
-Want to share your Docker Compose setup with the community? We'd love to have it!
+- Source of truth: each template lives under `templates/<id>/` and includes:
+  - `compose.yaml` (or docker-compose.yml/.yaml)
+  - `.env.example`
+  - `template.json` (metadata; see example below)
+- Auto-generation: [scripts/build-registry.ts](scripts/build-registry.ts) scans `templates/` and generates [registry.json](registry.json) that follows [schema.json](schema.json).
+- Do not edit or commit `registry.json` in PRs — CI builds and publishes it on merge to `main`.
+- Versioning policy: the registry version auto-bumps (minor by default) when a new template ID is added.
+- CI: [GitHub Actions](.github/workflows/build-registry.yml) type-checks, generates, validates against the schema, and commits updated `registry.json`.
 
-### 📝 Template Requirements
+## Contributing a Template
 
-Each template needs:
+1. Fork this repo
 
-- `docker-compose.yml` - Your compose configuration (v2 format)
-- `.env.example` - Environment variables template
-- `README.md` - Clear documentation
+2. Create a directory in `templates/` using a lowercase, hyphenated ID:
 
-### 🚀 Quick Contribution
+```bash
+cd templates
+mkdir my-awesome-template
+```
 
-1. **Fork this repository**
-2. **Create your template directory**:
-   ```bash
-   cd templates
-   mkdir my-awesome-template
-   cd my-awesome-template
-   ```
-3. **Add your files** (docker-compose.yml, .env.example, README.md)
-4. **Update `registry.json`** with your template details
-5. **Test your template** thoroughly
-6. **Submit a pull request**
+3. Add required files:
 
-### 📋 Registry Entry Format
+```
+templates/my-awesome-template/
+├─ compose.yaml            # or docker-compose.yml/.yaml, compose.yml
+├─ .env.example
+└─ template.json
+```
 
-Add your template to `registry.json`:
+4. template.json example:
 
 ```json
 {
-  "id": "my-template",
   "name": "My Awesome Template",
-  "description": "Brief description of what it does",
+  "description": "What it does and why it’s useful.",
   "version": "1.0.0",
-  "author": "Your Name",
-  "compose_url": "https://templates.arcane.ofkm.dev/my-template/docker-compose.yml",
-  "env_url": "https://templates.arcane.ofkm.dev/my-template/.env.example",
-  "documentation_url": "https://github.com/ofkm/arcane-templates/tree/main/my-template",
-  "tags": ["tag1", "tag2", "tag3"],
-  "updated_at": "2025-05-28T10:00:00Z"
+  "author": "Your Name or Org",
+  "tags": ["category", "another-tag"]
 }
 ```
 
-[Browse existing requests](https://github.com/ofkm/arcane-templates/issues?q=is%3Aissue+is%3Aopen+label%3Atemplate-request) or [request a new template](https://github.com/ofkm/arcane-templates/issues/new?template=template-request.md).
+5. Test locally (Node 24+, pnpm):
 
-## 🌍 Community
+```bash
+pnpm install
+pnpm run type-check
+pnpm run validate
+```
 
-- 💬 **[Discussions](https://github.com/ofkm/arcane-templates/discussions)** - Ideas, Q&A, general chat
-- 🐛 **[Issues](https://github.com/ofkm/arcane-templates/issues)** - Bug reports and template requests
-- 🔀 **[Pull Requests](https://github.com/ofkm/arcane-templates/pulls)** - Template contributions
+6. Open a Pull Request
+
+Tips:
+
+- The generator accepts compose files named: compose.yaml, docker-compose.yml, docker-compose.yaml, compose.yml.
+- `.env.example` is required.
+- Tags should be lowercase, hyphenated.
+
+## Development
+
+- Validate data against the registry schema: [schema.json](schema.json)
+- Run locally on macOS:
+
+```bash
+pnpm install
+pnpm run validate
+```
+
+## License
+
+Community contributions welcome. By contributing you agree your changes are licensed under the repository’s license.
