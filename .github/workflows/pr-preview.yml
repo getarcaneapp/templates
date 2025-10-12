@@ -7,6 +7,7 @@ on:
       - "templates/**"
       - "scripts/build-registry.ts"
       - "schema.json"
+      - "public/**"
       - "tsconfig.json"
       - "package.json"
       - "pnpm-lock.yaml"
@@ -73,6 +74,11 @@ jobs:
           mkdir -p build/templates
           cp -v registry.json build/
           cp -v schema.json build/
+          mkdir -p build
+          # include static homepage assets
+          if [ -d public ]; then
+            rsync -a public/ build/
+          fi
           rsync -a --delete templates/ build/templates/
 
       - name: Upload and Deploy Preview

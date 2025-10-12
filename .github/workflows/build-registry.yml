@@ -52,12 +52,7 @@ jobs:
         run: pnpm run generate
 
       - name: Stage build directory
-        run: |
-          rm -rf build
-          mkdir -p build/templates
-          cp -v registry.json build/
-          cp -v schema.json build/
-          rsync -a --delete templates/ build/templates/
+        run: pnpm run stage
 
       - name: Deploy to Cloudflare Workers
         env:
