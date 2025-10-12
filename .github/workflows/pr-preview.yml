@@ -4,12 +4,12 @@ on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
     paths:
-      - 'templates/**'
-      - 'scripts/build-registry.ts'
-      - 'schema.json'
-      - 'tsconfig.json'
-      - 'package.json'
-      - 'pnpm-lock.yaml'
+      - "templates/**"
+      - "scripts/build-registry.ts"
+      - "schema.json"
+      - "tsconfig.json"
+      - "package.json"
+      - "pnpm-lock.yaml"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
@@ -42,10 +42,9 @@ jobs:
           version: 10
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: '24'
-          cache: 'pnpm'
+          node-version: "24"
 
       - name: Install dependencies
         run: pnpm install
@@ -88,7 +87,7 @@ jobs:
         id: fc
         with:
           issue-number: ${{ github.event.pull_request.number }}
-          comment-author: 'github-actions[bot]'
+          comment-author: "github-actions[bot]"
           body-includes: Preview deployed successfully!
 
       - name: Comment preview URL

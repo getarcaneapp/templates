@@ -6,5 +6,8 @@
   },
   "preview_urls": true,
   "workers_dev": true,
-  "routes": [{ "pattern": "templates.arcane.ofkm.dev", "custom_domain": true }]
+  "routes": [
+    { "pattern": "templates.arcane.ofkm.dev", "custom_domain": true },
+    { "pattern": "registry.getarcane.app", "custom_domain": true }
+  ]
 }

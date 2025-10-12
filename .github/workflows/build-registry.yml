@@ -16,7 +16,7 @@ jobs:
     runs-on: macos-latest
     environment:
       name: production
-      url: https://templates.arcane.ofkm.dev
+      url: https://registry.getarcane.app
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -29,10 +29,9 @@ jobs:
           version: 10
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: '24'
-          cache: 'pnpm'
+          node-version: "24"
 
       - name: Install dependencies
         run: pnpm install
@@ -46,10 +45,10 @@ jobs:
           REGISTRY_DESCRIPTION: Community Docker Compose Templates for Arcane
           REGISTRY_AUTHOR: OFKM
           REGISTRY_URL: https://github.com/ofkm/arcane-templates
-          PUBLIC_BASE: https://templates.arcane.ofkm.dev/templates
+          PUBLIC_BASE: https://registry.getarcane.app/templates
           DOCS_BASE: https://github.com/ofkm/arcane-templates/tree/main/templates
           BUMP_PART: minor
-          SCHEMA_URL: https://templates.arcane.ofkm.dev/schema.json
+          SCHEMA_URL: https://registry.getarcane.app/schema.json
         run: pnpm run generate
 
       - name: Stage build directory

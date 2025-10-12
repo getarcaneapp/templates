@@ -38,9 +38,9 @@ const REGISTRY = {
   url: process.env.REGISTRY_URL || 'https://github.com/ofkm/arcane-templates',
 } satisfies Omit<RegistryFile, 'version' | 'templates'>;
 
-const PUBLIC_BASE = process.env.PUBLIC_BASE || 'https://templates.arcane.ofkm.dev/templates';
+const PUBLIC_BASE = process.env.PUBLIC_BASE || 'https://registry.getarcane.app/templates';
 const DOCS_BASE = process.env.DOCS_BASE || `${REGISTRY.url}/tree/main/templates`;
-const SCHEMA_URL = process.env.SCHEMA_URL || 'https://templates.arcane.ofkm.dev/schema.json';
+const SCHEMA_URL = process.env.SCHEMA_URL || 'https://registry.getarcane.app/schema.json';
 
 const BUMP_PART: BumpPart = (process.env.BUMP_PART || 'minor').toLowerCase() as BumpPart;
 
