@@ -12,9 +12,9 @@
     "deploy": "wrangler version deploy"
   },
   "devDependencies": {
-    "@types/node": "^24.3.0",
-    "tsx": "^4.20.5",
-    "typescript": "^5.9.2",
-    "wrangler": "^4.33.0"
+    "@types/node": "^24.7.2",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.42.2"
   }
 }
