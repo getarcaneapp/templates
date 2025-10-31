@@ -34,8 +34,8 @@ interface RegistryFile {
 const REGISTRY = {
   name: process.env.REGISTRY_NAME || 'Arcane Community Templates',
   description: process.env.REGISTRY_DESCRIPTION || 'Community Docker Compose Templates for Arcane',
-  author: process.env.REGISTRY_AUTHOR || 'OFKM',
-  url: process.env.REGISTRY_URL || 'https://github.com/ofkm/arcane-templates',
+  author: process.env.REGISTRY_AUTHOR || 'getarcaneapp',
+  url: process.env.REGISTRY_URL || 'https://github.com/getarcaneapp/templates',
 } satisfies Omit<RegistryFile, 'version' | 'templates'>;
 
 const PUBLIC_BASE = process.env.PUBLIC_BASE || 'https://registry.getarcane.app/templates';

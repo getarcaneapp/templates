@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema",
-  "$id": "https://github.com/ofkm/arcane-templates/schema.json",
+  "$id": "https://github.com/getarcaneapp/templates/schema.json",
   "title": "Arcane Templates Registry Schema",
   "description": "Schema for Docker Compose template registry configuration",
   "type": "object",

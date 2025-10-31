@@ -43,10 +43,10 @@ jobs:
         env:
           REGISTRY_NAME: Arcane Community Templates
           REGISTRY_DESCRIPTION: Community Docker Compose Templates for Arcane
-          REGISTRY_AUTHOR: OFKM
-          REGISTRY_URL: https://github.com/ofkm/arcane-templates
+          REGISTRY_AUTHOR: getarcaneapp
+          REGISTRY_URL: https://github.com/getarcaneapp/templates
           PUBLIC_BASE: https://registry.getarcane.app/templates
-          DOCS_BASE: https://github.com/ofkm/arcane-templates/tree/main/templates
+          DOCS_BASE: https://github.com/getarcaneapp/templates/tree/main/templates
           BUMP_PART: minor
           SCHEMA_URL: https://registry.getarcane.app/schema.json
         run: pnpm run generate
@@ -56,6 +56,6 @@ jobs:
 
       - name: Deploy to Cloudflare Workers
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_WORKERS_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: pnpm exec wrangler deploy

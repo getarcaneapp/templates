@@ -61,9 +61,9 @@ jobs:
           REGISTRY_NAME: ${{ github.event.pull_request.user.login }}s Arcane Templates Preview
           REGISTRY_DESCRIPTION: Pull Request \#${{ github.event.pull_request.number }}
           REGISTRY_AUTHOR: ${{ github.event.pull_request.user.login }}
-          REGISTRY_URL: https://github.com/ofkm/arcane-templates
+          REGISTRY_URL: https://github.com/getarcaneapp/templates
           PUBLIC_BASE: ${{ env.PREVIEW_BASE }}/templates
-          DOCS_BASE: https://github.com/ofkm/arcane-templates/tree/${{ github.head_ref || github.ref_name }}/templates
+          DOCS_BASE: https://github.com/getarcaneapp/templates/tree/${{ github.head_ref || github.ref_name }}/templates
           BUMP_PART: patch
           SCHEMA_URL: ${{ env.PREVIEW_BASE }}/schema.json
         run: pnpm run generate
@@ -83,7 +83,7 @@ jobs:
 
       - name: Upload and Deploy Preview
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_WORKERS_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           pnpm exec wrangler versions upload --preview-alias "$PREVIEW_ALIAS"
