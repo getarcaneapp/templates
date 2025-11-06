@@ -1,0 +1,7 @@
+{
+  "name": "Jellyfin Server",
+  "description": "Stream Video and Audio to your devices.",
+  "version": "1.0.0",
+  "author": "rjcndev",
+  "tags": ["media", "streaming"]
+}
