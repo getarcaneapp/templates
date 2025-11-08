@@ -1,7 +1,7 @@
 name: Build and Deploy Preview Registry
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, reopened, ready_for_review]
     paths:
       - "templates/**"
@@ -35,7 +35,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
         with:
+          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
+          token: ${{ secrets.ARCANE_BOT_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "getarcaneappbot"
+          git config --global user.email "info@getarcane.app"
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -93,7 +100,7 @@ jobs:
         id: fc
         with:
           issue-number: ${{ github.event.pull_request.number }}
-          comment-author: "github-actions[bot]"
+          comment-author: "getarcaneappbot"
           body-includes: Preview deployed successfully!
 
       - name: Comment preview URL
@@ -101,7 +108,7 @@ jobs:
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.ARCANE_BOT_TOKEN }}
           body: |
             Preview deployed successfully!
 
