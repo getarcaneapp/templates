@@ -1,0 +1,7 @@
+{
+  "name": "Invidious",
+  "description": "Youtube alternative front-end.",
+  "version": "1.0.0",
+  "author": "rjcndev",
+  "tags": ["youtube"]
+}
