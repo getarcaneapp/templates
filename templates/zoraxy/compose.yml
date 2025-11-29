@@ -16,4 +16,3 @@ services:
     environment:
       FASTGEOIP: "true"
       TZ: "Europe/Berlin"
-      
