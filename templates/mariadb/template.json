@@ -1,0 +1,7 @@
+{
+  "name": "MariaDB",
+  "description": "Open source relational SQL database.",
+  "version": "1.0.0",
+  "author": "rjcndev",
+  "tags": ["SQL", "MySQL"]
+}
