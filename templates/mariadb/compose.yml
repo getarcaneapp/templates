@@ -1,0 +1,24 @@
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD}"
+      MARIADB_DATABASE:     "${MARIADB_DATABASE}"
+      MARIADB_USER:         "${MARIADB_USER}"
+      MARIADB_PASSWORD:     "${MARIADB_PASSWORD}"
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./my.cnf:/etc/my.cnf:ro       # optional custom config file
+    command: --transaction-isolation=READ-COMMITTED --log-bin=mysql-bin
+
+# Optional: network definition if you want to isolate the DB from other services
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  mariadb_data:
