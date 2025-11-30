@@ -1,0 +1,7 @@
+{
+  "name": "PostgreSQL 18",
+  "description": "Open source relational database.",
+  "version": "1.0.0",
+  "author": "rjcndev",
+  "tags": ["SQL"]
+}
