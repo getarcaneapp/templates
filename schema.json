@@ -39,6 +39,12 @@
       "pattern": "^[a-z0-9-]+$",
       "minLength": 1
     },
+    "tag": {
+      "type": "string",
+      "description": "Tag with letters, numbers, and hyphens.",
+      "pattern": "^[a-zA-Z0-9-]+$",
+      "minLength": 1
+    },
     "url": { "type": "string", "format": "uri" },
     "template": {
       "type": "object",
@@ -65,9 +71,9 @@
         },
         "documentation_url": { "description": "The URL to the template's documentation or README.", "$ref": "#/definitions/url" },
         "tags": {
-          "description": "An array of tags for categorizing and searching templates. Tags should be lowercase with hyphens.",
+          "description": "An array of tags for categorizing and searching templates.",
           "type": "array",
-          "items": { "$ref": "#/definitions/slug" },
+          "items": { "$ref": "#/definitions/tag" },
           "minItems": 1,
           "uniqueItems": true
         }
