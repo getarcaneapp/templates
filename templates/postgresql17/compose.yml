@@ -1,18 +1,18 @@
 services:
   postgres:
-    image: postgresql:16
+    image: postgresql:17
     container_name: postgres
     restart: unless-stopped
     environment:
-      POSTGRES_DB:       "${POSTGRES_DB}"
-      POSTGRES_USER:     "${POSTGRES_USER}"
+      POSTGRES_DB: "${POSTGRES_DB}"
+      POSTGRES_USER: "${POSTGRES_USER}"
       POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
       PGDATA: "/var/lib/postgresql/data/pgdata"
     ports:
       - "5432:5432"
     volumes:
       - pg_data:/var/lib/postgresql/data
-      - ./postgresql.conf:/etc/postgresql/postgresql.conf:ro  # optional custom config
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf:ro # optional custom config
     command: ["-c", "config_file=/etc/postgresql/postgresql.conf"]
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
