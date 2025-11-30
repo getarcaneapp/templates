@@ -1,22 +1,24 @@
 {
   "name": "arcane-templates",
   "private": true,
+  "packageManager": "pnpm@10.24.0",
   "engines": {
-    "node": ">=24"
+    "node": ">=25"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "type-check": "tsc --noEmit",
+    "test": "tsx scripts/test-build-registry.ts",
     "generate": "tsx scripts/build-registry.ts",
-    "ci": "pnpm run type-check && pnpm run generate",
+    "ci": "pnpm run type-check && pnpm run test && pnpm run generate",
     "stage": "rm -rf build && mkdir -p build/templates && cp -v registry.json build/ && cp -v schema.json build/ && if [ -d public ]; then rsync -a public/ build/; fi && rsync -a --delete templates/ build/templates/",
     "deploy": "pnpm run stage && wrangler version deploy",
     "dev": "pnpm run generate && pnpm run stage && wrangler dev"
   },
   "devDependencies": {
-    "@types/node": "^24.7.2",
+    "@types/node": "^24.10.1",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
-    "wrangler": "^4.42.2"
+    "wrangler": "^4.51.0"
   }
 }

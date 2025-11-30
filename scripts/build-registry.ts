@@ -70,18 +70,26 @@ function bumpSemver(v: string, part: BumpPart = 'minor'): string {
   return `${major}.${minor}.${patch}`;
 }
 
-async function readPrevRegistry(): Promise<RegistryFile | null> {
-  const p = path.join(ROOT, 'registry.json');
-  if (!(await exists(p))) return null;
-  try {
-    return JSON.parse(await fs.readFile(p, 'utf8')) as RegistryFile;
-  } catch {
-    return null;
+async function loadLocalRegistry(): Promise<RegistryFile | null> {
+  const localRegistryPath = path.join(ROOT, 'registry.json');
+
+  if (await exists(localRegistryPath)) {
+    try {
+      const data = JSON.parse(await fs.readFile(localRegistryPath, 'utf8')) as RegistryFile;
+      console.log(`Found local registry.json version: ${data.version} with ${data.templates?.length ?? 0} templates`);
+      return data;
+    } catch (err) {
+      console.warn(`Could not parse local registry.json: ${(err as Error).message}`);
+    }
+  } else {
+    console.log('No local registry.json found, starting fresh');
   }
+
+  return null;
 }
 
 async function build(): Promise<void> {
-  const prev = await readPrevRegistry();
+  const prev = await loadLocalRegistry();
 
   const entries = await fs.readdir(TEMPLATES_DIR, { withFileTypes: true });
   const templateDirs = entries.filter((e) => e.isDirectory()).map((e) => e.name);
