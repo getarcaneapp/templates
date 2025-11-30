@@ -70,18 +70,27 @@ function bumpSemver(v: string, part: BumpPart = 'minor'): string {
   return `${major}.${minor}.${patch}`;
 }
 
-async function readPrevRegistry(): Promise<RegistryFile | null> {
-  const p = path.join(ROOT, 'registry.json');
-  if (!(await exists(p))) return null;
+const LIVE_REGISTRY_URL = process.env.LIVE_REGISTRY_URL || 'https://registry.getarcane.app/registry.json';
+
+async function fetchLiveRegistry(): Promise<RegistryFile | null> {
   try {
-    return JSON.parse(await fs.readFile(p, 'utf8')) as RegistryFile;
-  } catch {
+    console.log(`Fetching live registry from ${LIVE_REGISTRY_URL}...`);
+    const res = await fetch(LIVE_REGISTRY_URL);
+    if (!res.ok) {
+      console.warn(`Failed to fetch live registry: ${res.status} ${res.statusText}`);
+      return null;
+    }
+    const data = (await res.json()) as RegistryFile;
+    console.log(`Live registry version: ${data.version} with ${data.templates?.length ?? 0} templates`);
+    return data;
+  } catch (err) {
+    console.warn(`Could not fetch live registry: ${(err as Error).message}`);
     return null;
   }
 }
 
 async function build(): Promise<void> {
-  const prev = await readPrevRegistry();
+  const prev = await fetchLiveRegistry();
 
   const entries = await fs.readdir(TEMPLATES_DIR, { withFileTypes: true });
   const templateDirs = entries.filter((e) => e.isDirectory()).map((e) => e.name);

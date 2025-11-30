@@ -8,8 +8,9 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "type-check": "tsc --noEmit",
+    "test": "tsx scripts/test-build-registry.ts",
     "generate": "tsx scripts/build-registry.ts",
-    "ci": "pnpm run type-check && pnpm run generate",
+    "ci": "pnpm run type-check && pnpm run test && pnpm run generate",
     "stage": "rm -rf build && mkdir -p build/templates && cp -v registry.json build/ && cp -v schema.json build/ && if [ -d public ]; then rsync -a public/ build/; fi && rsync -a --delete templates/ build/templates/",
     "deploy": "pnpm run stage && wrangler version deploy",
     "dev": "pnpm run generate && pnpm run stage && wrangler dev"
