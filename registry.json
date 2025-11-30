@@ -1,0 +1,146 @@
+{
+  "$schema": "https://registry.getarcane.app/schema.json",
+  "name": "Arcane Community Templates",
+  "description": "Community Docker Compose Templates for Arcane",
+  "author": "getarcaneapp",
+  "url": "https://github.com/getarcaneapp/templates",
+  "version": "1.1.0",
+  "templates": [
+    {
+      "id": "homepage",
+      "name": "Homepage",
+      "description": "A modern, fully static, fast, secure fully proxied, highly customizable application dashboard with integrations for over 100 services and translations into multiple languages. Easily configured via YAML files or through docker label discovery.",
+      "version": "1.0.0",
+      "author": "Community",
+      "compose_url": "https://registry.getarcane.app/templates/homepage/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/homepage/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/homepage",
+      "tags": [
+        "homepages",
+        "dashboards"
+      ]
+    },
+    {
+      "id": "invidious",
+      "name": "Invidious",
+      "description": "Youtube alternative front-end.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/invidious/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/invidious/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/invidious",
+      "tags": [
+        "youtube"
+      ]
+    },
+    {
+      "id": "jellyfin-server",
+      "name": "Jellyfin Server",
+      "description": "Stream Video and Audio to your devices.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/jellyfin-server/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/jellyfin-server/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/jellyfin-server",
+      "tags": [
+        "media",
+        "streaming"
+      ]
+    },
+    {
+      "id": "mariadb",
+      "name": "MariaDB",
+      "description": "Open source relational SQL database.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/mariadb/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/mariadb/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/mariadb",
+      "tags": [
+        "SQL",
+        "MySQL"
+      ]
+    },
+    {
+      "id": "pgadmin",
+      "name": "pgAdmin",
+      "description": "pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world.",
+      "version": "1.0.0",
+      "author": "Community",
+      "compose_url": "https://registry.getarcane.app/templates/pgadmin/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/pgadmin/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/pgadmin",
+      "tags": [
+        "database",
+        "postgresql"
+      ]
+    },
+    {
+      "id": "pinchflat",
+      "name": "Pinchflat",
+      "description": "Youtube media manager.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/pinchflat/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/pinchflat/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/pinchflat",
+      "tags": [
+        "youtube",
+        "youtube-dl"
+      ]
+    },
+    {
+      "id": "pocket-id",
+      "name": "Pocket ID",
+      "description": "A simple and easy-to-use OIDC provider that allows users to authenticate with their passkeys to your services.",
+      "version": "1.1.0",
+      "author": "Community",
+      "compose_url": "https://registry.getarcane.app/templates/pocket-id/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/pocket-id/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/pocket-id",
+      "tags": [
+        "oidc"
+      ]
+    },
+    {
+      "id": "rybbit",
+      "name": "Rybbit",
+      "description": "Website analytics without cookies.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/rybbit/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/rybbit/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/rybbit",
+      "tags": [
+        "analytics"
+      ]
+    },
+    {
+      "id": "wireguard",
+      "name": "Wireguard",
+      "description": "WireGuard is a secure, fast, and relatively simple VPN protocol used to establish encrypted connections between devices",
+      "version": "1.0.0",
+      "author": "Community",
+      "compose_url": "https://registry.getarcane.app/templates/wireguard/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/wireguard/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/wireguard",
+      "tags": [
+        "networking",
+        "vpn"
+      ]
+    },
+    {
+      "id": "zoraxy",
+      "name": "Zoraxy",
+      "description": "General purpose HTTP reverse proxy and forwarding tool.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/zoraxy/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/zoraxy/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/zoraxy",
+      "tags": [
+        "reverse proxy"
+      ]
+    }
+  ]
+}
