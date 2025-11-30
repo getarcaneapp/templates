@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "templates": [
     {
       "id": "homepage",
@@ -100,6 +100,45 @@
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/pocket-id",
       "tags": [
         "oidc"
+      ]
+    },
+    {
+      "id": "postgresql16",
+      "name": "PostgreSQL 16",
+      "description": "Open source relational database.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/postgresql16/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/postgresql16/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/postgresql16",
+      "tags": [
+        "SQL"
+      ]
+    },
+    {
+      "id": "postgresql17",
+      "name": "PostgreSQL 17",
+      "description": "Open source relational database.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/postgresql17/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/postgresql17/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/postgresql17",
+      "tags": [
+        "SQL"
+      ]
+    },
+    {
+      "id": "postgresql18",
+      "name": "PostgreSQL 18",
+      "description": "Open source relational database.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/postgresql18/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/postgresql18/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/postgresql18",
+      "tags": [
+        "SQL"
       ]
     },
     {
