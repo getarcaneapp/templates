@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   build:
-    if: ${{ github.actor != 'getarcaneappbot' }} # prevent re-run loop on bot commits
+    if: ${{ github.actor != 'getarcaneappbot' }}
     runs-on: macos-latest
     environment:
       name: production
