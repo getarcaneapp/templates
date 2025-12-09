@@ -16,7 +16,7 @@
     "dev": "pnpm run generate && pnpm run stage && wrangler dev"
   },
   "devDependencies": {
-    "@types/node": "^24.10.1",
+    "@types/node": "^24.10.2",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "wrangler": "^4.53.0"
