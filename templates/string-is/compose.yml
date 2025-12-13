@@ -1,0 +1,5 @@
+services:
+  string_is:
+    image: daveperrett/string-is:latest
+    ports:
+      - "8087:3000"
