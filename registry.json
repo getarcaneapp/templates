@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "templates": [
     {
       "id": "homepage",
@@ -152,6 +152,21 @@
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/rybbit",
       "tags": [
         "analytics"
+      ]
+    },
+    {
+      "id": "swagger-editor",
+      "name": "Swagger Editor",
+      "description": "Editor for APIs in the OpenAPI Specification.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/swagger-editor/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/swagger-editor/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/swagger-editor",
+      "tags": [
+        "Tools",
+        "API",
+        "OpenAPI"
       ]
     },
     {
