@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "templates": [
     {
       "id": "convertx",
@@ -73,6 +73,19 @@
       "tags": [
         "SQL",
         "MySQL"
+      ]
+    },
+    {
+      "id": "mosparo",
+      "name": "Mosparo",
+      "description": "The modern spam protection.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/mosparo/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/mosparo/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/mosparo",
+      "tags": [
+        "Tools"
       ]
     },
     {
