@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "templates": [
     {
       "id": "convertx",
@@ -18,6 +18,19 @@
       "tags": [
         "Tools",
         "Converter"
+      ]
+    },
+    {
+      "id": "flyimg",
+      "name": "Flyimg",
+      "description": "App that resizes and crops images on the fly.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/flyimg/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/flyimg/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/flyimg",
+      "tags": [
+        "Tools"
       ]
     },
     {
