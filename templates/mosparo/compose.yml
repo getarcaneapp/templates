@@ -1,0 +1,38 @@
+services:
+  db:
+    image: mariadb:11.4
+    command: '--default-authentication-plugin=mysql_native_password'
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=mosparo_root_pw
+      - MYSQL_DATABASE=mosparo
+      - MYSQL_USER=mosparo
+      - MYSQL_PASSWORD=mosparo_password
+    expose:
+      - 3306
+      - 33060
+  mosparo_web:
+    image: mosparo/mosparo:latest
+    ports:
+      - 8086:80
+    restart: always
+    environment:
+      - MOSPARO_ENABLE_WEBSERVER=1
+      # If you want to run the cron jobs in a seperated container, uncomment the following lines
+      #- MOSPARO_ENABLE_CRON=0
+      #- MOSPARO_CLEANUP_GRACE_PERIOD_ENABLED=1
+    volumes:
+      - mosparo_data:/mosparo-data
+  # If you want to run the cron jobs in a seperated container, uncomment the following lines
+  #mosparo_cron:
+  #  image: mosparo/mosparo:latest
+  #  restart: always
+  #  environment:
+  #    - MOSPARO_ENABLE_WEBSERVER=0
+  #  volumes:
+  #    - mosparo_data:/mosparo-data
+volumes:
+  db_data:
+  mosparo_data:
