@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "templates": [
     {
       "id": "convertx",
@@ -58,6 +58,19 @@
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/invidious",
       "tags": [
         "youtube"
+      ]
+    },
+    {
+      "id": "ittools",
+      "name": "ITTools",
+      "description": "Collection of online tools for developers.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/ittools/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/ittools/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/ittools",
+      "tags": [
+        "Tools"
       ]
     },
     {
