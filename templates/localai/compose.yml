@@ -1,0 +1,30 @@
+services:
+  api:
+    image: localai/localai:latest-aio-cpu
+    # For GPU support, use one of:
+    # image: localai/localai:latest-aio-gpu-nvidia-cuda-12
+    # image: localai/localai:latest-aio-gpu-nvidia-cuda-11
+    # image: localai/localai:latest-aio-gpu-hipblas
+    # image: localai/localai:latest-aio-gpu-intel
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/readyz"]
+      interval: 1m
+      timeout: 20m
+      retries: 5
+    ports:
+      - 8080:8080
+    environment:
+      - DEBUG=true
+    volumes:
+      - localai_models:/models:cached
+    # For NVIDIA GPUs, uncomment:
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+
+volumes:
+  localai_models:
