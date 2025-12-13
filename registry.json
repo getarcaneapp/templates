@@ -4,8 +4,22 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "templates": [
+    {
+      "id": "convertx",
+      "name": "ConvertX",
+      "description": "File converter. Supports 1000+ formats.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/convertx/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/convertx/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/convertx",
+      "tags": [
+        "Tools",
+        "Converter"
+      ]
+    },
     {
       "id": "homepage",
       "name": "Homepage",
