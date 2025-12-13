@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "templates": [
     {
       "id": "convertx",
@@ -110,6 +110,19 @@
       "compose_url": "https://registry.getarcane.app/templates/mosparo/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/mosparo/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/mosparo",
+      "tags": [
+        "Tools"
+      ]
+    },
+    {
+      "id": "omnitools",
+      "name": "OmniTools",
+      "description": "Self-hosted collection of powerful web-based tools for everyday tasks.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/omnitools/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/omnitools/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/omnitools",
       "tags": [
         "Tools"
       ]
