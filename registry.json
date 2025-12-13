@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "templates": [
     {
       "id": "convertx",
@@ -59,6 +59,19 @@
       "tags": [
         "media",
         "streaming"
+      ]
+    },
+    {
+      "id": "languagetool",
+      "name": "LanguageTool",
+      "description": "Style and Grammar Checker for 25+ Languages.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/languagetool/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/languagetool/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/languagetool",
+      "tags": [
+        "Tools"
       ]
     },
     {
