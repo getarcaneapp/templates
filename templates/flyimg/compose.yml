@@ -1,0 +1,7 @@
+services:
+  flyimg:
+    image: flyimg/flyimg
+    ports:
+      - "8084:80"
+    stdin_open: true
+    tty: true   
