@@ -1,0 +1,7 @@
+{
+  "name": "LocalAI",
+  "description": "Open Source alternative to OpenAI.",
+  "version": "1.0.0",
+  "author": "rjcndev",
+  "tags": ["AI", "LLM", "ChatGPT", "OpenAI"]
+}
