@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "templates": [
     {
       "id": "convertx",
@@ -98,6 +98,22 @@
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/languagetool",
       "tags": [
         "Tools"
+      ]
+    },
+    {
+      "id": "localai",
+      "name": "LocalAI",
+      "description": "Open Source alternative to OpenAI.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/localai/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/localai/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/localai",
+      "tags": [
+        "AI",
+        "LLM",
+        "ChatGPT",
+        "OpenAI"
       ]
     },
     {
