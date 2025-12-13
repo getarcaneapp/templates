@@ -1,0 +1,7 @@
+{
+  "name": "Swagger Editor",
+  "description": "Editor for APIs in the OpenAPI Specification.",
+  "version": "1.0.0",
+  "author": "rjcndev",
+  "tags": ["Tools", "API", "OpenAPI"]
+}
