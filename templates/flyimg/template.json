@@ -1,0 +1,7 @@
+{
+  "name": "Flyimg",
+  "description": "App that resizes and crops images on the fly.",
+  "version": "1.0.0",
+  "author": "rjcndev",
+  "tags": ["Tools"]
+}
