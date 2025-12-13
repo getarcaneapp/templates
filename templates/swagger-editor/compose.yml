@@ -1,0 +1,6 @@
+services:
+  swagger_editor:
+    image: swaggerapi/swagger-editor:latest
+    restart: unless-stopped
+    ports:
+      - "8089:80"
