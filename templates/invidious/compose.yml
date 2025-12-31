@@ -1,3 +1,10 @@
+# This will not work out of the box yet!
+#
+# Please visit the official documentation.
+#
+# https://docs.invidious.io/installation/#docker-compose-method-production
+#
+
 version: "3"
 services:
   invidious:
