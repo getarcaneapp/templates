@@ -1,0 +1,7 @@
+{
+  "name": "PatchMon",
+  "description": "Linux Patch Monitoring Automation Platform.",
+  "version": "1.0.0",
+  "author": "rjcndev",
+  "tags": ["tools", "linux"]
+}
