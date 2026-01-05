@@ -1,0 +1,7 @@
+{
+  "name": "Web-Check",
+  "description": "All-in-one OSINT tool for analysing any website.",
+  "version": "1.0.0",
+  "author": "rjcndev",
+  "tags": ["security", "privacy"]
+}
