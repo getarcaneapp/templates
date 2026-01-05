@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.12.0",
+  "version": "1.13.0",
   "templates": [
     {
       "id": "convertx",
@@ -131,6 +131,19 @@
       ]
     },
     {
+      "id": "metube",
+      "name": "MeTube",
+      "description": "Self-hosted YouTube downloader.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/metube/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/metube/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/metube",
+      "tags": [
+        "youtube"
+      ]
+    },
+    {
       "id": "mosparo",
       "name": "Mosparo",
       "description": "The modern spam protection.",
@@ -154,6 +167,20 @@
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/omnitools",
       "tags": [
         "Tools"
+      ]
+    },
+    {
+      "id": "patchmon",
+      "name": "PatchMon",
+      "description": "Linux Patch Monitoring Automation Platform.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/patchmon/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/patchmon/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/patchmon",
+      "tags": [
+        "tools",
+        "linux"
       ]
     },
     {
