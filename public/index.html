@@ -15,10 +15,13 @@
         --text: oklch(0.97 0 0);
         --muted: oklch(0.8 0 0 / 0.75);
         --card: oklch(0.2 0.01 292.717 / 0.6);
+        --card-hover: oklch(0.25 0.02 292.717 / 0.7);
         --card-border: oklch(0.4 0.03 292.717 / 0.35);
         --input-bg: oklch(0.18 0.02 292.717 / 0.6);
         --input-border: oklch(0.38 0.03 292.717 / 0.5);
         --shadow: 0 10px 30px oklch(0.3 0.06 292.717 / 0.35);
+        --tag-bg: oklch(0.25 0.05 292.717 / 0.5);
+        --tag-text: oklch(0.9 0.05 292.717);
       }
 
       html,
@@ -36,12 +39,26 @@
           radial-gradient(900px 700px at 85% 90%, var(--arcane-purple), transparent 55%),
           linear-gradient(135deg, var(--bg-deep), var(--purple-2));
         min-height: 100%;
-        display: grid;
-        place-items: center;
+        overflow-y: auto;
       }
 
-      .wrap {
-        width: min(760px, 92vw);
+      #root {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 1rem;
+        min-height: 100vh;
+        box-sizing: border-box;
+      }
+
+      .container {
+        width: min(1200px, 100%);
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .header-card {
         padding: clamp(1.25rem, 4vw, 2.25rem);
         border-radius: clamp(12px, 3vw, 20px);
         background: var(--card);
@@ -60,13 +77,6 @@
       p.sub {
         margin: 0 0 1.5rem 0;
         color: var(--muted);
-      }
-
-      @media (max-width: 640px) {
-        p.sub {
-          margin: 0 0 1.25rem 0;
-          font-size: 0.95rem;
-        }
       }
 
       .row {
@@ -92,12 +102,11 @@
         border: 1px solid var(--input-border);
         color: var(--text);
         overflow: hidden;
+        transition: border-color 0.2s ease;
       }
-
-      @media (max-width: 640px) {
-        .input {
-          padding: 1rem 1rem;
-        }
+      
+      .input:focus-within {
+        border-color: var(--arcane-purple);
       }
 
       .input input {
@@ -126,14 +135,7 @@
         justify-content: center;
         gap: 0.5rem;
         transition: transform 120ms ease, filter 120ms ease;
-      }
-
-      @media (max-width: 640px) {
-        .btn {
-          width: 100%;
-          padding: 1rem 1.25rem;
-          font-size: 1rem;
-        }
+        text-decoration: none;
       }
 
       .btn:hover {
@@ -141,16 +143,6 @@
       }
       .btn:active {
         transform: translateY(1px);
-      }
-
-      .status {
-        height: 1.5rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        font-size: 0.95rem;
-        color: var(--muted);
-        margin-top: 0.75rem;
       }
 
       .badge {
@@ -163,25 +155,110 @@
         background: oklch(0.2 0.02 292.717 / 0.5);
         color: var(--muted);
         font-size: 0.85rem;
+        white-space: nowrap;
       }
 
-      .footer {
-        margin-top: 1.25rem;
+      /* Grid Layout */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        transition: transform 0.2s ease, background-color 0.2s ease;
+        backdrop-filter: blur(4px);
+      }
+
+      .card:hover {
+        transform: translateY(-2px);
+        background: var(--card-hover);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 0;
+      }
+      
+      .card-version {
+        font-size: 0.85rem;
+        color: var(--muted);
+        background: var(--input-bg);
+        padding: 0.2rem 0.5rem;
+        border-radius: 6px;
+      }
+
+      .card-desc {
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin: 0;
+        flex-grow: 1;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .tag {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 6px;
+        background: var(--tag-bg);
+        color: var(--tag-text);
+        font-weight: 500;
+      }
+
+      .card-actions {
         display: flex;
         gap: 0.75rem;
-        flex-wrap: wrap;
-        align-items: center;
+        margin-top: auto;
+        padding-top: 1rem;
+        border-top: 1px solid var(--card-border);
+      }
+
+      .btn-sm {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.9rem;
+        border-radius: 8px;
+      }
+      
+      .btn-outline {
+        background: transparent;
+        border: 1px solid var(--input-border);
+        color: var(--text);
+      }
+      
+      .btn-outline:hover {
+        background: var(--input-bg);
+        filter: none;
+      }
+
+      .search-bar {
+        margin-bottom: 1rem;
+      }
+
+      .loading {
+        text-align: center;
+        padding: 4rem;
         color: var(--muted);
-      }
-
-      @media (max-width: 640px) {
-        .footer {
-          justify-content: center;
-        }
-      }
-
-      a {
-        color: inherit;
+        font-size: 1.2rem;
       }
     </style>
   </head>
@@ -223,10 +300,114 @@
           })
         );
       }
+      
+      function SearchIcon(props) {
+        return React.createElement(
+          'svg',
+          { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none', xmlns: 'http://www.w3.org/2000/svg', ...props },
+          React.createElement('path', {
+            d: 'M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z',
+            stroke: 'currentColor',
+            strokeWidth: 2,
+            strokeLinecap: 'round',
+            strokeLinejoin: 'round',
+          })
+        );
+      }
+      
+      function ExternalLinkIcon(props) {
+        return React.createElement(
+          'svg',
+          { width: 14, height: 14, viewBox: '0 0 24 24', fill: 'none', xmlns: 'http://www.w3.org/2000/svg', ...props },
+          React.createElement('path', {
+            d: 'M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6',
+            stroke: 'currentColor',
+            strokeWidth: 2,
+            strokeLinecap: 'round',
+            strokeLinejoin: 'round',
+          }),
+          React.createElement('path', {
+            d: 'M15 3h6v6',
+            stroke: 'currentColor',
+            strokeWidth: 2,
+            strokeLinecap: 'round',
+            strokeLinejoin: 'round',
+          }),
+          React.createElement('path', {
+            d: 'M10 14L21 3',
+            stroke: 'currentColor',
+            strokeWidth: 2,
+            strokeLinecap: 'round',
+            strokeLinejoin: 'round',
+          })
+        );
+      }
+
+      function TemplateCard({ template }) {
+        return React.createElement(
+          'div',
+          { className: 'card' },
+          React.createElement(
+            'div',
+            { className: 'card-header' },
+            React.createElement('h3', { className: 'card-title' }, template.name),
+            React.createElement('span', { className: 'card-version' }, 'v', template.version)
+          ),
+          React.createElement('p', { className: 'card-desc' }, template.description),
+          template.tags && template.tags.length > 0 && React.createElement(
+            'div',
+            { className: 'tags' },
+            template.tags.map(tag => 
+              React.createElement('span', { key: tag, className: 'tag' }, tag)
+            )
+          ),
+          React.createElement(
+            'div',
+            { className: 'card-actions' },
+            React.createElement(
+              'a',
+              { href: template.documentation_url, target: '_blank', rel: 'noopener noreferrer', className: 'btn btn-sm btn-outline' },
+              'Docs',
+              React.createElement(ExternalLinkIcon, { style: { marginLeft: '4px' } })
+            ),
+            React.createElement(
+              'a',
+              { href: template.compose_url, target: '_blank', rel: 'noopener noreferrer', className: 'btn btn-sm btn-outline' },
+              'Compose'
+            )
+          )
+        );
+      }
 
       function App() {
         const registryUrl = React.useMemo(() => `${location.origin}/registry.json`, []);
         const [copied, setCopied] = React.useState(false);
+        const [templates, setTemplates] = React.useState([]);
+        const [loading, setLoading] = React.useState(true);
+        const [search, setSearch] = React.useState('');
+
+        React.useEffect(() => {
+          fetch(registryUrl)
+            .then(res => res.json())
+            .then(data => {
+              setTemplates(data.templates || []);
+              setLoading(false);
+            })
+            .catch(err => {
+              console.error('Failed to fetch registry:', err);
+              setLoading(false);
+            });
+        }, [registryUrl]);
+
+        const filteredTemplates = React.useMemo(() => {
+          if (!search) return templates;
+          const lowerSearch = search.toLowerCase();
+          return templates.filter(t => 
+            t.name.toLowerCase().includes(lowerSearch) || 
+            t.description.toLowerCase().includes(lowerSearch) ||
+            (t.tags && t.tags.some(tag => tag.toLowerCase().includes(lowerSearch)))
+          );
+        }, [templates, search]);
 
         const onCopy = async () => {
           try {
@@ -250,38 +431,65 @@
         };
 
         return React.createElement(
-          'main',
-          { className: 'wrap', role: 'main' },
-          React.createElement('h1', null, 'Arcane Templates Registry'),
-          React.createElement('p', { className: 'sub' }, 'Copy the dynamic registry URL for this deployment.'),
+          'div',
+          { className: 'container' },
+          
+          // Header Card
           React.createElement(
             'div',
-            { className: 'row' },
+            { className: 'header-card' },
+            React.createElement('h1', null, 'Arcane Templates Registry'),
+            React.createElement('p', { className: 'sub' }, 'Copy the dynamic registry URL for this deployment to use in Arcane.'),
             React.createElement(
-              'label',
-              { className: 'input', htmlFor: 'registry' },
-              React.createElement('span', { className: 'badge', style: { marginRight: '.25rem' } }, 'URL'),
-              React.createElement('input', {
-                id: 'registry',
-                type: 'text',
-                readOnly: true,
-                value: registryUrl,
-                onFocus: (e) => e.target.select(),
-                'aria-label': 'Registry URL',
-              })
-            ),
-            React.createElement(
-              'button',
-              { className: 'btn', onClick: onCopy, type: 'button', 'aria-live': 'polite' },
-              copied ? React.createElement(CheckIcon, null) : React.createElement(CopyIcon, null),
-              copied ? 'Copied' : 'Copy'
+              'div',
+              { className: 'row' },
+              React.createElement(
+                'label',
+                { className: 'input', htmlFor: 'registry' },
+                React.createElement('span', { className: 'badge', style: { marginRight: '.25rem' } }, 'URL'),
+                React.createElement('input', {
+                  id: 'registry',
+                  type: 'text',
+                  readOnly: true,
+                  value: registryUrl,
+                  onFocus: (e) => e.target.select(),
+                  'aria-label': 'Registry URL',
+                })
+              ),
+              React.createElement(
+                'button',
+                { className: 'btn', onClick: onCopy, type: 'button', 'aria-live': 'polite' },
+                copied ? React.createElement(CheckIcon, null) : React.createElement(CopyIcon, null),
+                copied ? 'Copied' : 'Copy'
+              )
             )
           ),
+
+          // Search & Grid
           React.createElement(
             'div',
-            { className: 'footer' },
-            React.createElement('span', { className: 'badge' }, 'registry.json'),
-            React.createElement('a', { href: registryUrl, target: '_blank', rel: 'noopener noreferrer' }, 'Open')
+            { className: 'content' },
+            React.createElement(
+              'div',
+              { className: 'input search-bar' },
+              React.createElement(SearchIcon, { style: { color: 'var(--muted)' } }),
+              React.createElement('input', {
+                type: 'text',
+                placeholder: 'Search templates...',
+                value: search,
+                onChange: (e) => setSearch(e.target.value)
+              })
+            ),
+            
+            loading ? 
+              React.createElement('div', { className: 'loading' }, 'Loading templates...') :
+              React.createElement(
+                'div',
+                { className: 'grid' },
+                filteredTemplates.map(template => 
+                  React.createElement(TemplateCard, { key: template.id, template: template })
+                )
+              )
           )
         );
       }
