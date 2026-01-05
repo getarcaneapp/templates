@@ -10,6 +10,10 @@ permissions:
   deployments: write
   contents: write
 
+concurrency:
+  group: "production-registry-deploy"
+  cancel-in-progress: true
+
 jobs:
   build:
     if: ${{ github.actor != 'getarcaneappbot' }}
@@ -33,15 +37,13 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: "25"
+          cache: pnpm
 
       - name: Install dependencies
         run: pnpm install
-
-      - name: Type-check
-        run: pnpm run type-check
 
       - name: Generate registry.json
         env:

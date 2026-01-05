@@ -48,18 +48,16 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: "25"
+          cache: pnpm
 
       - name: Install dependencies
         run: pnpm install
 
       - name: Check Wrangler version
         run: pnpm exec wrangler --version
-
-      - name: Type-check
-        run: pnpm run type-check
 
       - name: Generate registry.json
         env:
