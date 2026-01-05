@@ -1,0 +1,7 @@
+{
+  "name": "Vaultwarden",
+  "description": "Unofficial Bitwarden compatible server written in Rust.",
+  "version": "1.0.0",
+  "author": "rjcndev",
+  "tags": ["password-manager", "bitwarden"]
+}
