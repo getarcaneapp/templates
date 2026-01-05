@@ -1,0 +1,10 @@
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    restart: unless-stopped
+    environment:
+      DOMAIN: "https://vw.domain.tld"
+    volumes:
+      - /path/to/vw/data:/data/
+    ports:
+      - 8112:80
