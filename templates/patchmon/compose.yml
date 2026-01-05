@@ -92,7 +92,7 @@ services:
     image: ghcr.io/patchmon/patchmon-frontend:latest
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "8114:3000"
     volumes:
       - branding_assets:/usr/share/nginx/html/assets
     networks:
