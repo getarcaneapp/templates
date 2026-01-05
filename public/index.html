@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -32,12 +32,25 @@
       body {
         margin: 0;
         color: var(--text);
-        font: 16px/1.5 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial,
-          'Apple Color Emoji', 'Segoe UI Emoji';
+        font:
+          16px/1.5 ui-sans-serif,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Ubuntu,
+          Cantarell,
+          Noto Sans,
+          Helvetica,
+          Arial,
+          'Apple Color Emoji',
+          'Segoe UI Emoji';
         /* Layered gradient with Arcane purple */
-        background: radial-gradient(1200px 800px at 15% 10%, var(--purple-1), transparent 60%),
+        background:
+          radial-gradient(1200px 800px at 15% 10%, var(--purple-1), transparent 60%),
           radial-gradient(900px 700px at 85% 90%, var(--arcane-purple), transparent 55%),
           linear-gradient(135deg, var(--bg-deep), var(--purple-2));
+        background-attachment: fixed;
         min-height: 100%;
         overflow-y: auto;
       }
@@ -49,6 +62,7 @@
         padding: 2rem 1rem;
         min-height: 100vh;
         box-sizing: border-box;
+        width: 100%;
       }
 
       .container {
@@ -104,7 +118,7 @@
         overflow: hidden;
         transition: border-color 0.2s ease;
       }
-      
+
       .input:focus-within {
         border-color: var(--arcane-purple);
       }
@@ -134,7 +148,9 @@
         align-items: center;
         justify-content: center;
         gap: 0.5rem;
-        transition: transform 120ms ease, filter 120ms ease;
+        transition:
+          transform 120ms ease,
+          filter 120ms ease;
         text-decoration: none;
       }
 
@@ -173,7 +189,9 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        transition: transform 0.2s ease, background-color 0.2s ease;
+        transition:
+          transform 0.2s ease,
+          background-color 0.2s ease;
         backdrop-filter: blur(4px);
       }
 
@@ -193,7 +211,7 @@
         font-weight: 700;
         margin: 0;
       }
-      
+
       .card-version {
         font-size: 0.85rem;
         color: var(--muted);
@@ -238,13 +256,13 @@
         font-size: 0.9rem;
         border-radius: 8px;
       }
-      
+
       .btn-outline {
         background: transparent;
         border: 1px solid var(--input-border);
         color: var(--text);
       }
-      
+
       .btn-outline:hover {
         background: var(--input-bg);
         filter: none;
@@ -283,7 +301,7 @@
             stroke: 'currentColor',
             strokeWidth: 1.5,
             strokeLinecap: 'round',
-          })
+          }),
         );
       }
 
@@ -297,10 +315,10 @@
             strokeWidth: 2,
             strokeLinecap: 'round',
             strokeLinejoin: 'round',
-          })
+          }),
         );
       }
-      
+
       function SearchIcon(props) {
         return React.createElement(
           'svg',
@@ -311,10 +329,10 @@
             strokeWidth: 2,
             strokeLinecap: 'round',
             strokeLinejoin: 'round',
-          })
+          }),
         );
       }
-      
+
       function ExternalLinkIcon(props) {
         return React.createElement(
           'svg',
@@ -339,7 +357,7 @@
             strokeWidth: 2,
             strokeLinecap: 'round',
             strokeLinejoin: 'round',
-          })
+          }),
         );
       }
 
@@ -351,31 +369,36 @@
             'div',
             { className: 'card-header' },
             React.createElement('h3', { className: 'card-title' }, template.name),
-            React.createElement('span', { className: 'card-version' }, 'v', template.version)
+            React.createElement('span', { className: 'card-version' }, 'v', template.version),
           ),
           React.createElement('p', { className: 'card-desc' }, template.description),
-          template.tags && template.tags.length > 0 && React.createElement(
-            'div',
-            { className: 'tags' },
-            template.tags.map(tag => 
-              React.createElement('span', { key: tag, className: 'tag' }, tag)
-            )
-          ),
+          template.tags &&
+            template.tags.length > 0 &&
+            React.createElement(
+              'div',
+              { className: 'tags' },
+              template.tags.map((tag) => React.createElement('span', { key: tag, className: 'tag' }, tag)),
+            ),
           React.createElement(
             'div',
             { className: 'card-actions' },
             React.createElement(
               'a',
-              { href: template.documentation_url, target: '_blank', rel: 'noopener noreferrer', className: 'btn btn-sm btn-outline' },
+              {
+                href: template.documentation_url,
+                target: '_blank',
+                rel: 'noopener noreferrer',
+                className: 'btn btn-sm btn-outline',
+              },
               'Docs',
-              React.createElement(ExternalLinkIcon, { style: { marginLeft: '4px' } })
+              React.createElement(ExternalLinkIcon, { style: { marginLeft: '4px' } }),
             ),
             React.createElement(
               'a',
               { href: template.compose_url, target: '_blank', rel: 'noopener noreferrer', className: 'btn btn-sm btn-outline' },
-              'Compose'
-            )
-          )
+              'Compose',
+            ),
+          ),
         );
       }
 
@@ -388,12 +411,12 @@
 
         React.useEffect(() => {
           fetch(registryUrl)
-            .then(res => res.json())
-            .then(data => {
+            .then((res) => res.json())
+            .then((data) => {
               setTemplates(data.templates || []);
               setLoading(false);
             })
-            .catch(err => {
+            .catch((err) => {
               console.error('Failed to fetch registry:', err);
               setLoading(false);
             });
@@ -402,10 +425,11 @@
         const filteredTemplates = React.useMemo(() => {
           if (!search) return templates;
           const lowerSearch = search.toLowerCase();
-          return templates.filter(t => 
-            t.name.toLowerCase().includes(lowerSearch) || 
-            t.description.toLowerCase().includes(lowerSearch) ||
-            (t.tags && t.tags.some(tag => tag.toLowerCase().includes(lowerSearch)))
+          return templates.filter(
+            (t) =>
+              t.name.toLowerCase().includes(lowerSearch) ||
+              t.description.toLowerCase().includes(lowerSearch) ||
+              (t.tags && t.tags.some((tag) => tag.toLowerCase().includes(lowerSearch))),
           );
         }, [templates, search]);
 
@@ -433,7 +457,7 @@
         return React.createElement(
           'div',
           { className: 'container' },
-          
+
           // Header Card
           React.createElement(
             'div',
@@ -454,15 +478,15 @@
                   value: registryUrl,
                   onFocus: (e) => e.target.select(),
                   'aria-label': 'Registry URL',
-                })
+                }),
               ),
               React.createElement(
                 'button',
                 { className: 'btn', onClick: onCopy, type: 'button', 'aria-live': 'polite' },
                 copied ? React.createElement(CheckIcon, null) : React.createElement(CopyIcon, null),
-                copied ? 'Copied' : 'Copy'
-              )
-            )
+                copied ? 'Copied' : 'Copy',
+              ),
+            ),
           ),
 
           // Search & Grid
@@ -477,20 +501,18 @@
                 type: 'text',
                 placeholder: 'Search templates...',
                 value: search,
-                onChange: (e) => setSearch(e.target.value)
-              })
+                onChange: (e) => setSearch(e.target.value),
+              }),
             ),
-            
-            loading ? 
-              React.createElement('div', { className: 'loading' }, 'Loading templates...') :
-              React.createElement(
+
+            loading ?
+              React.createElement('div', { className: 'loading' }, 'Loading templates...')
+            : React.createElement(
                 'div',
                 { className: 'grid' },
-                filteredTemplates.map(template => 
-                  React.createElement(TemplateCard, { key: template.id, template: template })
-                )
-              )
-          )
+                filteredTemplates.map((template) => React.createElement(TemplateCard, { key: template.id, template: template })),
+              ),
+          ),
         );
       }
 
