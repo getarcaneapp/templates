@@ -1,0 +1,7 @@
+{
+  "name": "FossFLOW",
+  "description": "Make beautiful isometric infrastructure diagrams.",
+  "version": "1.0.0",
+  "author": "rjcndev",
+  "tags": ["tools", "infra", "devops"]
+}
