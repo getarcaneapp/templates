@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.13.0",
+  "version": "1.14.0",
   "templates": [
     {
       "id": "convertx",
@@ -31,6 +31,21 @@
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/flyimg",
       "tags": [
         "Tools"
+      ]
+    },
+    {
+      "id": "fossflow",
+      "name": "FossFLOW",
+      "description": "Make beautiful isometric infrastructure diagrams.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/fossflow/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/fossflow/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/fossflow",
+      "tags": [
+        "tools",
+        "infra",
+        "devops"
       ]
     },
     {
@@ -316,6 +331,20 @@
       "tags": [
         "password-manager",
         "bitwarden"
+      ]
+    },
+    {
+      "id": "web-check",
+      "name": "Web-Check",
+      "description": "All-in-one OSINT tool for analysing any website.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/web-check/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/web-check/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/web-check",
+      "tags": [
+        "security",
+        "privacy"
       ]
     },
     {
