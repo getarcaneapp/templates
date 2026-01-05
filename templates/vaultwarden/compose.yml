@@ -7,4 +7,4 @@ services:
     volumes:
       - /path/to/vw/data:/data/
     ports:
-      - 8112:80
+      - 8113:80
