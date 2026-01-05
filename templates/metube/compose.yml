@@ -1,0 +1,8 @@
+services:
+  metube:
+    image: ghcr.io/alexta69/metube
+    restart: unless-stopped
+    ports:
+      - "8099:8081"
+    volumes:
+      - /path/to/downloads:/downloads
