@@ -1,0 +1,7 @@
+{
+  "name": "Pi-hole",
+  "description": "A black hole (DNS/DHCP) for Internet advertisements.",
+  "version": "1.0.0",
+  "author": "rjcndev",
+  "tags": ["DNS", "DHCP", "DNSMASQ", "NTP"]
+}
