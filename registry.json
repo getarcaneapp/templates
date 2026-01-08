@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.14.0",
+  "version": "1.15.0",
   "templates": [
     {
       "id": "convertx",
@@ -210,6 +210,22 @@
       "tags": [
         "database",
         "postgresql"
+      ]
+    },
+    {
+      "id": "pi-hole",
+      "name": "Pi-hole",
+      "description": "A black hole (DNS/DHCP) for Internet advertisements.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/pi-hole/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/pi-hole/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/pi-hole",
+      "tags": [
+        "DNS",
+        "DHCP",
+        "DNSMASQ",
+        "NTP"
       ]
     },
     {
