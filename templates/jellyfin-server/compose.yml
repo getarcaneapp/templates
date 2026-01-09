@@ -7,6 +7,7 @@ services:
       - 8096:8096/tcp
       - 7359:7359/udp
     volumes:
+      - /path/to/config:/config
       - type: bind
         source: /path/to/media
         target: /media
