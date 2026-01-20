@@ -1,0 +1,33 @@
+services:
+    swag:
+        image: lscr.io/linuxserver/swag
+        container_name: swag
+        cap_add:
+            - NET_ADMIN
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=Europe/London
+            - URL=${URL}
+            - SUBDOMAINS=${SUBDOMAINS}
+            - VALIDATION=${VALIDATION}
+            - CERTPROVIDER=${CERT_PROVIDER} #optional
+            - DNSPLUGIN=${DNS_PLUGIN} #optional
+            - EMAIL=${EMAIL_ADDRESS} #optional
+            - ONLY_SUBDOMAINS=${ONLY_SUBDOMAINS} #optional
+            - EXTRA_DOMAINS=${EXTRA_DOMAINS} #optional
+            - STAGING=false #optional
+        volumes:
+            - swag:/config
+        ports:
+            - 443:443
+            - 80:80 #optional
+        restart: unless-stopped
+        networks:
+            - swag-proxy
+
+volumes:
+    swag:
+
+networks:
+    swag-proxy:

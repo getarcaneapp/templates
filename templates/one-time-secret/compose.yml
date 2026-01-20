@@ -1,0 +1,36 @@
+services:
+    redis:
+        image: redis:bookworm@sha256:e422889e156ebea83856b6ff973bfe0c86bce867d80def228044eeecf925592b
+        container_name: ots_redis
+        command: ['redis-server', '--requirepass', '${REDIS_PASSWORD}']
+        volumes:
+            - redis:/data
+        networks:
+            - ots
+        restart: unless-stopped
+
+    onetimesecret:
+        image: onetimesecret/onetimesecret:latest
+        container_name: onetimesecret
+        environment:
+            - RACK_ENV=production
+            - HOST=${OTS_HOST}
+            - SSL=true
+            - DEFAULT_DOMAIN=${OTS_HOST}
+            - SECRET=${OTS_SECRET}
+            - REDIS_URL=redis://:${REDIS_PASSWORD}@ots_redis:6379/0
+            - AUTH_REQUIRED=false
+        networks:
+            - ots
+        depends_on:
+            - redis
+        restart: unless-stopped
+        ports:
+            - ${WEB_UI_PORT}:3000
+
+networks:
+    ots:
+        driver: bridge
+
+volumes:
+    redis:

@@ -1,0 +1,21 @@
+services:
+    verdaccio:
+        image: verdaccio/verdaccio
+        container_name: 'verdaccio'
+        networks:
+            - node-network
+        environment:
+            - VERDACCIO_PORT=4873
+        ports:
+            - '${PORT:-4873}:4873'
+        volumes:
+            - verdaccio_storage:/verdaccio/storage
+            - verdaccio_conf:/verdaccio/conf
+            - verdaccio_plugins:/verdaccio/plugins
+networks:
+    node-network:
+        driver: bridge
+volumes:
+    verdaccio_storage:
+    verdaccio_conf:
+    verdaccio_plugins:
