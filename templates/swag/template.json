@@ -1,0 +1,7 @@
+{
+    "name": "swag",
+    "description": "SWAG - Secure Web Application Gateway, sets up an Nginx webserver and reverse proxy with php support and a built-in certbot client that automates free SSL server certificate generation and renewal processes (Let's Encrypt and ZeroSSL).",
+    "version": "1.0.0",
+    "author": "lesi97",
+    "tags": ["Network", "Web", "Security"]
+}
