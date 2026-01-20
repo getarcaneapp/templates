@@ -4,8 +4,22 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.15.0",
+  "version": "1.16.0",
   "templates": [
+    {
+      "id": "affine",
+      "name": "AFFiNE",
+      "description": "AFFiNE is a workspace with fully merged docs, whiteboards and databases.",
+      "version": "1.0.0",
+      "author": "lesi97",
+      "compose_url": "https://registry.getarcane.app/templates/affine/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/affine/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/affine",
+      "tags": [
+        "Productivity",
+        "Notes"
+      ]
+    },
     {
       "id": "convertx",
       "name": "ConvertX",
@@ -185,6 +199,21 @@
       ]
     },
     {
+      "id": "one-time-secret",
+      "name": "One Time Secret",
+      "description": "One Time Secret is a secure password sharing application. Keep sensitive information out of your email & chat logs.",
+      "version": "1.0.0",
+      "author": "lesi97",
+      "compose_url": "https://registry.getarcane.app/templates/one-time-secret/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/one-time-secret/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/one-time-secret",
+      "tags": [
+        "Security",
+        "Productivity",
+        "Utilities"
+      ]
+    },
+    {
       "id": "patchmon",
       "name": "PatchMon",
       "description": "Linux Patch Monitoring Automation Platform.",
@@ -321,6 +350,21 @@
       ]
     },
     {
+      "id": "swag",
+      "name": "swag",
+      "description": "SWAG - Secure Web Application Gateway, sets up an Nginx webserver and reverse proxy with php support and a built-in certbot client that automates free SSL server certificate generation and renewal processes (Let's Encrypt and ZeroSSL).",
+      "version": "1.0.0",
+      "author": "lesi97",
+      "compose_url": "https://registry.getarcane.app/templates/swag/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/swag/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/swag",
+      "tags": [
+        "Network",
+        "Web",
+        "Security"
+      ]
+    },
+    {
       "id": "swagger-editor",
       "name": "Swagger Editor",
       "description": "Editor for APIs in the OpenAPI Specification.",
@@ -347,6 +391,20 @@
       "tags": [
         "password-manager",
         "bitwarden"
+      ]
+    },
+    {
+      "id": "verdaccio",
+      "name": "Verdaccio",
+      "description": "Verdaccio is a simple, zero-config-required local private NPM registry. No need for an entire database just to get started. Verdaccio comes out of the box with its own tiny database, and the ability to proxy other registries (eg. npmjs.org), also introduces caching the downloaded modules along the way. For those who are looking to extend their storage capabilities, Verdaccio supports various community-made plugins to hook into services such as Amazon's S3, Google Cloud Storage or create your own plugin.",
+      "version": "1.0.0",
+      "author": "lesi97",
+      "compose_url": "https://registry.getarcane.app/templates/verdaccio/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/verdaccio/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/verdaccio",
+      "tags": [
+        "Utilities",
+        "Productivity"
       ]
     },
     {
