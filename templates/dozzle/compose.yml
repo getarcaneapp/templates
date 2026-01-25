@@ -1,0 +1,11 @@
+services:
+  dozzle:
+    image: amir20/dozzle:latest
+    container_name: dozzle
+    ports:
+      - 8114:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+    environment:
+      - DOZZLE_LEVEL=info
