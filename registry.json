@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.16.0",
+  "version": "1.17.0",
   "templates": [
     {
       "id": "affine",
@@ -21,6 +21,22 @@
       ]
     },
     {
+      "id": "baikal",
+      "name": "Baikal",
+      "description": "A lightweight CalDAV and CardDAV server for managing calendars and contacts.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/baikal/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/baikal/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/baikal",
+      "tags": [
+        "Calendar",
+        "CalDAV",
+        "CardDAV",
+        "Contacts"
+      ]
+    },
+    {
       "id": "convertx",
       "name": "ConvertX",
       "description": "File converter. Supports 1000+ formats.",
@@ -32,6 +48,21 @@
       "tags": [
         "Tools",
         "Converter"
+      ]
+    },
+    {
+      "id": "dozzle",
+      "name": "Dozzle",
+      "description": "Real-time Docker log viewer.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/dozzle/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/dozzle/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/dozzle",
+      "tags": [
+        "monitoring",
+        "logging",
+        "docker"
       ]
     },
     {
@@ -183,6 +214,22 @@
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/mosparo",
       "tags": [
         "Tools"
+      ]
+    },
+    {
+      "id": "nextcloud",
+      "name": "Nextcloud All-in-One",
+      "description": "☁️ Nextcloud server, a safe home for all your data.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/nextcloud/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/nextcloud/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/nextcloud",
+      "tags": [
+        "file-sharing",
+        "collaboration",
+        "storage",
+        "cloud"
       ]
     },
     {
