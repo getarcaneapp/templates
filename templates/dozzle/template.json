@@ -1,0 +1,7 @@
+{
+  "name": "Dozzle",
+  "description": "Real-time Docker log viewer.",
+  "version": "1.0.0",
+  "author": "rjcndev",
+  "tags": ["monitoring", "logging", "docker"]
+}
