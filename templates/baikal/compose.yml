@@ -1,0 +1,16 @@
+services:
+  baikal:
+    image: ckulka/baikal:latest
+    container_name: baikal
+    restart: unless-stopped
+    ports:
+      - "8113:80"
+    volumes:
+      - baikal_data:/var/www/baikal/Specific
+      - baikal_config:/var/www/baikal/config
+    environment:
+      TZ: "${TIMEZONE}"
+
+volumes:
+  baikal_data:
+  baikal_config:

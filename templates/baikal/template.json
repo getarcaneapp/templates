@@ -1,0 +1,7 @@
+{
+  "name": "Baikal",
+  "description": "A lightweight CalDAV and CardDAV server for managing calendars and contacts.",
+  "version": "1.0.0",
+  "author": "rjcndev",
+  "tags": ["Calendar", "CalDAV", "CardDAV", "Contacts"]
+}
