@@ -1,0 +1,7 @@
+{
+  "name": "Syncthing",
+  "description": "Local and remote peer-to-peer file synchronization tool.",
+  "version": "1.0.0",
+  "author": "xPand4B",
+  "tags": ["file-sync", "file-transfer", "backup", "syncthing", "p2p"]
+}
