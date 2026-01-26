@@ -1,0 +1,18 @@
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    restart: always
+    network_mode: host
+    ports:
+      - ${APP_PORT:-32400}:32400/tcp
+    environment:
+      TZ: ${TZ}
+      PUID: ${PUID}
+      PGID: ${PGID}
+      VERSION: docker
+      PLEX_CLAIM: ${PLEX_CLAIM}
+    volumes:
+      - ${BASE_PATH}/config:/config
+    labels:
+      wud.display.icon: sh-plex
