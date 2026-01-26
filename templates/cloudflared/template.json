@@ -1,0 +1,7 @@
+{
+  "name": "Cloudflared",
+  "description": "Tunneling daemon for proxying traffic from the Cloudflare network",
+  "version": "1.0.0",
+  "author": "xPand4B",
+  "tags": ["networking", "cloudflare", "tunneling"]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Plex",
+  "description": "Media streaming server for movies, televisions shows, and music.",
+  "version": "1.0.0",
+  "author": "xPand4B",
+  "tags": ["media", "streaming", "plex"]
+}

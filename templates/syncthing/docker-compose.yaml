@@ -1,0 +1,22 @@
+services:
+  syncthing:
+    image: lscr.io/linuxserver/syncthing:latest
+    container_name: syncthing
+    restart: unless-stopped
+    hostname: syncthing
+    ports:
+      - ${APP_PORT:-8384}:8384
+      - 22000:22000/tcp
+      - 22000:22000/udp
+      - 21027:21027/udp
+    environment:
+      PUID: ${PUID}
+      PGID: ${PGID}
+      TZ: ${TZ}
+    volumes:
+      - ${BASE_PATH}/config:/config
+      # Add your sync folders here, e.g.:
+      #- /path/to/data1:/data1
+      #- /path/to/data2:/data2
+    labels:
+      wud.display.icon: sh-syncthing
