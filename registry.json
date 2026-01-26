@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.17.0",
+  "version": "1.18.0",
   "templates": [
     {
       "id": "affine",
@@ -34,6 +34,50 @@
         "CalDAV",
         "CardDAV",
         "Contacts"
+      ]
+    },
+    {
+      "id": "bento-pdf",
+      "name": "BentoPDF",
+      "description": "Client-side PDF toolkit",
+      "version": "1.0.0",
+      "author": "xPand4B",
+      "compose_url": "https://registry.getarcane.app/templates/bento-pdf/docker-compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/bento-pdf/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/bento-pdf",
+      "tags": [
+        "Productivity",
+        "PDF"
+      ]
+    },
+    {
+      "id": "cloudflared",
+      "name": "Cloudflared",
+      "description": "Tunneling daemon for proxying traffic from the Cloudflare network",
+      "version": "1.0.0",
+      "author": "xPand4B",
+      "compose_url": "https://registry.getarcane.app/templates/cloudflared/docker-compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/cloudflared/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/cloudflared",
+      "tags": [
+        "networking",
+        "cloudflare",
+        "tunneling"
+      ]
+    },
+    {
+      "id": "code-server",
+      "name": "Code Server",
+      "description": "Remote development with VS Code",
+      "version": "1.0.0",
+      "author": "xPand4B",
+      "compose_url": "https://registry.getarcane.app/templates/code-server/docker-compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/code-server/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/code-server",
+      "tags": [
+        "Development",
+        "VS Code",
+        "Remote"
       ]
     },
     {
@@ -319,6 +363,21 @@
       ]
     },
     {
+      "id": "plex",
+      "name": "Plex",
+      "description": "Media streaming server for movies, televisions shows, and music.",
+      "version": "1.0.0",
+      "author": "xPand4B",
+      "compose_url": "https://registry.getarcane.app/templates/plex/docker-compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/plex/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/plex",
+      "tags": [
+        "media",
+        "streaming",
+        "plex"
+      ]
+    },
+    {
       "id": "pocket-id",
       "name": "Pocket ID",
       "description": "A simple and easy-to-use OIDC provider that allows users to authenticate with their passkeys to your services.",
@@ -424,6 +483,54 @@
         "Tools",
         "API",
         "OpenAPI"
+      ]
+    },
+    {
+      "id": "syncthing",
+      "name": "Syncthing",
+      "description": "Local and remote peer-to-peer file synchronization tool.",
+      "version": "1.0.0",
+      "author": "xPand4B",
+      "compose_url": "https://registry.getarcane.app/templates/syncthing/docker-compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/syncthing/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/syncthing",
+      "tags": [
+        "file-sync",
+        "file-transfer",
+        "backup",
+        "syncthing",
+        "p2p"
+      ]
+    },
+    {
+      "id": "tautulli",
+      "name": "Tautulli",
+      "description": "Monitoring and tracking tool for Plex Media Server",
+      "version": "1.0.0",
+      "author": "xPand4B",
+      "compose_url": "https://registry.getarcane.app/templates/tautulli/docker-compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/tautulli/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/tautulli",
+      "tags": [
+        "media",
+        "streaming",
+        "tautulli",
+        "plex",
+        "monitoring"
+      ]
+    },
+    {
+      "id": "uptime-kuma",
+      "name": "Uptime Kuma",
+      "description": "Easy-to-use self-hosted uptime monitoring tool.",
+      "version": "1.0.0",
+      "author": "xPand4B",
+      "compose_url": "https://registry.getarcane.app/templates/uptime-kuma/docker-compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/uptime-kuma/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/uptime-kuma",
+      "tags": [
+        "monitoring",
+        "uptime"
       ]
     },
     {
