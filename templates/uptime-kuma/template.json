@@ -1,0 +1,7 @@
+{
+  "name": "Uptime Kuma",
+  "description": "Easy-to-use self-hosted uptime monitoring tool.",
+  "version": "1.0.0",
+  "author": "xPand4B",
+  "tags": ["monitoring", "uptime"]
+}

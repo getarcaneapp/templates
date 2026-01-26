@@ -1,0 +1,10 @@
+services:
+  app:
+    image: louislam/uptime-kuma:2
+    container_name: uptime-kuma
+    restart: unless-stopped
+    volumes:
+      - ${BASE_PATH}/data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - ${APP_PORT:-3001}:3001
