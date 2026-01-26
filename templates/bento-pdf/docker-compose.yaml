@@ -1,0 +1,9 @@
+services:
+  bentopdf:
+    image: ghcr.io/alam00000/bentopdf:latest
+    # Alternative
+    # image: ghcr.io/alam00000/bentopdf-simple:latest
+    container_name: bento-pdf
+    restart: unless-stopped
+    ports:
+      - ${APP_PORT:-8080}:8080
