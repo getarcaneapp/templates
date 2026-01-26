@@ -1,0 +1,7 @@
+{
+  "name": "Tautulli",
+  "description": "Monitoring and tracking tool for Plex Media Server",
+  "version": "1.0.0",
+  "author": "xPand4B",
+  "tags": ["media", "streaming", "tautulli", "plex", "monitoring"]
+}
