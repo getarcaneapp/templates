@@ -1,0 +1,7 @@
+{
+  "name": "Code Server",
+  "description": "Remote development with VS Code",
+  "version": "1.0.0",
+  "author": "xPand4B",
+  "tags": ["Development", "VS Code", "Remote"]
+}
