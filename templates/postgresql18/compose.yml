@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/postgresql.svg
+  urls:
+    - https://www.postgresql.org/
+
 services:
   postgres:
     image: postgresql:18
@@ -19,6 +24,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/postgresql.svg
 
 # Optional: network definition if you want to isolate the DB from other services
 networks:

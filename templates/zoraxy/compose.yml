@@ -1,3 +1,9 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/zoraxy.svg
+  urls:
+    - https://github.com/tobychui/zoraxy
+    - https://zoraxy.aroz.org/
+
 services:
   zoraxy:
     image: zoraxydocker/zoraxy:latest
@@ -16,3 +22,5 @@ services:
     environment:
       FASTGEOIP: "true"
       TZ: "Europe/Berlin"
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/zoraxy.svg

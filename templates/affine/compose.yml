@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/affine.svg
+  urls:
+    - https://affine.pro/
+
 name: affine
 services:
     affine:
@@ -23,6 +28,8 @@ services:
             - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@postgres:5432/${DB_DATABASE:-affine}
             - AFFINE_INDEXER_ENABLED=false
         restart: unless-stopped
+        labels:
+            com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/affine.svg
 
     affine_migration:
         image: ghcr.io/toeverything/affine:${AFFINE_REVISION:-stable}
@@ -43,6 +50,8 @@ services:
                 condition: service_healthy
             redis:
                 condition: service_healthy
+        labels:
+            com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/affine.svg
 
     redis:
         image: redis
@@ -53,6 +62,8 @@ services:
             timeout: 5s
             retries: 5
         restart: unless-stopped
+        labels:
+            com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/redis.svg
 
     postgres:
         image: pgvector/pgvector:pg16
@@ -81,3 +92,5 @@ services:
             timeout: 5s
             retries: 5
         restart: unless-stopped
+        labels:
+            com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/postgresql.svg

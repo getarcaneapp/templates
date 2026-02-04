@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/cloudflare-zero-trust.svg
+  urls:
+    - https://one.dash.cloudflare.com
+
 services:
   cloudflared:
     image: cloudflare/cloudflared:latest
@@ -8,6 +13,8 @@ services:
     #  - cf-tunnel
     environment:
       TUNNEL_TOKEN: ${TOKEN}
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/cloudflare-zero-trust.svg
 
 #networks:
 #  cf-tunnel:

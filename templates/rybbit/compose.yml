@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/rybbit.svg
+  urls:
+    - https://rybbit.com/
+
 services:
   caddy:
     profiles: ["with-webserver"]
@@ -19,6 +24,8 @@ services:
     depends_on:
       - backend
       - client
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/caddy.svg
 
   clickhouse:
     container_name: clickhouse
@@ -45,6 +52,8 @@ services:
       retries: 5
       start_period: 10s
     restart: unless-stopped
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/clickhouse.svg
 
   postgres:
     image: postgres:17.4
@@ -62,6 +71,8 @@ services:
       retries: 5
       start_period: 10s
     restart: unless-stopped
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/postgresql.svg
 
   backend:
     image: ghcr.io/rybbit-io/rybbit-backend:${IMAGE_TAG:-latest}
@@ -98,6 +109,8 @@ services:
       retries: 5
       start_period: 10s
     restart: unless-stopped
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/rybbit.svg
 
   client:
     image: ghcr.io/rybbit-io/rybbit-client:${IMAGE_TAG:-latest}
@@ -117,6 +130,8 @@ services:
     depends_on:
       - backend
     restart: unless-stopped
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/rybbit.svg
 
 volumes:
   clickhouse-data:

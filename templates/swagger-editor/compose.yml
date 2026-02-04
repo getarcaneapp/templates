@@ -1,6 +1,14 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/swagger.svg
+  urls:
+    - https://editor.swagger.io/
+
 services:
   swagger_editor:
     image: swaggerapi/swagger-editor:latest
     restart: unless-stopped
+    container_name: swagger-editor
     ports:
       - "8089:80"
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/swagger.svg

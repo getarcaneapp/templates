@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/convertx.webp
+  urls:
+    - https://github.com/C4illin/ConvertX
+
 services:
   convertx:
     image: ghcr.io/c4illin/convertx
@@ -9,3 +14,5 @@ services:
       # - HTTP_ALLOWED=true # uncomment this if accessing it over a non-https connection
     volumes:
       - ./data:/app/data
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/convertx.webp

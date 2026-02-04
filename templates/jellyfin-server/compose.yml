@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/jellyfin.svg
+  urls:
+    - https://jellyfin.org/
+
 services:
   jellyfin:
     image: jellyfin/jellyfin
@@ -20,3 +25,5 @@ services:
     # Optional - alternative address used for autodiscovery
     environment:
       - JELLYFIN_PublishedServerUrl=http://example.com
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/jellyfin.svg
