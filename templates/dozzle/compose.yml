@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/dozzle.svg
+  urls:
+    - https://dozzle.dev/
+
 services:
   dozzle:
     image: amir20/dozzle:latest
@@ -9,3 +14,5 @@ services:
     restart: unless-stopped
     environment:
       - DOZZLE_LEVEL=info
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/dozzle.svg

@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/pocket-id.svg
+  urls:
+    - https://github.com/pocket-id/pocket-id
+
 services:
   pocket-id:
     image: ghcr.io/pocket-id/pocket-id
@@ -14,3 +19,5 @@ services:
       timeout: 5s
       retries: 2
       start_period: 10s
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/pocket-id.svg

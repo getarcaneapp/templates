@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/languagetool.svg
+  urls:
+    - https://github.com/Erikvl87/docker-languagetool
+
 services:
   languagetool:
     image: erikvl87/languagetool
@@ -11,3 +16,5 @@ services:
     volumes:
       - /path/to/ngrams/data:/ngrams     # OPTIONAL: The location of ngrams data on the local machine
       - /path/to/logback.xml:/LanguageTool/logback.xml:ro  # OPTIONAL: Overwrite the logging configuration
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/languagetool.svg

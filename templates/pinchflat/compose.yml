@@ -1,4 +1,8 @@
-version: '3'
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/pinchflat.webp
+  urls:
+    - https://github.com/kieraneglin/pinchflat
+
 services:
   pinchflat:
     image: ghcr.io/kieraneglin/pinchflat:latest
@@ -10,3 +14,5 @@ services:
     volumes:
       - /host/path/to/config:/config
       - /host/path/to/downloads:/downloads
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/pinchflat.webp

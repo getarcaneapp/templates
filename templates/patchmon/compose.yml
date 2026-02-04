@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/patchmon.svg
+  urls:
+    - https://patchmon.net/
+
 # Change 3 Passwords in this file:
 # Generate passwords with 'openssl rand -hex 64'
 # 
@@ -30,6 +35,8 @@ services:
       interval: 3s
       timeout: 5s
       retries: 7
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/postgres.svg
 
   redis:
     image: redis:7-alpine
@@ -44,6 +51,8 @@ services:
       interval: 3s
       timeout: 5s
       retries: 7
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/redis.svg
 
   backend:
     image: ghcr.io/patchmon/patchmon-backend:latest
@@ -87,6 +96,8 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/patchmon.svg
 
   frontend:
     image: ghcr.io/patchmon/patchmon-frontend:latest
@@ -100,6 +111,8 @@ services:
     depends_on:
       backend:
         condition: service_healthy
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/patchmon.svg
 
 volumes:
   postgres_data:

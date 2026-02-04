@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/pgadmin.svg
+  urls:
+    - https://www.pgadmin.org/
+
 services:
   pgadmin:
     image: dpage/pgadmin4:latest
@@ -9,3 +14,5 @@ services:
       - .env
     volumes:
       - ./pgadmin:/var/lib/pgadmin/
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/pgadmin.svg

@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/invidious.svg
+  urls:
+    - https://invidious.io/
+
 # This will not work out of the box yet!
 #
 # Please visit the official documentation.
@@ -5,7 +10,6 @@
 # https://docs.invidious.io/installation/#docker-compose-method-production
 #
 
-version: "3"
 services:
   invidious:
     image: quay.io/invidious/invidious:latest
@@ -50,6 +54,8 @@ services:
         max-file: "4"
     depends_on:
       - invidious-db
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/invidious.svg
 
   companion:
     image: quay.io/invidious/invidious-companion:latest
@@ -74,6 +80,8 @@ services:
       - companioncache:/var/tmp/youtubei.js:rw
     security_opt:
       - no-new-privileges:true
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/invidious.svg
 
   invidious-db:
     image: docker.io/library/postgres:14
@@ -88,6 +96,8 @@ services:
       POSTGRES_PASSWORD: kemal
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/postgresql.svg
 
 volumes:
   postgresdata:

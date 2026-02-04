@@ -1,3 +1,9 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/verdaccio.svg
+  urls:
+    - https://www.verdaccio.org/
+
+
 services:
     verdaccio:
         image: verdaccio/verdaccio
@@ -12,6 +18,9 @@ services:
             - verdaccio_storage:/verdaccio/storage
             - verdaccio_conf:/verdaccio/conf
             - verdaccio_plugins:/verdaccio/plugins
+        labels:
+            com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/verdaccio.svg
+
 networks:
     node-network:
         driver: bridge

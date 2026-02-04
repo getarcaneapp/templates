@@ -1,6 +1,12 @@
+x-arcane:
+  urls:
+    - https://github.com/stan-smith/FossFLOW
+
 services:
   fossflow:
     image: stnsmith/fossflow:latest
+    container_name: fossflow
+    restart: unless-stopped
     pull_policy: always
     ports:
       - 8111:80

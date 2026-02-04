@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/baikal.png
+  urls:
+    - https://sabre.io/baikal
+
 services:
   baikal:
     image: ckulka/baikal:latest
@@ -10,6 +15,8 @@ services:
       - baikal_config:/var/www/baikal/config
     environment:
       TZ: "${TIMEZONE}"
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/baikal.png
 
 volumes:
   baikal_data:

@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/onetime-secret.svg
+  urls:
+    - https://onetimesecret.com/
+
 services:
     redis:
         image: redis:bookworm@sha256:e422889e156ebea83856b6ff973bfe0c86bce867d80def228044eeecf925592b
@@ -8,6 +13,8 @@ services:
         networks:
             - ots
         restart: unless-stopped
+        labels:
+            com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/redis.svg
 
     onetimesecret:
         image: onetimesecret/onetimesecret:latest
@@ -27,6 +34,8 @@ services:
         restart: unless-stopped
         ports:
             - ${WEB_UI_PORT}:3000
+        labels:
+            com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/onetime-secret.svg
 
 networks:
     ots:

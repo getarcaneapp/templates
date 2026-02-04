@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/visual-studio-code.svg
+  urls:
+    - https://docs.linuxserver.io/images/docker-code-server
+
 services:
   code-server:
     image: lscr.io/linuxserver/code-server:latest
@@ -18,3 +23,5 @@ services:
       PWA_APPNAME: ${PWA_APPNAME}
     volumes:
       - ${BASE_PATH}/config:/config
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/visual-studio-code.svg

@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/localai.webp
+  urls:
+    - https://localai.io/
+
 services:
   api:
     image: localai/localai:latest-aio-cpu
@@ -25,6 +30,8 @@ services:
     #         - driver: nvidia
     #           count: 1
     #           capabilities: [gpu]
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/localai.webp
 
 volumes:
   localai_models:

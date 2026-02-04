@@ -1,3 +1,7 @@
+x-arcane:
+  urls:
+    - https://docs.linuxserver.io/images/docker-swag
+
 services:
     swag:
         image: lscr.io/linuxserver/swag

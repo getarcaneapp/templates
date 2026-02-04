@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/tautulli.svg
+  urls:
+    - https://tautulli.com
+
 services:
   tautulli:
     image: lscr.io/linuxserver/tautulli:latest
@@ -12,3 +17,5 @@ services:
     volumes:
       - ${BASE_PATH}/config:/config
       - ${BASE_PATH}/scripts:/config/scripts
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/tautulli.svg

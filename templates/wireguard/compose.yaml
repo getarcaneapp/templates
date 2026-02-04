@@ -1,4 +1,8 @@
-version: '3.7'
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/wireguard.svg
+  urls:
+    - https://wireguard.com/
+
 services:
   wireguard:
     image: linuxserver/wireguard
@@ -25,3 +29,5 @@ services:
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/wireguard.svg
