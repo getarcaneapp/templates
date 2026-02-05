@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.18.0",
+  "version": "1.19.0",
   "templates": [
     {
       "id": "affine",
@@ -107,6 +107,20 @@
         "monitoring",
         "logging",
         "docker"
+      ]
+    },
+    {
+      "id": "endurain",
+      "name": "Endurain",
+      "description": "Endurain is a fitness tracking with control over their data and hosting environment.",
+      "version": "1.0.0",
+      "author": "rjcndev",
+      "compose_url": "https://registry.getarcane.app/templates/endurain/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/endurain/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/endurain",
+      "tags": [
+        "Fitness",
+        "GPS Tracker"
       ]
     },
     {
