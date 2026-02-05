@@ -40,4 +40,3 @@ volumes:
   endurain_logs:
   endurain_postgres_data:
   #  - endurain_backend_app
-  
