@@ -1,0 +1,26 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/jellyseerr.svg
+  urls:
+    - https://docs.seerr.dev/
+
+services:
+  jellyseerr:
+    image: fallenbagel/jellyseerr:${JELLYSEER_RELEASE_TAG:-latest}
+    container_name: jellyseerr
+    restart: unless-stopped
+    init: true
+    ports:
+      - ${JELLYSEERR_PORT:-5055}:5055
+    environment:
+      TZ: ${TZ}
+      #LOG_LEVEL: debug
+    volumes:
+      - ${BASE_PATH}/config:/app/config
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:5055/api/v1/status || exit 1
+      start_period: 20s
+      timeout: 3s
+      interval: 15s
+      retries: 3
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/jellyseerr.svg
