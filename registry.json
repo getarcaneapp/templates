@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.19.0",
+  "version": "1.20.0",
   "templates": [
     {
       "id": "affine",
@@ -203,6 +203,24 @@
       "tags": [
         "media",
         "streaming"
+      ]
+    },
+    {
+      "id": "jellyseerr",
+      "name": "Jellyseerr",
+      "description": "Free and open source software for managing requests for your media library.",
+      "version": "1.0.0",
+      "author": "xPand4B",
+      "compose_url": "https://registry.getarcane.app/templates/jellyseerr/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/jellyseerr/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/jellyseerr",
+      "tags": [
+        "media",
+        "streaming",
+        "requests",
+        "jellyfin",
+        "plex",
+        "seerr"
       ]
     },
     {
