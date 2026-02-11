@@ -1,3 +1,9 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/syncthing.svg
+  urls:
+    - https://syncthing.net
+    - https://docs.linuxserver.io/images/docker-syncthing/
+
 services:
   syncthing:
     image: lscr.io/linuxserver/syncthing:latest
@@ -20,3 +26,4 @@ services:
       #- /path/to/data2:/data2
     labels:
       wud.display.icon: sh-syncthing
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/syncthing.svg

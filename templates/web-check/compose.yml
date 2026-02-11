@@ -1,6 +1,14 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/web-check.svg
+  urls:
+    - https://web-check.xyz
+
 services:
   web-check:
     image: lissy93/web-check
+    container_name: web-check
     ports:
       - 8112:3000
     restart: unless-stopped
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/web-check.svg

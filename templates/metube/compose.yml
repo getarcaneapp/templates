@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/metube.svg
+  urls:
+    - https://github.com/alexta69/metube
+
 services:
   metube:
     image: ghcr.io/alexta69/metube
@@ -6,3 +11,5 @@ services:
       - "8099:8081"
     volumes:
       - /path/to/downloads:/downloads
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/metube.svg

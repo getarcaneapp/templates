@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/omnitools.webp
+  urls:
+    - https://omnitools.app/
+
 services:
   omni-tools:
     image: iib0011/omni-tools:latest
@@ -5,3 +10,5 @@ services:
     restart: unless-stopped
     ports:
       - "8083:80"
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/omnitools.webp

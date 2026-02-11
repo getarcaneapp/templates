@@ -1,6 +1,12 @@
+x-arcane:
+  urls:
+    - https://github.com/flyimg/flyimg
+
 services:
   flyimg:
     image: flyimg/flyimg
+    container_name: flyimg
+    restart: unless-stopped
     ports:
       - "8084:80"
     stdin_open: true

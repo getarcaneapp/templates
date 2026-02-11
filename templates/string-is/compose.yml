@@ -1,5 +1,13 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/string-is.svg
+  urls:
+    - https://github.com/recurser/string-is
+
 services:
   string_is:
     image: daveperrett/string-is:latest
+    container_name: string-is
     ports:
       - "8087:3000"
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/string-is.svg

@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/bentopdf.svg
+  urls:
+    - https://github.com/alam00000/bentopdf
+
 services:
   bentopdf:
     image: ghcr.io/alam00000/bentopdf:latest
@@ -7,3 +12,5 @@ services:
     restart: unless-stopped
     ports:
       - ${APP_PORT:-8080}:8080
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/bentopdf.svg

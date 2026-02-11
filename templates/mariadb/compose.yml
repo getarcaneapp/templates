@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/mariadb.svg
+  urls:
+    - https://mariadb.org/
+
 services:
   mariadb:
     image: mariadb:latest
@@ -14,6 +19,8 @@ services:
       - mariadb_data:/var/lib/mysql
       - ./my.cnf:/etc/my.cnf:ro       # optional custom config file
     command: --transaction-isolation=READ-COMMITTED --log-bin=mysql-bin
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/mariadb.svg
 
 # Optional: network definition if you want to isolate the DB from other services
 networks:

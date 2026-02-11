@@ -1,3 +1,8 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/uptime-kuma.svg
+  urls:
+    - https://uptime.kuma.pet/
+
 services:
   app:
     image: louislam/uptime-kuma:2
@@ -8,3 +13,5 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     ports:
       - ${APP_PORT:-3001}:3001
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/uptime-kuma.svg
