@@ -1,0 +1,7 @@
+{
+  "name": "Jellyseerr",
+  "description": "Free and open source software for managing requests for your media library.",
+  "version": "1.0.0",
+  "author": "xPand4B",
+  "tags": ["media", "streaming", "requests", "jellyfin", "plex", "seerr"]
+}
