@@ -1,0 +1,46 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/webp/satisfactory.webp
+  urls:
+    - https://github.com/wolveix/satisfactory-server
+
+services:
+  satisfactory-server:
+    container_name: satisfactory-server
+    restart: unless-stopped
+    hostname: satisfactory-server
+    image: wolveix/satisfactory-server:latest
+    env_file: .env
+    ports:
+      - 7777:7777/tcp
+      - 7777:7777/udp
+      - 8888:8888/tcp
+    volumes:
+      - ${BASE_PATH}/satisfactory-server/config:/config
+    environment:
+      AUTOSAVENUM: ${AUTOSAVENUM:-5}
+      DEBUG: ${DEBUG:-false}
+      DISABLESEASONALEVENTS: ${DISABLESEASONALEVENTS:-false}
+      LOG: ${LOG:-false}
+      MAXOBJECTS: ${MAXOBJECTS:-2162688}
+      MAXPLAYERS: ${MAXPLAYERS:-4}
+      MAXTICKRATE: ${MAXTICKRATE:-30}
+      MULTIHOME: ${MULTIHOME}
+      PGID: ${PGID:-1000}
+      PUID: ${PUID:-1000}
+      SERVERGAMEPORT: ${SERVERGAMEPORT:-7777}
+      SERVERMESSAGINGPORT: ${SERVERMESSAGINGPORT:-8888}
+      STEAMBETA: ${STEAMBETA:-false}
+      SERVERSTREAMING: ${SERVERSTREAMING:-true}
+      SKIPUPDATE: ${SKIPUPDATE:-false}
+      STEAMBETAID: ${STEAMBETAID}
+      STEAMBETAKEY: ${STEAMBETAKEY}
+      TIMEOUT: ${TIMEOUT:-30}
+      VMOVERRIDE: ${VMOVERRIDE:-false}
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+        reservations:
+          memory: 4G
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/webp/satisfactory.webp
