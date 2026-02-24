@@ -1,5 +1,5 @@
 x-arcane:
-  icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/webp/satisfactory.webp
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/satisfactory.webp
   urls:
     - https://github.com/wolveix/satisfactory-server
 
@@ -43,4 +43,5 @@ services:
         reservations:
           memory: 4G
     labels:
-      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/webp/satisfactory.webp
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/satisfactory.webp
+      #com.getarcaneapp.arcane.updater: false
