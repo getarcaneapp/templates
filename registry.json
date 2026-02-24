@@ -478,7 +478,7 @@
       "id": "satisfactory-server",
       "name": "Satisfactory Dedicated Server",
       "description": "Unofficial Satisfactory Dedicated Server image for hosting your own Satisfactory game server.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": "xPand4B",
       "compose_url": "https://registry.getarcane.app/templates/satisfactory-server/compose.yaml",
       "env_url": "https://registry.getarcane.app/templates/satisfactory-server/.env.example",
