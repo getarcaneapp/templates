@@ -1,0 +1,116 @@
+name: Build and Deploy Preview Registry
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - "templates/**"
+      - "scripts/build-registry.ts"
+      - "schema.json"
+      - "public/**"
+      - "tsconfig.json"
+      - "package.json"
+      - "pnpm-lock.yaml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  actions: read
+  deployments: write
+  contents: read
+  pull-requests: write
+
+jobs:
+  build-and-deploy-preview:
+    runs-on: macos-latest
+    environment:
+      name: ${{ github.event.pull_request.user.login }}-pr-${{ github.event.pull_request.number }}
+      url: ${{ env.PREVIEW_BASE }}
+    env:
+      PREVIEW_ALIAS: pr-${{ github.event.pull_request.number }}
+      PREVIEW_BASE: https://pr-${{ github.event.pull_request.number }}-arcane-templates.ofkm.workers.dev
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          token: ${{ secrets.ARCANE_BOT_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "getarcaneappbot"
+          git config --global user.email "info@getarcane.app"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "25"
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Check Wrangler version
+        run: pnpm exec wrangler --version
+
+      - name: Generate registry.json
+        env:
+          REGISTRY_NAME: ${{ github.event.pull_request.user.login }}s Arcane Templates Preview
+          REGISTRY_DESCRIPTION: Pull Request \#${{ github.event.pull_request.number }}
+          REGISTRY_AUTHOR: ${{ github.event.pull_request.user.login }}
+          REGISTRY_URL: https://github.com/getarcaneapp/templates
+          PUBLIC_BASE: ${{ env.PREVIEW_BASE }}/templates
+          DOCS_BASE: https://github.com/getarcaneapp/templates/tree/${{ github.head_ref || github.ref_name }}/templates
+          BUMP_PART: patch
+          SCHEMA_URL: ${{ env.PREVIEW_BASE }}/schema.json
+        run: pnpm run generate
+
+      - name: Stage build directory
+        run: |
+          rm -rf build
+          mkdir -p build/templates
+          cp -v registry.json build/
+          cp -v schema.json build/
+          mkdir -p build
+          # include static homepage assets
+          if [ -d public ]; then
+            rsync -a public/ build/
+          fi
+          rsync -a --delete templates/ build/templates/
+
+      - name: Upload and Deploy Preview
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_WORKERS_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          pnpm exec wrangler versions upload --preview-alias "$PREVIEW_ALIAS"
+
+      - name: Find Comment
+        uses: peter-evans/find-comment@v4
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: "getarcaneappbot"
+          body-includes: Preview deployed successfully!
+
+      - name: Comment preview URL
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          token: ${{ secrets.ARCANE_BOT_TOKEN }}
+          body: |
+            Preview deployed successfully!
+
+            - Preview: ${{ env.PREVIEW_BASE }}
+            - Registry: ${{ env.PREVIEW_BASE }}/registry.json
+            - Schema: ${{ env.PREVIEW_BASE }}/schema.json
+
+            Built from commit ${{ github.sha }}
+          edit-mode: replace

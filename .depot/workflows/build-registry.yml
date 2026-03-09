@@ -1,0 +1,76 @@
+name: Deploy Production Registry
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  actions: read
+  deployments: write
+  contents: write
+
+concurrency:
+  group: "production-registry-deploy"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: ${{ github.actor != 'getarcaneappbot' }}
+    runs-on: macos-latest
+    environment:
+      name: production
+      url: https://registry.getarcane.app
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.ARCANE_BOT_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "getarcaneappbot"
+          git config --global user.email "info@getarcane.app"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "25"
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Generate registry.json
+        env:
+          REGISTRY_NAME: Arcane Community Templates
+          REGISTRY_DESCRIPTION: Community Docker Compose Templates for Arcane
+          REGISTRY_AUTHOR: getarcaneapp
+          REGISTRY_URL: "https://github.com/getarcaneapp/templates"
+          PUBLIC_BASE: "https://registry.getarcane.app/templates"
+          DOCS_BASE: "https://github.com/getarcaneapp/templates/tree/main/templates"
+          BUMP_PART: minor
+          SCHEMA_URL: "https://registry.getarcane.app/schema.json"
+        run: pnpm run generate
+
+      - name: Commit registry.json
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "chore: update registry.json [skip ci]"
+          file_pattern: "registry.json"
+          commit_user_name: getarcaneappbot
+          commit_user_email: info@getarcane.app
+          commit_author: "getarcaneappbot <info@getarcane.app>"
+
+      - name: Stage build directory
+        run: pnpm run stage
+
+      - name: Deploy to Cloudflare Workers
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_WORKERS_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: pnpm exec wrangler deploy
