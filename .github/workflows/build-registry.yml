@@ -62,6 +62,7 @@ jobs:
         with:
           commit_message: "chore: update registry.json [skip ci]"
           file_pattern: "registry.json"
+          status_options: "--porcelain"
           commit_user_name: getarcaneappbot
           commit_user_email: info@getarcane.app
           commit_author: "getarcaneappbot <info@getarcane.app>"
