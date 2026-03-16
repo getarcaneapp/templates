@@ -1,0 +1,17 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/mazanoke.svg
+  urls:
+    - https://mazanoke.com/
+    - https://github.com/civilblur/mazanoke
+
+services:
+  mazanoke:
+    image: ghcr.io/civilblur/mazanoke:latest
+    container_name: mazanoke
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - ${APP_PORT:-3474}:80
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/mazanoke.svg
+      #com.getarcaneapp.arcane.updater: false
