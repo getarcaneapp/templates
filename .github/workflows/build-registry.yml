@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   build:
-    if: ${{ github.actor != 'getarcaneappbot' }}
+    if: ${{ github.repository_owner != 'getarcaneapp' && github.actor != 'getarcaneappbot' }}
     runs-on: macos-latest
     environment:
       name: production
