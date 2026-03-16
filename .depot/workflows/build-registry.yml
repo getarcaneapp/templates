@@ -17,7 +17,7 @@ concurrency:
 jobs:
   build:
     if: ${{ github.actor != 'getarcaneappbot' }}
-    runs-on: depot-macos-latest
+    runs-on: depot-ubuntu-latest
     environment:
       name: production
       url: https://registry.getarcane.app
