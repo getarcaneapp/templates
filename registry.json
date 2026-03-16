@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.21.0",
+  "version": "1.22.0",
   "templates": [
     {
       "id": "affine",
@@ -634,6 +634,23 @@
       "tags": [
         "networking",
         "vpn"
+      ]
+    },
+    {
+      "id": "yarnl",
+      "name": "Yarnl",
+      "description": "Your self-hosted crochet and knitting companion. Organize your patterns, track your projects, and share your creations with the world.",
+      "version": "1.0.0",
+      "author": "xPand4B",
+      "compose_url": "https://registry.getarcane.app/templates/yarnl/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/yarnl/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/yarnl",
+      "tags": [
+        "hobby",
+        "crafting",
+        "yarn",
+        "knitting",
+        "crochet"
       ]
     },
     {
