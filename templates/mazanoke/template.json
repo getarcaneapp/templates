@@ -1,0 +1,7 @@
+{
+  "name": "MAZANOKE",
+  "description": "A self-hosted local image optimizer that runs in your browser.",
+  "version": "1.0.0",
+  "author": "xPand4B",
+  "tags": ["image", "optimizer", "resizer", "compression"]
+}
