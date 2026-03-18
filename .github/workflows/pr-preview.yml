@@ -46,7 +46,7 @@ jobs:
           git config --global user.email "info@getarcane.app"
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v5
 
       - name: Setup Node
         uses: actions/setup-node@v6
