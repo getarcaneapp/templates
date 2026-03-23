@@ -37,7 +37,9 @@ jobs:
           RETENTION_DAYS: ${{ github.event.inputs.retention_days || '14' }}
           DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
           KEEP: ${{ github.event.inputs.keep || 'production' }}
+          HAS_ADMIN_TOKEN: ${{ secrets.ARCANE_BOT_TOKEN != '' }}
         with:
+          github-token: ${{ secrets.ARCANE_BOT_TOKEN || github.token }}
           script: |
             const keep = (process.env.KEEP || 'production')
               .split(',')
@@ -45,8 +47,15 @@ jobs:
               .filter(Boolean);
             const retentionDays = parseInt(process.env.RETENTION_DAYS || '14', 10);
             const dryRun = String(process.env.DRY_RUN || 'true').toLowerCase() === 'true';
+            const hasAdminToken = String(process.env.HAS_ADMIN_TOKEN || 'false').toLowerCase() === 'true';
+            const effectiveDryRun = dryRun || !hasAdminToken;
             const cutoffMs = retentionDays * 24 * 60 * 60 * 1000;
             const now = Date.now();
+            const previewEnvironmentPattern = /^.+-pr-\d+$/;
+
+            if (!hasAdminToken) {
+              core.warning('ARCANE_BOT_TOKEN is not configured. The default workflow token cannot delete repository environments, so this run will report candidates without deleting them.');
+            }
 
             const envs = await github.paginate('GET /repos/{owner}/{repo}/environments', {
               owner: context.repo.owner,
@@ -55,15 +64,22 @@ jobs:
             });
 
             let deleted = 0;
+            let skippedNonPreview = 0;
+            let failures = 0;
             for (const env of envs) {
               if (keep.includes(env.name)) continue;
+              if (!previewEnvironmentPattern.test(env.name)) {
+                skippedNonPreview++;
+                continue;
+              }
+
               const updatedAt = env.updated_at || env.created_at;
               if (!updatedAt) continue;
 
               const ageMs = now - new Date(updatedAt).getTime();
               if (ageMs >= cutoffMs) {
-                core.info(`${dryRun ? '[DRY-RUN] Would delete' : 'Deleting'} environment "${env.name}" (updated ${updatedAt})`);
-                if (!dryRun) {
+                core.info(`${effectiveDryRun ? '[DRY-RUN] Would delete' : 'Deleting'} environment "${env.name}" (updated ${updatedAt})`);
+                if (!effectiveDryRun) {
                   try {
                     await github.request('DELETE /repos/{owner}/{repo}/environments/{environment_name}', {
                       owner: context.repo.owner,
@@ -72,6 +88,7 @@ jobs:
                     });
                     deleted++;
                   } catch (e) {
+                    failures++;
                     core.warning(`Failed to delete "${env.name}": ${e.message}`);
                   }
                 }
@@ -81,7 +98,14 @@ jobs:
             core.summary
               .addHeading('Environment cleanup')
               .addRaw(`Retention: ${retentionDays} days\n`)
-              .addRaw(`Dry-run: ${dryRun}\n`)
+              .addRaw(`Dry-run: ${effectiveDryRun}\n`)
+              .addRaw(`Preview-only filter: ${previewEnvironmentPattern}\n`)
               .addRaw(`Checked: ${envs.length}\n`)
+              .addRaw(`Skipped non-preview: ${skippedNonPreview}\n`)
               .addRaw(`Deleted: ${deleted}\n`);
+
+            if (failures > 0) {
+              core.summary.addRaw(`Delete failures: ${failures}\n`);
+            }
+
             await core.summary.write();
