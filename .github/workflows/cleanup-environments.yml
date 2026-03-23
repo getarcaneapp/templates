@@ -36,7 +36,7 @@ jobs:
         uses: actions/github-script@v8
         env:
           RETENTION_DAYS: ${{ github.event.inputs.retention_days || '14' }}
-          DRY_RUN: ${{ github.event.inputs.dry_run || 'true' }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
           KEEP: ${{ github.event.inputs.keep || 'production' }}
         with:
           script: |
