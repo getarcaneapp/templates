@@ -31,7 +31,7 @@ jobs:
   cleanup:
     runs-on: ubuntu-latest
     steps:
-      - name: Delete old environments
+      - name: Delete old environments and deployments
         uses: actions/github-script@v8
         env:
           RETENTION_DAYS: ${{ github.event.inputs.retention_days || '14' }}
@@ -52,6 +52,7 @@ jobs:
             const cutoffMs = retentionDays * 24 * 60 * 60 * 1000;
             const now = Date.now();
             const previewEnvironmentPattern = /^.+-pr-\d+$/;
+            const cleanupDescription = 'Removed by preview environment cleanup workflow';
 
             if (!hasAdminToken) {
               core.warning('ARCANE_BOT_TOKEN is not configured. The default workflow token cannot delete repository environments, so this run will report candidates without deleting them.');
@@ -64,8 +65,13 @@ jobs:
             });
 
             let deleted = 0;
+            let candidateEnvironments = 0;
             let skippedNonPreview = 0;
-            let failures = 0;
+            let deploymentCount = 0;
+            let deletedDeployments = 0;
+            let deploymentFailures = 0;
+            let environmentFailures = 0;
+            let skippedEnvironmentDeletes = 0;
             for (const env of envs) {
               if (keep.includes(env.name)) continue;
               if (!previewEnvironmentPattern.test(env.name)) {
@@ -78,8 +84,52 @@ jobs:
 
               const ageMs = now - new Date(updatedAt).getTime();
               if (ageMs >= cutoffMs) {
+                candidateEnvironments++;
+                const deployments = await github.paginate('GET /repos/{owner}/{repo}/deployments', {
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  environment: env.name,
+                  per_page: 100
+                });
+
+                deploymentCount += deployments.length;
+
+                let deploymentDeleteFailed = false;
+                for (const deployment of deployments) {
+                  core.info(`${effectiveDryRun ? '[DRY-RUN] Would delete' : 'Deleting'} deployment #${deployment.id} for environment "${env.name}" (created ${deployment.created_at})`);
+
+                  if (!effectiveDryRun) {
+                    try {
+                      await github.request('POST /repos/{owner}/{repo}/deployments/{deployment_id}/statuses', {
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        deployment_id: deployment.id,
+                        state: 'inactive',
+                        auto_inactive: false,
+                        description: cleanupDescription,
+                        environment: env.name
+                      });
+                    } catch (e) {
+                      core.warning(`Failed to mark deployment #${deployment.id} in "${env.name}" inactive: ${e.message}`);
+                    }
+
+                    try {
+                      await github.request('DELETE /repos/{owner}/{repo}/deployments/{deployment_id}', {
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        deployment_id: deployment.id
+                      });
+                      deletedDeployments++;
+                    } catch (e) {
+                      deploymentDeleteFailed = true;
+                      deploymentFailures++;
+                      core.warning(`Failed to delete deployment #${deployment.id} in "${env.name}": ${e.message}`);
+                    }
+                  }
+                }
+
                 core.info(`${effectiveDryRun ? '[DRY-RUN] Would delete' : 'Deleting'} environment "${env.name}" (updated ${updatedAt})`);
-                if (!effectiveDryRun) {
+                if (!effectiveDryRun && !deploymentDeleteFailed) {
                   try {
                     await github.request('DELETE /repos/{owner}/{repo}/environments/{environment_name}', {
                       owner: context.repo.owner,
@@ -88,9 +138,12 @@ jobs:
                     });
                     deleted++;
                   } catch (e) {
-                    failures++;
+                    environmentFailures++;
                     core.warning(`Failed to delete "${env.name}": ${e.message}`);
                   }
+                } else if (deploymentDeleteFailed) {
+                  skippedEnvironmentDeletes++;
+                  core.warning(`Skipping environment delete for "${env.name}" because one or more deployments could not be removed first.`);
                 }
               }
             }
@@ -101,11 +154,22 @@ jobs:
               .addRaw(`Dry-run: ${effectiveDryRun}\n`)
               .addRaw(`Preview-only filter: ${previewEnvironmentPattern}\n`)
               .addRaw(`Checked: ${envs.length}\n`)
+              .addRaw(`Eligible preview environments: ${candidateEnvironments}\n`)
               .addRaw(`Skipped non-preview: ${skippedNonPreview}\n`)
-              .addRaw(`Deleted: ${deleted}\n`);
+              .addRaw(`Matched deployments: ${deploymentCount}\n`)
+              .addRaw(`Deleted deployments: ${deletedDeployments}\n`)
+              .addRaw(`Deleted environments: ${deleted}\n`);
 
-            if (failures > 0) {
-              core.summary.addRaw(`Delete failures: ${failures}\n`);
+            if (deploymentFailures > 0) {
+              core.summary.addRaw(`Deployment delete failures: ${deploymentFailures}\n`);
+            }
+
+            if (environmentFailures > 0) {
+              core.summary.addRaw(`Environment delete failures: ${environmentFailures}\n`);
+            }
+
+            if (skippedEnvironmentDeletes > 0) {
+              core.summary.addRaw(`Skipped environment deletes: ${skippedEnvironmentDeletes}\n`);
             }
 
             await core.summary.write();
