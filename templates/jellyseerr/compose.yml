@@ -4,13 +4,13 @@ x-arcane:
     - https://docs.seerr.dev/
 
 services:
-  jellyseerr:
-    image: fallenbagel/jellyseerr:${JELLYSEER_RELEASE_TAG:-latest}
-    container_name: jellyseerr
+  seerr:
+    image: ghcr.io/seerr-team/seerr:${SEER_RELEASE_TAG:-latest}
+    container_name: seerr
     restart: unless-stopped
     init: true
     ports:
-      - ${JELLYSEERR_PORT:-5055}:5055
+      - ${SEERR_PORT:-5055}:5055
     environment:
       TZ: ${TZ}
       #LOG_LEVEL: debug
