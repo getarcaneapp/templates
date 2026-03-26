@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.23.0",
+  "version": "1.24.0",
   "templates": [
     {
       "id": "affine",
@@ -159,17 +159,6 @@
       "env_url": "https://registry.getarcane.app/templates/jellyfin-server/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/jellyfin-server",
       "tags": ["media", "streaming"]
-    },
-    {
-      "id": "jellyseerr",
-      "name": "Jellyseerr",
-      "description": "Free and open source software for managing requests for your media library.",
-      "version": "1.0.0",
-      "author": "xPand4B",
-      "compose_url": "https://registry.getarcane.app/templates/jellyseerr/compose.yml",
-      "env_url": "https://registry.getarcane.app/templates/jellyseerr/.env.example",
-      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/jellyseerr",
-      "tags": ["media", "streaming", "requests", "jellyfin", "plex", "seerr"]
     },
     {
       "id": "languagetool",
@@ -390,6 +379,17 @@
       "env_url": "https://registry.getarcane.app/templates/satisfactory-server/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/satisfactory-server",
       "tags": ["satisfactory", "game", "gameserver"]
+    },
+    {
+      "id": "seerr",
+      "name": "Seerr",
+      "description": "Free and open source software for managing requests for your media library.",
+      "version": "1.0.0",
+      "author": "xPand4B",
+      "compose_url": "https://registry.getarcane.app/templates/seerr/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/seerr/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/seerr",
+      "tags": ["media", "streaming", "requests", "jellyfin", "plex", "seerr"]
     },
     {
       "id": "string-is",
