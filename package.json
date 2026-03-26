@@ -9,7 +9,7 @@
     "preinstall": "npx only-allow pnpm",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
-    "lint": "pnpm run type-check && pnpm run format:check && pnpm run validate",
+    "lint": "pnpm run type-check && pnpm run generate && pnpm run format:check && pnpm run validate",
     "type-check": "tsc --noEmit",
     "test": "tsx scripts/test-build-registry.ts",
     "validate": "tsx scripts/validate.ts",
