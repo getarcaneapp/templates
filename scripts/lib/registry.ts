@@ -1,5 +1,6 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import prettier from "prettier";
 
 const ROOT = process.cwd();
 export const TEMPLATES_DIR = path.join(ROOT, "templates");
@@ -237,10 +238,9 @@ export async function writeRegistryFile(
   registry: RegistryFile,
 ): Promise<string> {
   const outputPath = path.join(ROOT, "registry.json");
-  await fs.writeFile(
-    outputPath,
-    JSON.stringify(registry, null, 2) + "\n",
-    "utf8",
-  );
+  const formatted = await prettier.format(JSON.stringify(registry), {
+    filepath: outputPath,
+  });
+  await fs.writeFile(outputPath, formatted, "utf8");
   return outputPath;
 }
