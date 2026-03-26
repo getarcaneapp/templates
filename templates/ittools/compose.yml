@@ -5,10 +5,10 @@ x-arcane:
 
 services:
   it-tools:
-    image: 'corentinth/it-tools:latest'
+    image: "corentinth/it-tools:latest"
     container_name: it-tools
     ports:
-      - '8082:80'
+      - "8082:80"
     restart: unless-stopped
     labels:
       com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/it-tools.svg

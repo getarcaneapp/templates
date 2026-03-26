@@ -20,7 +20,8 @@ Add this URL in Arcane’s Templates settings:
 - Auto-generation: [scripts/build-registry.ts](scripts/build-registry.ts) scans `templates/` and generates [registry.json](registry.json) that follows [schema.json](schema.json).
 - Do not edit or commit `registry.json` in PRs — CI builds and publishes it on merge to `main`.
 - Versioning policy: the registry version auto-bumps (minor by default) when a new template ID is added.
-- CI: [GitHub Actions](.github/workflows/build-registry.yml) type-checks, generates, validates against the schema, and commits updated `registry.json`.
+- PR validation: [GitHub Actions](.github/workflows/validate.yml) type-checks, validates the generated registry against [schema.json](schema.json), and runs `docker compose config -q` against every template.
+- Deploy CI: [GitHub Actions](.github/workflows/build-registry.yml) validates on `main`, generates, and commits updated `registry.json`.
 
 ## Contributing a Template
 
@@ -54,11 +55,12 @@ templates/my-awesome-template/
 }
 ```
 
-5. Test locally (Node 24+, pnpm):
+5. Test locally (Node 25+, pnpm, Docker Compose):
 
 ```bash
 pnpm install
-pnpm run type-check
+pnpm run format
+pnpm run lint
 pnpm run validate
 ```
 
@@ -77,6 +79,8 @@ Tips:
 
 ```bash
 pnpm install
+pnpm run format
+pnpm run lint
 pnpm run validate
 ```
 

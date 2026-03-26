@@ -3,28 +3,27 @@ x-arcane:
   urls:
     - https://www.verdaccio.org/
 
-
 services:
-    verdaccio:
-        image: verdaccio/verdaccio
-        container_name: 'verdaccio'
-        networks:
-            - node-network
-        environment:
-            - VERDACCIO_PORT=4873
-        ports:
-            - '${PORT:-4873}:4873'
-        volumes:
-            - verdaccio_storage:/verdaccio/storage
-            - verdaccio_conf:/verdaccio/conf
-            - verdaccio_plugins:/verdaccio/plugins
-        labels:
-            com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/verdaccio.svg
+  verdaccio:
+    image: verdaccio/verdaccio
+    container_name: "verdaccio"
+    networks:
+      - node-network
+    environment:
+      - VERDACCIO_PORT=4873
+    ports:
+      - "${PORT:-4873}:4873"
+    volumes:
+      - verdaccio_storage:/verdaccio/storage
+      - verdaccio_conf:/verdaccio/conf
+      - verdaccio_plugins:/verdaccio/plugins
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/verdaccio.svg
 
 networks:
-    node-network:
-        driver: bridge
+  node-network:
+    driver: bridge
 volumes:
-    verdaccio_storage:
-    verdaccio_conf:
-    verdaccio_plugins:
+  verdaccio_storage:
+  verdaccio_conf:
+  verdaccio_plugins:

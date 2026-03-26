@@ -10,14 +10,14 @@ services:
     restart: unless-stopped
     environment:
       MARIADB_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD}"
-      MARIADB_DATABASE:     "${MARIADB_DATABASE}"
-      MARIADB_USER:         "${MARIADB_USER}"
-      MARIADB_PASSWORD:     "${MARIADB_PASSWORD}"
+      MARIADB_DATABASE: "${MARIADB_DATABASE}"
+      MARIADB_USER: "${MARIADB_USER}"
+      MARIADB_PASSWORD: "${MARIADB_PASSWORD}"
     ports:
       - "3306:3306"
     volumes:
       - mariadb_data:/var/lib/mysql
-      - ./my.cnf:/etc/my.cnf:ro       # optional custom config file
+      - ./my.cnf:/etc/my.cnf:ro # optional custom config file
     command: --transaction-isolation=READ-COMMITTED --log-bin=mysql-bin
     labels:
       com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/mariadb.svg

@@ -10,7 +10,7 @@ services:
       # Set the timezone to your local timezone
       - TZ=America/New_York
     ports:
-      - '8945:8945'
+      - "8945:8945"
     volumes:
       - /host/path/to/config:/config
       - /host/path/to/downloads:/downloads

@@ -10,7 +10,7 @@ services:
     env_file:
       - .env
     volumes:
-    #  - endurain_backend_app:/app/backend # Configure volume if you want to edit the code locally by cloning the repo
+      #  - endurain_backend_app:/app/backend # Configure volume if you want to edit the code locally by cloning the repo
       - endurain_data:/app/backend/data # necessary for activity files, user images and server images persistence on container image updates
       - endurain_logs:/app/backend/logs # log files for the backend
     ports:

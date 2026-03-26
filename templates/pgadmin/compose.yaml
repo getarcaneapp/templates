@@ -9,7 +9,7 @@ services:
     container_name: pgadmin
     restart: unless-stopped
     ports:
-      - '80:80'
+      - "80:80"
     env_file:
       - .env
     volumes:

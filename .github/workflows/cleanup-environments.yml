@@ -29,6 +29,7 @@ concurrency:
 
 jobs:
   cleanup:
+    if: ${{ github.repository_owner != 'getarcaneapp' }}
     runs-on: ubuntu-latest
     steps:
       - name: Delete old environments and deployments

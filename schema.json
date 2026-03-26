@@ -9,15 +9,29 @@
       "type": "string",
       "description": "Optional JSON Schema meta reference in the registry file."
     },
-    "name": { "description": "The name of the template registry.", "type": "string", "minLength": 1 },
+    "name": {
+      "description": "The name of the template registry.",
+      "type": "string",
+      "minLength": 1
+    },
     "description": {
       "description": "A brief description of the template registry and its purpose.",
       "type": "string",
       "minLength": 1
     },
-    "version": { "description": "The version of the registry using semantic versioning.", "$ref": "#/definitions/semver" },
-    "author": { "description": "The author or organization maintaining the registry.", "type": "string", "minLength": 1 },
-    "url": { "description": "The URL to the registry repository or homepage.", "$ref": "#/definitions/url" },
+    "version": {
+      "description": "The version of the registry using semantic versioning.",
+      "$ref": "#/definitions/semver"
+    },
+    "author": {
+      "description": "The author or organization maintaining the registry.",
+      "type": "string",
+      "minLength": 1
+    },
+    "url": {
+      "description": "The URL to the registry repository or homepage.",
+      "$ref": "#/definitions/url"
+    },
     "templates": {
       "description": "An array of Docker Compose templates available in the registry.",
       "type": "array",
@@ -53,14 +67,25 @@
           "description": "A unique identifier for the template. Must be lowercase with hyphens only.",
           "$ref": "#/definitions/slug"
         },
-        "name": { "description": "The human-readable name of the template.", "type": "string", "minLength": 1 },
+        "name": {
+          "description": "The human-readable name of the template.",
+          "type": "string",
+          "minLength": 1
+        },
         "description": {
           "description": "A detailed description of what the template provides and its use case.",
           "type": "string",
           "minLength": 1
         },
-        "version": { "description": "The version of the template using semantic versioning.", "$ref": "#/definitions/semver" },
-        "author": { "description": "The author or organization that created the template.", "type": "string", "minLength": 1 },
+        "version": {
+          "description": "The version of the template using semantic versioning.",
+          "$ref": "#/definitions/semver"
+        },
+        "author": {
+          "description": "The author or organization that created the template.",
+          "type": "string",
+          "minLength": 1
+        },
         "compose_url": {
           "description": "The direct URL to the docker-compose.yml file for this template.",
           "$ref": "#/definitions/url"
@@ -69,7 +94,10 @@
           "description": "The direct URL to the environment variables example file (.env.example).",
           "$ref": "#/definitions/url"
         },
-        "documentation_url": { "description": "The URL to the template's documentation or README.", "$ref": "#/definitions/url" },
+        "documentation_url": {
+          "description": "The URL to the template's documentation or README.",
+          "$ref": "#/definitions/url"
+        },
         "tags": {
           "description": "An array of tags for categorizing and searching templates.",
           "type": "array",
@@ -78,7 +106,17 @@
           "uniqueItems": true
         }
       },
-      "required": ["id", "name", "description", "version", "author", "compose_url", "env_url", "documentation_url", "tags"],
+      "required": [
+        "id",
+        "name",
+        "description",
+        "version",
+        "author",
+        "compose_url",
+        "env_url",
+        "documentation_url",
+        "tags"
+      ],
       "additionalProperties": false
     }
   }

@@ -1,0 +1,46 @@
+name: Validate Templates
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/validate.yml"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "schema.json"
+      - "scripts/**"
+      - "templates/**"
+      - "tsconfig.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    if: ${{ github.repository_owner != 'getarcaneapp' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v5
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "25"
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Lint and validate
+        run: pnpm run lint
+
+      - name: Run tests and generate registry
+        run: pnpm run test && pnpm run generate
