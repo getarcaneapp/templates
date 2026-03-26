@@ -24,7 +24,6 @@ permissions:
 
 jobs:
   build-and-deploy-preview:
-    if: ${{ github.repository_owner == 'getarcaneapp' }}
     runs-on: macos-latest
     environment:
       name: ${{ github.event.pull_request.user.login }}-pr-${{ github.event.pull_request.number }}

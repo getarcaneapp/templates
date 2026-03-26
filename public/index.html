@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Arcane Templates Registry</title>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
 
       :root {
         --bg: #030305;
@@ -21,10 +21,18 @@
       body {
         background-color: var(--bg);
         background-image:
-          radial-gradient(ellipse at 50% 0%, var(--accent-glow) 0%, transparent 60%),
-          radial-gradient(ellipse at 0% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+          radial-gradient(
+            ellipse at 50% 0%,
+            var(--accent-glow) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse at 0% 100%,
+            rgba(255, 255, 255, 0.02) 0%,
+            transparent 50%
+          );
         color: var(--text);
-        font-family: 'Inter', sans-serif;
+        font-family: "Inter", sans-serif;
         margin: 0;
         min-height: 100vh;
         -webkit-font-smoothing: antialiased;
@@ -227,76 +235,90 @@
   <body>
     <div id="root"></div>
     <script type="module">
-      import * as React from 'https://esm.sh/react@18.3.1';
-      import { createRoot } from 'https://esm.sh/react-dom@18.3.1/client';
+      import * as React from "https://esm.sh/react@18.3.1";
+      import { createRoot } from "https://esm.sh/react-dom@18.3.1/client";
 
       const icons = {
         copy: React.createElement(
-          'svg',
+          "svg",
           {
             width: 14,
             height: 14,
-            viewBox: '0 0 24 24',
-            fill: 'none',
-            stroke: 'currentColor',
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
             strokeWidth: 2,
-            strokeLinecap: 'round',
-            strokeLinejoin: 'round',
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
           },
-          React.createElement('rect', { x: 9, y: 9, width: 13, height: 13, rx: 2, ry: 2 }),
-          React.createElement('path', { d: 'M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1' }),
+          React.createElement("rect", {
+            x: 9,
+            y: 9,
+            width: 13,
+            height: 13,
+            rx: 2,
+            ry: 2,
+          }),
+          React.createElement("path", {
+            d: "M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1",
+          }),
         ),
         check: React.createElement(
-          'svg',
+          "svg",
           {
             width: 14,
             height: 14,
-            viewBox: '0 0 24 24',
-            fill: 'none',
-            stroke: 'currentColor',
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
             strokeWidth: 2,
-            strokeLinecap: 'round',
-            strokeLinejoin: 'round',
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
           },
-          React.createElement('polyline', { points: '20 6 9 17 4 12' }),
+          React.createElement("polyline", { points: "20 6 9 17 4 12" }),
         ),
         search: React.createElement(
-          'svg',
+          "svg",
           {
             width: 16,
             height: 16,
-            viewBox: '0 0 24 24',
-            fill: 'none',
-            stroke: 'currentColor',
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
             strokeWidth: 2,
-            strokeLinecap: 'round',
-            strokeLinejoin: 'round',
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
           },
-          React.createElement('circle', { cx: 11, cy: 11, r: 8 }),
-          React.createElement('line', { x1: 21, y1: 21, x2: 16.65, y2: 16.65 }),
+          React.createElement("circle", { cx: 11, cy: 11, r: 8 }),
+          React.createElement("line", { x1: 21, y1: 21, x2: 16.65, y2: 16.65 }),
         ),
         link: React.createElement(
-          'svg',
+          "svg",
           {
             width: 12,
             height: 12,
-            viewBox: '0 0 24 24',
-            fill: 'none',
-            stroke: 'currentColor',
+            viewBox: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
             strokeWidth: 2,
-            strokeLinecap: 'round',
-            strokeLinejoin: 'round',
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
           },
-          React.createElement('path', { d: 'M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6' }),
-          React.createElement('polyline', { points: '15 3 21 3 21 9' }),
-          React.createElement('line', { x1: 10, y1: 14, x2: 21, y2: 3 }),
+          React.createElement("path", {
+            d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6",
+          }),
+          React.createElement("polyline", { points: "15 3 21 3 21 9" }),
+          React.createElement("line", { x1: 10, y1: 14, x2: 21, y2: 3 }),
         ),
       };
 
       function App() {
-        const registryUrl = React.useMemo(() => `${location.origin}/registry.json`, []);
+        const registryUrl = React.useMemo(
+          () => `${location.origin}/registry.json`,
+          [],
+        );
         const [templates, setTemplates] = React.useState([]);
-        const [search, setSearch] = React.useState('');
+        const [search, setSearch] = React.useState("");
         const [copied, setCopied] = React.useState(false);
         const [loading, setLoading] = React.useState(true);
 
@@ -312,7 +334,11 @@
 
         const filtered = React.useMemo(() => {
           const s = search.toLowerCase();
-          return templates.filter((t) => t.name.toLowerCase().includes(s) || t.description.toLowerCase().includes(s));
+          return templates.filter(
+            (t) =>
+              t.name.toLowerCase().includes(s) ||
+              t.description.toLowerCase().includes(s),
+          );
         }, [search, templates]);
 
         const copyText = async () => {
@@ -324,75 +350,118 @@
         };
 
         return React.createElement(
-          'div',
-          { className: 'container' },
+          "div",
+          { className: "container" },
           React.createElement(
-            'div',
-            { className: 'header-section' },
-            React.createElement('h1', null, 'Arcane Templates Registry'),
+            "div",
+            { className: "header-section" },
+            React.createElement("h1", null, "Arcane Templates Registry"),
             React.createElement(
-              'div',
-              { className: 'ctrl-panel' },
+              "div",
+              { className: "ctrl-panel" },
               React.createElement(
-                'div',
-                { className: 'input-wrapper' },
-                React.createElement('span', { className: 'badge' }, 'URL'),
-                React.createElement('input', { readOnly: true, value: registryUrl, onFocus: (e) => e.target.select() }),
+                "div",
+                { className: "input-wrapper" },
+                React.createElement("span", { className: "badge" }, "URL"),
+                React.createElement("input", {
+                  readOnly: true,
+                  value: registryUrl,
+                  onFocus: (e) => e.target.select(),
+                }),
                 React.createElement(
-                  'button',
-                  { className: 'copy-btn', onClick: copyText },
+                  "button",
+                  { className: "copy-btn", onClick: copyText },
                   copied ? icons.check : icons.copy,
-                  copied ? 'Copied' : 'Copy',
+                  copied ? "Copied" : "Copy",
                 ),
               ),
               React.createElement(
-                'div',
-                { className: 'input-wrapper', style: { background: 'transparent', border: '1px solid rgba(255,255,255,0.1)' } },
+                "div",
+                {
+                  className: "input-wrapper",
+                  style: {
+                    background: "transparent",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                  },
+                },
                 icons.search,
-                React.createElement('input', {
-                  placeholder: 'Search templates...',
+                React.createElement("input", {
+                  placeholder: "Search templates...",
                   value: search,
                   onChange: (e) => setSearch(e.target.value),
                 }),
               ),
             ),
           ),
-          loading ?
-            React.createElement('div', { className: 'loading' }, 'Loading templates...')
-          : React.createElement(
-              'div',
-              { className: 'grid' },
-              filtered.map((t) =>
-                React.createElement(
-                  'div',
-                  { className: 'card', key: t.id },
+          loading
+            ? React.createElement(
+                "div",
+                { className: "loading" },
+                "Loading templates...",
+              )
+            : React.createElement(
+                "div",
+                { className: "grid" },
+                filtered.map((t) =>
                   React.createElement(
-                    'div',
-                    { className: 'card-header' },
-                    React.createElement('h3', { className: 'card-title' }, t.name),
-                    React.createElement('span', { className: 'version' }, `v${t.version}`),
-                  ),
-                  React.createElement('p', { className: 'card-desc' }, t.description),
-                  t.tags &&
-                    t.tags.length > 0 &&
+                    "div",
+                    { className: "card", key: t.id },
                     React.createElement(
-                      'div',
-                      { className: 'tags' },
-                      t.tags.map((tag) => React.createElement('span', { className: 'tag', key: tag }, tag)),
+                      "div",
+                      { className: "card-header" },
+                      React.createElement(
+                        "h3",
+                        { className: "card-title" },
+                        t.name,
+                      ),
+                      React.createElement(
+                        "span",
+                        { className: "version" },
+                        `v${t.version}`,
+                      ),
                     ),
-                  React.createElement(
-                    'div',
-                    { className: 'actions' },
-                    React.createElement('a', { href: t.documentation_url, target: '_blank' }, 'Docs', icons.link),
-                    React.createElement('a', { href: t.compose_url, target: '_blank' }, 'Compose'),
+                    React.createElement(
+                      "p",
+                      { className: "card-desc" },
+                      t.description,
+                    ),
+                    t.tags &&
+                      t.tags.length > 0 &&
+                      React.createElement(
+                        "div",
+                        { className: "tags" },
+                        t.tags.map((tag) =>
+                          React.createElement(
+                            "span",
+                            { className: "tag", key: tag },
+                            tag,
+                          ),
+                        ),
+                      ),
+                    React.createElement(
+                      "div",
+                      { className: "actions" },
+                      React.createElement(
+                        "a",
+                        { href: t.documentation_url, target: "_blank" },
+                        "Docs",
+                        icons.link,
+                      ),
+                      React.createElement(
+                        "a",
+                        { href: t.compose_url, target: "_blank" },
+                        "Compose",
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
         );
       }
 
-      createRoot(document.getElementById('root')).render(React.createElement(App));
+      createRoot(document.getElementById("root")).render(
+        React.createElement(App),
+      );
     </script>
   </body>
 </html>
