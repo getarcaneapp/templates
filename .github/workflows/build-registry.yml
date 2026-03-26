@@ -63,14 +63,26 @@ jobs:
       - name: Commit registry.json
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
+          repository: "."
+          branch: ""
           commit_message: "chore: update registry.json [skip ci]"
-          add_options: ""
-          commit_options: ""
-          file_pattern: "registry.json"
-          status_options: "--porcelain"
           commit_user_name: getarcaneappbot
           commit_user_email: info@getarcane.app
           commit_author: "getarcaneappbot <info@getarcane.app>"
+          commit_options: ""
+          file_pattern: "registry.json"
+          add_options: ""
+          tag_name: ""
+          tagging_message: ""
+          status_options: "--porcelain"
+          push_options: ""
+          skip_dirty_check: false
+          skip_fetch: false
+          skip_checkout: false
+          skip_push: false
+          disable_globbing: false
+          create_branch: false
+          create_git_tag_only: false
 
       - name: Stage build directory
         run: pnpm run stage
