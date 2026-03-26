@@ -6,7 +6,7 @@ services:
   db:
     image: mariadb:11.4
     container_name: mosparo_db
-    command: '--default-authentication-plugin=mysql_native_password'
+    command: "--default-authentication-plugin=mysql_native_password"
     volumes:
       - db_data:/var/lib/mysql
     restart: always

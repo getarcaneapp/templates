@@ -5,7 +5,7 @@ x-arcane:
 
 # Change 3 Passwords in this file:
 # Generate passwords with 'openssl rand -hex 64'
-# 
+#
 # 1. The database password in the environment variable POSTGRES_PASSWORD
 # 2. The redis password in the command redis-server --requirepass your-redis-password-here
 # 3. The jwt secret in the environment variable JWT_SECRET
@@ -47,7 +47,14 @@ services:
     networks:
       - patchmon-internal
     healthcheck:
-      test: ["CMD", "redis-cli", "--no-auth-warning", "-a", "your-redis-password-here", "ping"] # CHANGE THIS TO YOUR REDIS PASSWORD
+      test: [
+          "CMD",
+          "redis-cli",
+          "--no-auth-warning",
+          "-a",
+          "your-redis-password-here",
+          "ping",
+        ] # CHANGE THIS TO YOUR REDIS PASSWORD
       interval: 3s
       timeout: 5s
       retries: 7

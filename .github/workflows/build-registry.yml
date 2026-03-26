@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   build:
-    if: ${{ github.repository_owner != 'getarcaneapp' && github.actor != 'getarcaneappbot' }}
+    if: ${{ github.repository_owner != 'getarcaneapp' }}
     runs-on: macos-latest
     environment:
       name: production
@@ -44,6 +44,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+
+      - name: Validate templates
+        run: pnpm run lint
 
       - name: Generate registry.json
         env:

@@ -7,16 +7,23 @@
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "lint": "pnpm run type-check && pnpm run format:check && pnpm run validate",
     "type-check": "tsc --noEmit",
     "test": "tsx scripts/test-build-registry.ts",
+    "validate": "tsx scripts/validate.ts",
     "generate": "tsx scripts/build-registry.ts",
-    "ci": "pnpm run type-check && pnpm run test && pnpm run generate",
+    "ci": "pnpm run lint && pnpm run test && pnpm run generate",
     "stage": "rm -rf build && mkdir -p build/templates && cp -v registry.json build/ && cp -v schema.json build/ && if [ -d public ]; then rsync -a public/ build/; fi && rsync -a --delete templates/ build/templates/",
     "deploy": "pnpm run stage && wrangler version deploy",
     "dev": "pnpm run generate && pnpm run stage && wrangler dev"
   },
   "devDependencies": {
     "@types/node": "^25.5.0",
+    "ajv": "^8.18.0",
+    "ajv-formats": "^3.0.1",
+    "prettier": "^3.8.1",
     "tsx": "^4.21.0",
     "typescript": "^6.0.2",
     "wrangler": "^4.77.0"
