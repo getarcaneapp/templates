@@ -3,17 +3,20 @@ name: Validate Templates
 on:
   pull_request:
     paths:
-      - ".depot/workflows/validate.yml"
-      - "package.json"
-      - "pnpm-lock.yaml"
-      - "schema.json"
-      - "scripts/**"
-      - "templates/**"
-      - "tsconfig.json"
+      - '.depot/workflows/validate.yml'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'schema.json'
+      - 'scripts/**'
+      - 'templates/**'
+      - 'tsconfig.json'
   workflow_dispatch:
 
 permissions:
+  actions: read
+  deployments: write
   contents: read
+  pull-requests: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -33,7 +36,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
-          node-version: "25"
+          node-version: '25'
           cache: pnpm
 
       - name: Install dependencies
