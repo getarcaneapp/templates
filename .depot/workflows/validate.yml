@@ -2,14 +2,8 @@ name: Validate Templates
 
 on:
   pull_request:
-    paths:
-      - '.depot/workflows/validate.yml'
-      - 'package.json'
-      - 'pnpm-lock.yaml'
-      - 'schema.json'
-      - 'scripts/**'
-      - 'templates/**'
-      - 'tsconfig.json'
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
