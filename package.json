@@ -20,7 +20,7 @@
     "dev": "pnpm run generate && pnpm run stage && wrangler dev"
   },
   "devDependencies": {
-    "@types/node": "^25.5.0",
+    "@types/node": "^25.5.2",
     "ajv": "^8.18.0",
     "ajv-formats": "^3.0.1",
     "prettier": "^3.8.1",
