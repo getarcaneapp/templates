@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Delete old environments and deployments
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         env:
           RETENTION_DAYS: ${{ github.event.inputs.retention_days || '14' }}
           DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
