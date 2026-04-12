@@ -46,7 +46,7 @@ jobs:
         run: pnpm install
 
       - name: Validate templates
-        run: pnpm run lint
+        run: pnpm run type-check && pnpm run generate && pnpm run validate
 
       - name: Generate registry.json
         env:
