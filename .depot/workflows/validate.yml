@@ -36,7 +36,7 @@ jobs:
         run: pnpm install
 
       - name: Lint and validate
-        run: pnpm run lint
+        run: pnpm run type-check && pnpm run generate && pnpm run validate
 
       - name: Run tests and generate registry
         run: pnpm run test && pnpm run generate

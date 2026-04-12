@@ -2,7 +2,7 @@ name: Build and Deploy Preview Registry
 
 on:
   pull_request_target:
-    types: [opened, synchronize, reopened, ready_for_review]
+    types: [ opened, synchronize, reopened, ready_for_review ]
     paths:
       - "templates/**"
       - "scripts/build-registry.ts"
@@ -27,11 +27,13 @@ jobs:
     if: ${{ github.repository_owner != 'getarcaneapp' }}
     runs-on: macos-latest
     environment:
-      name: ${{ github.event.pull_request.user.login }}-pr-${{ github.event.pull_request.number }}
+      name: ${{ github.event.pull_request.user.login }}-pr-${{
+        github.event.pull_request.number }}
       url: ${{ env.PREVIEW_BASE }}
     env:
       PREVIEW_ALIAS: pr-${{ github.event.pull_request.number }}
-      PREVIEW_BASE: https://pr-${{ github.event.pull_request.number }}-arcane-templates.ofkm.workers.dev
+      PREVIEW_BASE: https://pr-${{ github.event.pull_request.number
+        }}-arcane-templates.ofkm.workers.dev
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -39,11 +41,6 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
           token: ${{ secrets.ARCANE_BOT_TOKEN }}
-
-      - name: Configure Git
-        run: |
-          git config --global user.name "getarcaneappbot"
-          git config --global user.email "info@getarcane.app"
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v5
@@ -67,7 +64,8 @@ jobs:
           REGISTRY_AUTHOR: ${{ github.event.pull_request.user.login }}
           REGISTRY_URL: https://github.com/getarcaneapp/templates
           PUBLIC_BASE: ${{ env.PREVIEW_BASE }}/templates
-          DOCS_BASE: https://github.com/getarcaneapp/templates/tree/${{ github.head_ref || github.ref_name }}/templates
+          DOCS_BASE: https://github.com/getarcaneapp/templates/tree/${{ github.head_ref ||
+            github.ref_name }}/templates
           BUMP_PART: patch
           SCHEMA_URL: ${{ env.PREVIEW_BASE }}/schema.json
         run: pnpm run generate

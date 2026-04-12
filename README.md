@@ -75,7 +75,6 @@ Tips:
 ## Development
 
 - Validate data against the registry schema: [schema.json](schema.json)
-- Run locally on macOS:
 
 ```bash
 pnpm install
