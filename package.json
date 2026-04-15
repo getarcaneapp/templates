@@ -26,6 +26,6 @@
     "prettier": "^3.8.3",
     "tsx": "^4.21.0",
     "typescript": "^6.0.2",
-    "wrangler": "^4.81.1"
+    "wrangler": "^4.83.0"
   }
 }
