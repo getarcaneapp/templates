@@ -2,7 +2,7 @@ name: Build and Deploy Preview Registry
 
 on:
   pull_request_target:
-    types: [ opened, synchronize, reopened, ready_for_review ]
+    types: [opened, synchronize, reopened, ready_for_review]
     paths:
       - "templates/**"
       - "scripts/build-registry.ts"
@@ -64,7 +64,8 @@ jobs:
           REGISTRY_AUTHOR: ${{ github.event.pull_request.user.login }}
           REGISTRY_URL: https://github.com/getarcaneapp/templates
           PUBLIC_BASE: ${{ env.PREVIEW_BASE }}/templates
-          DOCS_BASE: https://github.com/getarcaneapp/templates/tree/${{ github.head_ref ||
+          DOCS_BASE:
+            https://github.com/getarcaneapp/templates/tree/${{ github.head_ref ||
             github.ref_name }}/templates
           BUMP_PART: patch
           SCHEMA_URL: ${{ env.PREVIEW_BASE }}/schema.json

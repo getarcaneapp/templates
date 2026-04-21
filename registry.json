@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.24.0",
+  "version": "1.24.1",
   "templates": [
     {
       "id": "affine",
@@ -15,6 +15,7 @@
       "compose_url": "https://registry.getarcane.app/templates/affine/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/affine/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/affine",
+      "content_hash": "1eefd6b38703d4b3695a14ba8d2c583731735263d5bfff7413b33d3dd80e1de7",
       "tags": ["Productivity", "Notes"]
     },
     {
@@ -26,6 +27,7 @@
       "compose_url": "https://registry.getarcane.app/templates/baikal/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/baikal/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/baikal",
+      "content_hash": "aab5ab9a96da4976d70d506823dda628cc4762ca508c49a880b2dcf24d5dce66",
       "tags": ["Calendar", "CalDAV", "CardDAV", "Contacts"]
     },
     {
@@ -37,6 +39,7 @@
       "compose_url": "https://registry.getarcane.app/templates/bento-pdf/docker-compose.yaml",
       "env_url": "https://registry.getarcane.app/templates/bento-pdf/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/bento-pdf",
+      "content_hash": "214cf4b718083e25e64414af3e4b97e2f01581bfb8006b0a98be631d93f20027",
       "tags": ["Productivity", "PDF"]
     },
     {
@@ -48,6 +51,7 @@
       "compose_url": "https://registry.getarcane.app/templates/cloudflared/docker-compose.yaml",
       "env_url": "https://registry.getarcane.app/templates/cloudflared/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/cloudflared",
+      "content_hash": "52835a10f0ff2a399719734d6360d304a4cad58a4ece65157585256763c9fccb",
       "tags": ["networking", "cloudflare", "tunneling"]
     },
     {
@@ -59,6 +63,7 @@
       "compose_url": "https://registry.getarcane.app/templates/code-server/docker-compose.yaml",
       "env_url": "https://registry.getarcane.app/templates/code-server/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/code-server",
+      "content_hash": "2484e35a504db9e050443c561800f694f0d5546dd10679e1c9b8a7c0f8c6d0a0",
       "tags": ["development", "vs-code", "remote"]
     },
     {
@@ -70,6 +75,7 @@
       "compose_url": "https://registry.getarcane.app/templates/convertx/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/convertx/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/convertx",
+      "content_hash": "dd3a8621b4efbe7b9b1c94ba3a3e1f538c91d3e01e208e552f9e453e0853ba18",
       "tags": ["Tools", "Converter"]
     },
     {
@@ -81,6 +87,7 @@
       "compose_url": "https://registry.getarcane.app/templates/dozzle/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/dozzle/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/dozzle",
+      "content_hash": "445b8e904d65a8274c3e4dabfa977926e871fd4b5caa8e8b76c7f4cce35a58b3",
       "tags": ["monitoring", "logging", "docker"]
     },
     {
@@ -92,6 +99,7 @@
       "compose_url": "https://registry.getarcane.app/templates/endurain/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/endurain/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/endurain",
+      "content_hash": "c89f2be52d78f861d0e6560463122659fd9039dc48ecbe1341554011606a8056",
       "tags": ["fitness", "gps-tracker"]
     },
     {
@@ -103,6 +111,7 @@
       "compose_url": "https://registry.getarcane.app/templates/flyimg/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/flyimg/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/flyimg",
+      "content_hash": "5daf49794c75b05c321d6e0c9be57275b48981b08ac9c1e5e59ddd0574e599cb",
       "tags": ["Tools"]
     },
     {
@@ -114,6 +123,7 @@
       "compose_url": "https://registry.getarcane.app/templates/fossflow/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/fossflow/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/fossflow",
+      "content_hash": "d6c245d6c93f847b3b6479733549ce2eaa7d2aaca745c3b3d74fbdaf904eea1b",
       "tags": ["tools", "infra", "devops"]
     },
     {
@@ -125,6 +135,7 @@
       "compose_url": "https://registry.getarcane.app/templates/homepage/compose.yaml",
       "env_url": "https://registry.getarcane.app/templates/homepage/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/homepage",
+      "content_hash": "7a3d6a27ef10b9b89f3c0b4d807c5cbd5da65bcb815bacb1b645e92c2136f04d",
       "tags": ["homepages", "dashboards"]
     },
     {
@@ -136,6 +147,7 @@
       "compose_url": "https://registry.getarcane.app/templates/invidious/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/invidious/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/invidious",
+      "content_hash": "256b917aa84dccc6e2cf4d93fba7193337d1dc4d4cbb8befac122baff47bb227",
       "tags": ["youtube"]
     },
     {
@@ -147,6 +159,7 @@
       "compose_url": "https://registry.getarcane.app/templates/ittools/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/ittools/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/ittools",
+      "content_hash": "e36925b43808e31beb9d800acddfb8d15a5dd258a573862b3d28b7867948009f",
       "tags": ["Tools"]
     },
     {
@@ -158,6 +171,7 @@
       "compose_url": "https://registry.getarcane.app/templates/jellyfin-server/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/jellyfin-server/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/jellyfin-server",
+      "content_hash": "5d43881150ccddfc47806a16b82be90756c1978464c94b882e72965b135e76eb",
       "tags": ["media", "streaming"]
     },
     {
@@ -169,6 +183,7 @@
       "compose_url": "https://registry.getarcane.app/templates/languagetool/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/languagetool/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/languagetool",
+      "content_hash": "3ca906fded44c499de317eb1b2e524b6b9c6a8c8ae58d7674bdd49d58731b8e0",
       "tags": ["Tools"]
     },
     {
@@ -180,6 +195,7 @@
       "compose_url": "https://registry.getarcane.app/templates/localai/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/localai/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/localai",
+      "content_hash": "37015246372710fe5fb724a61285fcae7b03ec941361b0eaaa870533508f7ea3",
       "tags": ["AI", "LLM", "ChatGPT", "OpenAI"]
     },
     {
@@ -191,6 +207,7 @@
       "compose_url": "https://registry.getarcane.app/templates/mariadb/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/mariadb/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/mariadb",
+      "content_hash": "df7f12dc8144e5ca558ac66d5473782650d59c605854c7d175dcdbcd57fee6e5",
       "tags": ["SQL", "MySQL"]
     },
     {
@@ -202,6 +219,7 @@
       "compose_url": "https://registry.getarcane.app/templates/mazanoke/compose.yaml",
       "env_url": "https://registry.getarcane.app/templates/mazanoke/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/mazanoke",
+      "content_hash": "b829d3f3890c2eadc2b0b6f030d6e75858e16900c39d435c247c16e6cf52ba90",
       "tags": ["image", "optimizer", "resizer", "compression"]
     },
     {
@@ -213,6 +231,7 @@
       "compose_url": "https://registry.getarcane.app/templates/metube/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/metube/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/metube",
+      "content_hash": "e8294ce8c9dd8b9870d3e8784014934ddaa8d87b885bbdf0ce95248a4970758d",
       "tags": ["youtube"]
     },
     {
@@ -224,6 +243,7 @@
       "compose_url": "https://registry.getarcane.app/templates/mosparo/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/mosparo/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/mosparo",
+      "content_hash": "f5bd04a1acf530cdcc030c2b6cf77e5f9dc447db122f047fb3e838b784981ac8",
       "tags": ["Tools"]
     },
     {
@@ -235,6 +255,7 @@
       "compose_url": "https://registry.getarcane.app/templates/nextcloud/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/nextcloud/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/nextcloud",
+      "content_hash": "c98df5805e5189276211416a0773c9bdf193410798ef7bf39429299a839c5c63",
       "tags": ["file-sharing", "collaboration", "storage", "cloud"]
     },
     {
@@ -246,6 +267,7 @@
       "compose_url": "https://registry.getarcane.app/templates/omnitools/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/omnitools/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/omnitools",
+      "content_hash": "d4a1597effa7ca2da16dc4f6cc3d542e86dbd87c17de03fbdfa16325272643e1",
       "tags": ["Tools"]
     },
     {
@@ -257,6 +279,7 @@
       "compose_url": "https://registry.getarcane.app/templates/one-time-secret/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/one-time-secret/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/one-time-secret",
+      "content_hash": "a59567bce978cbf6d3f8ac8f5998600b37b0cef686e432896a39e52d9ff9d440",
       "tags": ["Security", "Productivity", "Utilities"]
     },
     {
@@ -268,6 +291,7 @@
       "compose_url": "https://registry.getarcane.app/templates/patchmon/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/patchmon/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/patchmon",
+      "content_hash": "76abab2c03863eca2955c3e93db0dc35eca0c3abb9a4fef6c2ab311029171f42",
       "tags": ["tools", "linux"]
     },
     {
@@ -279,6 +303,7 @@
       "compose_url": "https://registry.getarcane.app/templates/pgadmin/compose.yaml",
       "env_url": "https://registry.getarcane.app/templates/pgadmin/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/pgadmin",
+      "content_hash": "e173ebbef074bd8de1e6c6921133bc32659ba4ad01d4ca03578a061effab299b",
       "tags": ["database", "postgresql"]
     },
     {
@@ -290,6 +315,7 @@
       "compose_url": "https://registry.getarcane.app/templates/pi-hole/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/pi-hole/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/pi-hole",
+      "content_hash": "a27ca7a0765772286597efd4cab40c23923ff7dd795cfd7b6e1e71429bb24ae0",
       "tags": ["DNS", "DHCP", "DNSMASQ", "NTP"]
     },
     {
@@ -301,6 +327,7 @@
       "compose_url": "https://registry.getarcane.app/templates/pinchflat/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/pinchflat/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/pinchflat",
+      "content_hash": "458e9c60c65afb5aed416b5bc599d38f0962ccd3f6bfebb2e8dc5b18854e10f8",
       "tags": ["youtube", "youtube-dl"]
     },
     {
@@ -312,6 +339,7 @@
       "compose_url": "https://registry.getarcane.app/templates/plex/docker-compose.yaml",
       "env_url": "https://registry.getarcane.app/templates/plex/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/plex",
+      "content_hash": "eaf3a5b650556e2216b6c5b8d4804e9fbe44418c536a5926137da074aa56d37c",
       "tags": ["media", "streaming", "plex"]
     },
     {
@@ -323,6 +351,7 @@
       "compose_url": "https://registry.getarcane.app/templates/pocket-id/compose.yaml",
       "env_url": "https://registry.getarcane.app/templates/pocket-id/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/pocket-id",
+      "content_hash": "8ad8b15190488f9e7dab32a15c8279ad2b15f7107a1a7faacbf2d77951e0c998",
       "tags": ["oidc"]
     },
     {
@@ -334,6 +363,7 @@
       "compose_url": "https://registry.getarcane.app/templates/postgresql16/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/postgresql16/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/postgresql16",
+      "content_hash": "49d65c7cf0a4c9ef5eeb585089bbdddf8ae25682e106432191b937418ad6935b",
       "tags": ["SQL"]
     },
     {
@@ -345,6 +375,7 @@
       "compose_url": "https://registry.getarcane.app/templates/postgresql17/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/postgresql17/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/postgresql17",
+      "content_hash": "6ed11fbb46903f62d52949a76f8e964bba786c8346b9f79dc3fbf6917f334bfb",
       "tags": ["SQL"]
     },
     {
@@ -356,6 +387,7 @@
       "compose_url": "https://registry.getarcane.app/templates/postgresql18/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/postgresql18/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/postgresql18",
+      "content_hash": "bf28d085aa252030c6b5f2bae8e746fca4920e0abdcc89bd596561d274602b92",
       "tags": ["SQL"]
     },
     {
@@ -367,6 +399,7 @@
       "compose_url": "https://registry.getarcane.app/templates/rybbit/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/rybbit/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/rybbit",
+      "content_hash": "c72991999da3ea29c106b91532775a6de63ab967ad66652f43ebb14c27f6cc31",
       "tags": ["analytics"]
     },
     {
@@ -378,6 +411,7 @@
       "compose_url": "https://registry.getarcane.app/templates/satisfactory-server/compose.yaml",
       "env_url": "https://registry.getarcane.app/templates/satisfactory-server/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/satisfactory-server",
+      "content_hash": "e7f83a843db151c1b689e9f918420dbe019ebe826b30f67cd8588732ed78afb3",
       "tags": ["satisfactory", "game", "gameserver"]
     },
     {
@@ -389,6 +423,7 @@
       "compose_url": "https://registry.getarcane.app/templates/seerr/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/seerr/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/seerr",
+      "content_hash": "f14a4f72304b4f77836d6e1245bb1fb7db405e03c3c584ab6a4ad797c1bc373b",
       "tags": ["media", "streaming", "requests", "jellyfin", "plex", "seerr"]
     },
     {
@@ -400,6 +435,7 @@
       "compose_url": "https://registry.getarcane.app/templates/string-is/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/string-is/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/string-is",
+      "content_hash": "c0f2aa21e3da868602e6cc91486d75fa8b711f6b6bdce887d139cf553491a06b",
       "tags": ["Tools"]
     },
     {
@@ -411,6 +447,7 @@
       "compose_url": "https://registry.getarcane.app/templates/swag/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/swag/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/swag",
+      "content_hash": "3de875f18eef6f45359aee3bdf1538ada61e5780aad1bc5c5171e2a1504ee4af",
       "tags": ["Network", "Web", "Security"]
     },
     {
@@ -422,6 +459,7 @@
       "compose_url": "https://registry.getarcane.app/templates/swagger-editor/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/swagger-editor/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/swagger-editor",
+      "content_hash": "a167f8d17be031c6d27d1247bfd7ff6611073bdfcc6de85d5a0b5d2c8f5b1a13",
       "tags": ["Tools", "API", "OpenAPI"]
     },
     {
@@ -433,6 +471,7 @@
       "compose_url": "https://registry.getarcane.app/templates/syncthing/docker-compose.yaml",
       "env_url": "https://registry.getarcane.app/templates/syncthing/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/syncthing",
+      "content_hash": "427232cb760e224eeec279807da3f36adb5a43f20525f86a5bb4404f8f14c633",
       "tags": ["file-sync", "file-transfer", "backup", "syncthing", "p2p"]
     },
     {
@@ -444,6 +483,7 @@
       "compose_url": "https://registry.getarcane.app/templates/tautulli/docker-compose.yaml",
       "env_url": "https://registry.getarcane.app/templates/tautulli/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/tautulli",
+      "content_hash": "64cced5a34985e591ef1345b5f1dbfc03ec3a52300cd0adaa822badb1cfa38a5",
       "tags": ["media", "streaming", "tautulli", "plex", "monitoring"]
     },
     {
@@ -455,6 +495,7 @@
       "compose_url": "https://registry.getarcane.app/templates/uptime-kuma/docker-compose.yaml",
       "env_url": "https://registry.getarcane.app/templates/uptime-kuma/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/uptime-kuma",
+      "content_hash": "fdc5d9cad22f126faa527ea1ed7b5f5e6d5f95b4119b153a3b2f46d40fa4d173",
       "tags": ["monitoring", "uptime"]
     },
     {
@@ -466,6 +507,7 @@
       "compose_url": "https://registry.getarcane.app/templates/vaultwarden/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/vaultwarden/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/vaultwarden",
+      "content_hash": "4aefe5e55d4c8db2d355d7c1177f2d3c631cc64ccbcd990c651a861cec6b5f05",
       "tags": ["password-manager", "bitwarden"]
     },
     {
@@ -477,6 +519,7 @@
       "compose_url": "https://registry.getarcane.app/templates/verdaccio/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/verdaccio/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/verdaccio",
+      "content_hash": "3ee0098bbde89ebd351ff02d97b946bcf82b1e1cfcff54312d5abe834b210d64",
       "tags": ["Utilities", "Productivity"]
     },
     {
@@ -488,6 +531,7 @@
       "compose_url": "https://registry.getarcane.app/templates/web-check/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/web-check/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/web-check",
+      "content_hash": "95fdb34ae05f50336d9b9524a41c7965877c0fb3faaa7644902c72628beac53c",
       "tags": ["security", "privacy"]
     },
     {
@@ -499,6 +543,7 @@
       "compose_url": "https://registry.getarcane.app/templates/wireguard/compose.yaml",
       "env_url": "https://registry.getarcane.app/templates/wireguard/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/wireguard",
+      "content_hash": "66ebf7acae902804264be08ae1ab47610bea5a613ab8b8b4efeb879e416a253d",
       "tags": ["networking", "vpn"]
     },
     {
@@ -510,6 +555,7 @@
       "compose_url": "https://registry.getarcane.app/templates/yarnl/compose.yaml",
       "env_url": "https://registry.getarcane.app/templates/yarnl/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/yarnl",
+      "content_hash": "d3396b1541fac232a2fb28229948bc77bfb7a13c30f69086607069c5348d718d",
       "tags": ["hobby", "crafting", "yarn", "knitting", "crochet"]
     },
     {
@@ -521,6 +567,7 @@
       "compose_url": "https://registry.getarcane.app/templates/zoraxy/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/zoraxy/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/zoraxy",
+      "content_hash": "b7ca901577fde5737ba08fcfd5f8b1072fdac08f7a7d675ac5495ecc06e67bb2",
       "tags": ["reverse-proxy"]
     }
   ]

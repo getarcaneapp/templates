@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import prettier from "prettier";
@@ -20,6 +21,7 @@ export interface TemplateEntry extends TemplateMeta {
   compose_url: string;
   env_url: string;
   documentation_url: string;
+  content_hash: string;
 }
 
 export interface RegistryFile {
@@ -52,9 +54,27 @@ const DOCS_BASE =
 const SCHEMA_URL =
   process.env.SCHEMA_URL || "https://registry.getarcane.app/schema.json";
 
-const BUMP_PART: BumpPart = (
-  process.env.BUMP_PART || "minor"
-).toLowerCase() as BumpPart;
+export function parseBumpPart(
+  value: string | undefined,
+  fallback: BumpPart,
+): BumpPart {
+  const normalized = value?.toLowerCase();
+  if (
+    normalized === "major" ||
+    normalized === "minor" ||
+    normalized === "patch"
+  ) {
+    return normalized;
+  }
+
+  return fallback;
+}
+
+const BUMP_PART = parseBumpPart(process.env.BUMP_PART, "minor");
+const CHANGED_TEMPLATE_BUMP_PART = parseBumpPart(
+  process.env.CHANGED_TEMPLATE_BUMP_PART,
+  "patch",
+);
 const COMPOSE_CANDIDATES = [
   "compose.yaml",
   "docker-compose.yml",
@@ -135,6 +155,131 @@ export async function findComposeFile(templateDir: string): Promise<string> {
   );
 }
 
+async function buildTemplateContentHashInternal(
+  templateDir: string,
+  composeFile: string,
+): Promise<string> {
+  const hash = createHash("sha256");
+  const sources = [
+    "template.json",
+    composeFile,
+    ".env.example",
+    "README.md",
+  ] as const;
+
+  for (const source of sources) {
+    const sourcePath = path.join(templateDir, source);
+    if (!(await exists(sourcePath))) {
+      continue;
+    }
+
+    const content = await fs.readFile(sourcePath, "utf8");
+    hash.update(`${source}\n${content.length}\n`);
+    hash.update(content);
+    hash.update("\n");
+  }
+
+  return hash.digest("hex");
+}
+
+export async function buildTemplateEntry(
+  dir: string,
+  templateDir: string,
+): Promise<TemplateEntry> {
+  const id = toSlug(dir);
+  const metaPath = path.join(templateDir, "template.json");
+  if (!(await exists(metaPath))) {
+    throw new Error(`Missing ${path.relative(ROOT, metaPath)} (required)`);
+  }
+
+  const meta = JSON.parse(
+    await fs.readFile(metaPath, "utf8"),
+  ) as Partial<TemplateMeta>;
+  const composeFile = await findComposeFile(templateDir);
+  const envExamplePath = path.join(templateDir, ".env.example");
+  if (!(await exists(envExamplePath))) {
+    throw new Error(`Missing ${path.relative(ROOT, envExamplePath)}`);
+  }
+
+  const item: TemplateEntry = {
+    id,
+    name: String(meta.name || ""),
+    description: String(meta.description || ""),
+    version: String(meta.version || ""),
+    author: String(meta.author || ""),
+    compose_url: `${PUBLIC_BASE}/${id}/${composeFile}`,
+    env_url: `${PUBLIC_BASE}/${id}/.env.example`,
+    documentation_url: `${DOCS_BASE}/${id}`,
+    content_hash: await buildTemplateContentHashInternal(
+      templateDir,
+      composeFile,
+    ),
+    tags: Array.isArray(meta.tags) ? meta.tags.map(String) : [],
+  };
+
+  for (const key of ["name", "description", "version", "author"] as const) {
+    if (!item[key] || typeof item[key] !== "string") {
+      throw new Error(
+        `templates/${dir}/template.json missing/invalid "${key}"`,
+      );
+    }
+  }
+
+  if (!Array.isArray(item.tags) || item.tags.length === 0) {
+    throw new Error(
+      `templates/${dir}/template.json must include non-empty "tags"`,
+    );
+  }
+
+  return item;
+}
+
+export interface TemplateChangeSummary {
+  addedIds: string[];
+  updatedIds: string[];
+  removedIds: string[];
+  bumpPart: BumpPart | null;
+}
+
+export function detectTemplateChanges(
+  previousTemplates: TemplateEntry[] = [],
+  currentTemplates: TemplateEntry[],
+): TemplateChangeSummary {
+  const previousById = new Map(
+    previousTemplates.map((template) => [template.id, template]),
+  );
+  const currentById = new Map(
+    currentTemplates.map((template) => [template.id, template]),
+  );
+  const addedIds: string[] = [];
+  const updatedIds: string[] = [];
+
+  for (const template of currentTemplates) {
+    const previousTemplate = previousById.get(template.id);
+    if (!previousTemplate) {
+      addedIds.push(template.id);
+      continue;
+    }
+
+    if (previousTemplate.content_hash !== template.content_hash) {
+      updatedIds.push(template.id);
+    }
+  }
+
+  const removedIds = previousTemplates
+    .map((template) => template.id)
+    .filter((id) => !currentById.has(id));
+
+  let bumpPart: BumpPart | null = null;
+  if (addedIds.length > 0) {
+    bumpPart = BUMP_PART;
+  } else if (updatedIds.length > 0 || removedIds.length > 0) {
+    bumpPart = CHANGED_TEMPLATE_BUMP_PART;
+  }
+
+  return { addedIds, updatedIds, removedIds, bumpPart };
+}
+
 export async function collectTemplates(): Promise<TemplateEntry[]> {
   const entries = await fs.readdir(TEMPLATES_DIR, { withFileTypes: true });
   const templateDirs = entries
@@ -143,49 +288,8 @@ export async function collectTemplates(): Promise<TemplateEntry[]> {
 
   const templates: TemplateEntry[] = [];
   for (const dir of templateDirs) {
-    const id = toSlug(dir);
     const templateDir = path.join(TEMPLATES_DIR, dir);
-    const metaPath = path.join(templateDir, "template.json");
-    if (!(await exists(metaPath))) {
-      throw new Error(`Missing ${path.relative(ROOT, metaPath)} (required)`);
-    }
-
-    const meta = JSON.parse(
-      await fs.readFile(metaPath, "utf8"),
-    ) as Partial<TemplateMeta>;
-    const composeFile = await findComposeFile(templateDir);
-    const envExamplePath = path.join(templateDir, ".env.example");
-    if (!(await exists(envExamplePath))) {
-      throw new Error(`Missing ${path.relative(ROOT, envExamplePath)}`);
-    }
-
-    const item: TemplateEntry = {
-      id,
-      name: String(meta.name || ""),
-      description: String(meta.description || ""),
-      version: String(meta.version || ""),
-      author: String(meta.author || ""),
-      compose_url: `${PUBLIC_BASE}/${id}/${composeFile}`,
-      env_url: `${PUBLIC_BASE}/${id}/.env.example`,
-      documentation_url: `${DOCS_BASE}/${id}`,
-      tags: Array.isArray(meta.tags) ? meta.tags.map(String) : [],
-    };
-
-    for (const key of ["name", "description", "version", "author"] as const) {
-      if (!item[key] || typeof item[key] !== "string") {
-        throw new Error(
-          `templates/${dir}/template.json missing/invalid "${key}"`,
-        );
-      }
-    }
-
-    if (!Array.isArray(item.tags) || item.tags.length === 0) {
-      throw new Error(
-        `templates/${dir}/template.json must include non-empty "tags"`,
-      );
-    }
-
-    templates.push(item);
+    templates.push(await buildTemplateEntry(dir, templateDir));
   }
 
   return templates.sort((left, right) => left.id.localeCompare(right.id));
@@ -197,28 +301,52 @@ export async function buildRegistry(
   const { log = true } = options;
   const previousRegistry = await loadLocalRegistry(log);
   const templates = await collectTemplates();
-
-  const previousIds = new Set(
-    (previousRegistry?.templates || []).map((template) => template.id),
-  );
-  const newIds = templates
-    .map((template) => template.id)
-    .filter((id) => !previousIds.has(id));
   const baseVersion =
     previousRegistry?.version || process.env.REGISTRY_VERSION || "1.0.0";
-  const nextVersion =
-    newIds.length > 0
-      ? bumpSemver(String(baseVersion), BUMP_PART)
-      : String(baseVersion);
+  const changes = detectTemplateChanges(
+    previousRegistry?.templates || [],
+    templates,
+  );
+  const nextVersion = changes.bumpPart
+    ? bumpSemver(String(baseVersion), changes.bumpPart)
+    : String(baseVersion);
 
   if (log) {
-    if (newIds.length > 0) {
+    if (changes.addedIds.length > 0) {
+      const details = [
+        `added ${changes.addedIds.length} template(s): ${changes.addedIds.join(", ")}`,
+      ];
+      if (changes.updatedIds.length > 0) {
+        details.push(
+          `updated ${changes.updatedIds.length} template(s): ${changes.updatedIds.join(", ")}`,
+        );
+      }
+      if (changes.removedIds.length > 0) {
+        details.push(
+          `removed ${changes.removedIds.length} template(s): ${changes.removedIds.join(", ")}`,
+        );
+      }
       console.log(
-        `Detected ${newIds.length} new template(s): ${newIds.join(", ")} -> bumping ${BUMP_PART} to ${nextVersion}`,
+        `Detected template changes -> ${details.join(" | ")} -> bumping ${changes.bumpPart} to ${nextVersion}`,
+      );
+    } else if (changes.updatedIds.length > 0 || changes.removedIds.length > 0) {
+      const details = [];
+      if (changes.updatedIds.length > 0) {
+        details.push(
+          `updated ${changes.updatedIds.length} template(s): ${changes.updatedIds.join(", ")}`,
+        );
+      }
+      if (changes.removedIds.length > 0) {
+        details.push(
+          `removed ${changes.removedIds.length} template(s): ${changes.removedIds.join(", ")}`,
+        );
+      }
+      console.log(
+        `Detected template changes -> ${details.join(" | ")} -> bumping ${changes.bumpPart} to ${nextVersion}`,
       );
     } else {
       console.log(
-        `No new templates detected -> keeping version ${baseVersion}`,
+        `No template changes detected -> keeping version ${baseVersion}`,
       );
     }
   }

@@ -1,55 +1,22 @@
 /**
- * Test suite for build-registry.ts version bumping logic
+ * Test suite for build-registry.ts version bumping logic.
  * Run with: pnpm tsx scripts/test-build-registry.ts
  */
 
-interface RegistryFile {
-  version: string;
-  templates: { id: string }[];
-}
-
-type BumpPart = "major" | "minor" | "patch";
-
-// Copy of bumpSemver from build-registry.ts
-function bumpSemver(v: string, part: BumpPart = "minor"): string {
-  const m = String(v).match(/^(\d+)\.(\d+)\.(\d+)(?:[.-].*)?$/);
-  if (!m) return "1.0.0";
-  let [major, minor, patch] = m.slice(1).map((n) => parseInt(n, 10));
-  if (part === "major") {
-    major += 1;
-    minor = 0;
-    patch = 0;
-  } else if (part === "patch") {
-    patch += 1;
-  } else {
-    minor += 1;
-    patch = 0;
-  }
-  return `${major}.${minor}.${patch}`;
-}
-
-// Simulate the version calculation logic from build-registry.ts
-function calculateNextVersion(
-  liveRegistry: RegistryFile | null,
-  localTemplateIds: string[],
-  bumpPart: BumpPart = "minor",
-): { baseVersion: string; nextVersion: string; newIds: string[] } {
-  const prevIds = new Set((liveRegistry?.templates || []).map((t) => t.id));
-  const newIds = localTemplateIds.filter((id) => !prevIds.has(id));
-  const baseVersion = liveRegistry?.version || "1.0.0";
-  const nextVersion =
-    newIds.length > 0 ? bumpSemver(baseVersion, bumpPart) : baseVersion;
-
-  return { baseVersion, nextVersion, newIds };
-}
+import {
+  bumpSemver,
+  detectTemplateChanges,
+  parseBumpPart,
+  type TemplateEntry,
+} from "./lib/registry.js";
 
 // Test runner
 let passed = 0;
 let failed = 0;
 
-function test(name: string, fn: () => void) {
+async function test(name: string, fn: () => void | Promise<void>) {
   try {
-    fn();
+    await fn();
     console.log(`✅ ${name}`);
     passed++;
   } catch (err) {
@@ -67,179 +34,139 @@ function assertEqual<T>(actual: T, expected: T, message?: string) {
   }
 }
 
-// ============ TESTS ============
-
-console.log("\n🧪 Testing bumpSemver function\n");
-
-test("bumpSemver: minor bump from 1.0.0", () => {
-  assertEqual(bumpSemver("1.0.0", "minor"), "1.1.0");
+const makeTemplate = (
+  id: string,
+  overrides: Partial<TemplateEntry> = {},
+): TemplateEntry => ({
+  id,
+  name: id,
+  description: `${id} description`,
+  version: "1.0.0",
+  author: "Arcane",
+  compose_url: `https://example.com/${id}/compose.yaml`,
+  env_url: `https://example.com/${id}/.env.example`,
+  documentation_url: `https://example.com/${id}`,
+  content_hash: `${id}`.padEnd(64, "0").slice(0, 64),
+  tags: ["tools"],
+  ...overrides,
 });
 
-test("bumpSemver: minor bump from 1.1.0", () => {
-  assertEqual(bumpSemver("1.1.0", "minor"), "1.2.0");
-});
+async function main(): Promise<void> {
+  console.log("\n🧪 Testing bumpSemver function\n");
 
-test("bumpSemver: patch bump from 1.1.0", () => {
-  assertEqual(bumpSemver("1.1.0", "patch"), "1.1.1");
-});
+  await test("bumpSemver: minor bump from 1.0.0", () => {
+    assertEqual(bumpSemver("1.0.0", "minor"), "1.1.0");
+  });
 
-test("bumpSemver: major bump from 1.1.0", () => {
-  assertEqual(bumpSemver("1.1.0", "major"), "2.0.0");
-});
+  await test("bumpSemver: minor bump from 1.1.0", () => {
+    assertEqual(bumpSemver("1.1.0", "minor"), "1.2.0");
+  });
 
-test("bumpSemver: handles invalid version", () => {
-  assertEqual(bumpSemver("invalid", "minor"), "1.0.0");
-});
+  await test("bumpSemver: patch bump from 1.1.0", () => {
+    assertEqual(bumpSemver("1.1.0", "patch"), "1.1.1");
+  });
 
-test("bumpSemver: handles empty string", () => {
-  assertEqual(bumpSemver("", "minor"), "1.0.0");
-});
+  await test("bumpSemver: major bump from 1.1.0", () => {
+    assertEqual(bumpSemver("1.1.0", "major"), "2.0.0");
+  });
 
-test("bumpSemver: handles prerelease version", () => {
-  assertEqual(bumpSemver("1.2.3-beta.1", "minor"), "1.3.0");
-});
+  await test("bumpSemver: handles invalid version", () => {
+    assertEqual(bumpSemver("invalid", "minor"), "1.0.0");
+  });
 
-console.log("\n🧪 Testing version calculation logic\n");
+  await test("bumpSemver: handles empty string", () => {
+    assertEqual(bumpSemver("", "minor"), "1.0.0");
+  });
 
-test("No live registry (fresh start) -> uses 1.0.0", () => {
-  const result = calculateNextVersion(
-    null,
-    ["template-a", "template-b"],
-    "minor",
-  );
-  assertEqual(result.baseVersion, "1.0.0");
-  assertEqual(result.nextVersion, "1.1.0"); // new templates detected
-  assertEqual(result.newIds, ["template-a", "template-b"]);
-});
+  await test("bumpSemver: handles prerelease version", () => {
+    assertEqual(bumpSemver("1.2.3-beta.1", "minor"), "1.3.0");
+  });
 
-test("No new templates -> keeps same version", () => {
-  const liveRegistry: RegistryFile = {
-    version: "1.5.0",
-    templates: [{ id: "homepage" }, { id: "jellyfin-server" }],
-  };
-  const result = calculateNextVersion(
-    liveRegistry,
-    ["homepage", "jellyfin-server"],
-    "minor",
-  );
-  assertEqual(result.baseVersion, "1.5.0");
-  assertEqual(result.nextVersion, "1.5.0"); // no change
-  assertEqual(result.newIds, []);
-});
+  console.log("\n🧪 Testing bump part parsing\n");
 
-test("One new template -> bumps minor", () => {
-  const liveRegistry: RegistryFile = {
-    version: "1.1.0",
-    templates: [{ id: "homepage" }, { id: "jellyfin-server" }],
-  };
-  const result = calculateNextVersion(
-    liveRegistry,
-    ["homepage", "jellyfin-server", "new-template"],
-    "minor",
-  );
-  assertEqual(result.baseVersion, "1.1.0");
-  assertEqual(result.nextVersion, "1.2.0");
-  assertEqual(result.newIds, ["new-template"]);
-});
+  await test("parseBumpPart: accepts patch", () => {
+    assertEqual(parseBumpPart("patch", "minor"), "patch");
+  });
 
-test("Multiple new templates -> bumps once", () => {
-  const liveRegistry: RegistryFile = {
-    version: "2.0.0",
-    templates: [{ id: "homepage" }],
-  };
-  const result = calculateNextVersion(
-    liveRegistry,
-    ["homepage", "new-a", "new-b", "new-c"],
-    "minor",
-  );
-  assertEqual(result.baseVersion, "2.0.0");
-  assertEqual(result.nextVersion, "2.1.0"); // only bumps once regardless of count
-  assertEqual(result.newIds, ["new-a", "new-b", "new-c"]);
-});
+  await test("parseBumpPart: falls back for invalid input", () => {
+    assertEqual(parseBumpPart("banana", "patch"), "patch");
+  });
 
-test("New template with patch bump", () => {
-  const liveRegistry: RegistryFile = {
-    version: "1.1.0",
-    templates: [{ id: "homepage" }],
-  };
-  const result = calculateNextVersion(
-    liveRegistry,
-    ["homepage", "new-template"],
-    "patch",
-  );
-  assertEqual(result.baseVersion, "1.1.0");
-  assertEqual(result.nextVersion, "1.1.1");
-});
+  console.log("\n🧪 Testing template change detection\n");
 
-test("Template removed (not in local) -> still keeps version (removals dont trigger bump)", () => {
-  const liveRegistry: RegistryFile = {
-    version: "1.3.0",
-    templates: [{ id: "homepage" }, { id: "old-template" }],
-  };
-  // Local only has 'homepage', 'old-template' was removed
-  const result = calculateNextVersion(liveRegistry, ["homepage"], "minor");
-  assertEqual(result.baseVersion, "1.3.0");
-  assertEqual(result.nextVersion, "1.3.0"); // no bump for removals
-  assertEqual(result.newIds, []);
-});
+  await test("New templates trigger a minor bump path", () => {
+    const result = detectTemplateChanges(
+      [],
+      [makeTemplate("template-a"), makeTemplate("template-b")],
+    );
 
-test("Empty live registry templates array -> all local are new", () => {
-  const liveRegistry: RegistryFile = {
-    version: "1.0.0",
-    templates: [],
-  };
-  const result = calculateNextVersion(liveRegistry, ["template-a"], "minor");
-  assertEqual(result.nextVersion, "1.1.0");
-  assertEqual(result.newIds, ["template-a"]);
-});
+    assertEqual(result.addedIds, ["template-a", "template-b"]);
+    assertEqual(result.updatedIds, []);
+    assertEqual(result.removedIds, []);
+    assertEqual(result.bumpPart, "minor");
+  });
 
-console.log("\n🧪 Testing against real live registry\n");
+  await test("Existing template content changes trigger a patch bump path", () => {
+    const previous = [makeTemplate("homepage")];
+    const current = [
+      makeTemplate("homepage", { content_hash: "f".repeat(64) }),
+    ];
+    const result = detectTemplateChanges(previous, current);
 
-test("Fetch live registry and compare with local templates", async () => {
-  const LIVE_URL = "https://registry.getarcane.app/registry.json";
+    assertEqual(result.addedIds, []);
+    assertEqual(result.updatedIds, ["homepage"]);
+    assertEqual(result.removedIds, []);
+    assertEqual(result.bumpPart, "patch");
+  });
 
-  console.log(`   Fetching ${LIVE_URL}...`);
-  const res = await fetch(LIVE_URL);
-  if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
+  await test("Removed templates also trigger a patch bump path", () => {
+    const result = detectTemplateChanges(
+      [makeTemplate("homepage"), makeTemplate("old-template")],
+      [makeTemplate("homepage")],
+    );
 
-  const liveRegistry = (await res.json()) as RegistryFile;
-  console.log(`   Live version: ${liveRegistry.version}`);
-  console.log(
-    `   Live templates: ${liveRegistry.templates.map((t) => t.id).join(", ")}`,
-  );
+    assertEqual(result.addedIds, []);
+    assertEqual(result.updatedIds, []);
+    assertEqual(result.removedIds, ["old-template"]);
+    assertEqual(result.bumpPart, "patch");
+  });
 
-  // Simulate current local templates (read from actual templates dir)
-  const { promises: fs } = await import("node:fs");
-  const path = await import("node:path");
-  const templatesDir = path.join(process.cwd(), "templates");
-  const entries = await fs.readdir(templatesDir, { withFileTypes: true });
-  const localIds = entries
-    .filter((e) => e.isDirectory())
-    .map((e) => e.name.toLowerCase().replace(/[^a-z0-9-]/g, "-"));
+  await test("Added templates win over patch-only changes", () => {
+    const result = detectTemplateChanges(
+      [makeTemplate("homepage"), makeTemplate("old-template")],
+      [
+        makeTemplate("homepage", { content_hash: "f".repeat(64) }),
+        makeTemplate("new-template"),
+      ],
+    );
 
-  console.log(`   Local templates: ${localIds.join(", ")}`);
+    assertEqual(result.addedIds, ["new-template"]);
+    assertEqual(result.updatedIds, ["homepage"]);
+    assertEqual(result.removedIds, ["old-template"]);
+    assertEqual(result.bumpPart, "minor");
+  });
 
-  const result = calculateNextVersion(liveRegistry, localIds, "minor");
+  await test("No template changes keep the current version", () => {
+    const result = detectTemplateChanges(
+      [makeTemplate("homepage"), makeTemplate("jellyfin-server")],
+      [makeTemplate("homepage"), makeTemplate("jellyfin-server")],
+    );
 
-  console.log(
-    `   New templates: ${result.newIds.length > 0 ? result.newIds.join(", ") : "(none)"}`,
-  );
-  console.log(`   Version: ${result.baseVersion} -> ${result.nextVersion}`);
+    assertEqual(result.addedIds, []);
+    assertEqual(result.updatedIds, []);
+    assertEqual(result.removedIds, []);
+    assertEqual(result.bumpPart, null);
+  });
 
-  // This test just verifies the calculation runs without error
-  if (
-    typeof result.nextVersion !== "string" ||
-    !result.nextVersion.match(/^\d+\.\d+\.\d+$/)
-  ) {
-    throw new Error(`Invalid version format: ${result.nextVersion}`);
+  console.log("\n" + "=".repeat(50));
+  console.log(`\n📊 Results: ${passed} passed, ${failed} failed\n`);
+
+  if (failed > 0) {
+    process.exit(1);
   }
-});
-
-// ============ SUMMARY ============
-
-console.log("\n" + "=".repeat(50));
-console.log(`\n📊 Results: ${passed} passed, ${failed} failed\n`);
-
-if (failed > 0) {
-  process.exit(1);
 }
+
+main().catch((error) => {
+  console.error((error as Error).message || error);
+  process.exit(1);
+});

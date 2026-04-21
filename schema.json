@@ -98,6 +98,11 @@
           "description": "The URL to the template's documentation or README.",
           "$ref": "#/definitions/url"
         },
+        "content_hash": {
+          "description": "SHA-256 fingerprint of the template source files used to detect updates.",
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
         "tags": {
           "description": "An array of tags for categorizing and searching templates.",
           "type": "array",
@@ -115,6 +120,7 @@
         "compose_url",
         "env_url",
         "documentation_url",
+        "content_hash",
         "tags"
       ],
       "additionalProperties": false
