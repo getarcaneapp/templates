@@ -1,29 +1,42 @@
 {
   "name": "arcane-templates",
-  "private": true,
+  "private": false,
+  "bin": {
+    "arcane-templates": "./dist/scripts/cli.js",
+    "arcanetmpl": "./dist/scripts/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "packageManager": "pnpm@11.0.0-rc.3+sha512.9b6f50b42edeb873a131232f5951ae2ce5f743fa4bc121047996b386a0982fcb1b0fa7e2c075026320ab3eb399afa7d6e69ec684344e7d689186631c0bbc1b26",
   "engines": {
     "node": ">=25"
   },
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
+    "build": "tsc --project tsconfig.json",
+    "prepare": "pnpm run build",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "lint": "pnpm run type-check && pnpm run generate && pnpm run format:check && pnpm run validate",
     "type-check": "tsc --noEmit",
     "test": "tsx scripts/test-build-registry.ts",
-    "validate": "tsx scripts/validate.ts",
-    "generate": "tsx scripts/build-registry.ts",
+    "validate": "tsx scripts/cli.ts validate",
+    "generate": "tsx scripts/cli.ts generate",
     "ci": "pnpm run lint && pnpm run test && pnpm run generate",
-    "stage": "rm -rf build && mkdir -p build/templates && cp -v registry.json build/ && cp -v schema.json build/ && if [ -d public ]; then rsync -a public/ build/; fi && rsync -a --delete templates/ build/templates/",
+    "stage": "tsx scripts/cli.ts stage",
+    "create:template": "tsx scripts/cli.ts create",
+    "cli": "tsx scripts/cli.ts",
     "deploy": "pnpm run stage && wrangler version deploy",
     "dev": "pnpm run generate && pnpm run stage && wrangler dev"
   },
-  "devDependencies": {
-    "@types/node": "^25.6.0",
+  "dependencies": {
     "ajv": "^8.18.0",
     "ajv-formats": "^3.0.1",
-    "prettier": "^3.8.3",
+    "prettier": "^3.8.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
     "tsx": "^4.21.0",
     "typescript": "^6.0.3",
     "wrangler": "^4.84.0"
