@@ -18,7 +18,7 @@ Add this URL in Arcane’s Templates settings:
   - `.env.example`
   - `template.json` (metadata; see example below)
 - Optional: `README.md` for extra setup notes or caveats.
-- Auto-generation: [scripts/build-registry.ts](scripts/build-registry.ts) scans `templates/` and generates [registry.json](registry.json) that follows [schema.json](schema.json).
+- Auto-generation: [`arcane-templates generate`](#development) scans `templates/` and generates [registry.json](registry.json) that follows [schema.json](schema.json).
 - Do not edit or commit `registry.json` in PRs — CI builds and publishes it on merge to `main`.
 - Every generated template now includes a `content_hash` fingerprint derived from `template.json`, the compose file, `.env.example`, and `README.md` when present.
 - Versioning policy:
@@ -49,14 +49,16 @@ The generated registry entry shape looks like this:
 
 1. Fork this repo
 
-2. Create a directory in `templates/` using a lowercase, hyphenated ID:
+2. Scaffold a template with the CLI:
 
 ```bash
-cd templates
-mkdir my-awesome-template
+pnpm run create:template -- my-awesome-template
 ```
 
-3. Add required files:
+You can also run the published CLI with `npx arcane-templates create my-awesome-template`.
+If you want the short local command name, build and link the package, then run `arcanetmpl create my-awesome-template`.
+
+3. Required files:
 
 ```
 templates/my-awesome-template/
@@ -102,11 +104,29 @@ Tips:
 
 ## Development
 
+- CLI entrypoint:
+
+```bash
+pnpm run cli -- --help
+```
+
+- Build and use the local binary:
+
+```bash
+pnpm install
+pnpm run build
+npm link
+arcanetmpl help
+arcanetmpl create my-awesome-template
+```
+
 - Validate data against the registry schema: [schema.json](schema.json)
 
 ```bash
 pnpm install
+pnpm run build
 pnpm run format
+pnpm run create:template -- my-awesome-template
 pnpm run lint
 pnpm run test
 pnpm run validate
