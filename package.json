@@ -21,11 +21,11 @@
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
-    "ajv": "^8.18.0",
+    "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
     "prettier": "^3.8.3",
     "tsx": "^4.21.0",
     "typescript": "^6.0.3",
-    "wrangler": "^4.84.0"
+    "wrangler": "^4.85.0"
   }
 }
