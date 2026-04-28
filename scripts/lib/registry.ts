@@ -75,7 +75,7 @@ const CHANGED_TEMPLATE_BUMP_PART = parseBumpPart(
   process.env.CHANGED_TEMPLATE_BUMP_PART,
   "patch",
 );
-const COMPOSE_CANDIDATES = [
+export const COMPOSE_CANDIDATES = [
   "compose.yaml",
   "docker-compose.yml",
   "docker-compose.yaml",
