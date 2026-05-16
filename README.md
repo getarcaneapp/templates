@@ -79,14 +79,15 @@ If the template needs extra setup notes, add `README.md` too.
 }
 ```
 
-5. Test locally (Node 25+, pnpm, Docker Compose):
+5. Test locally (Vite+, Node 25+, Docker Compose):
 
 ```bash
-pnpm install
-pnpm run format
-pnpm run lint
-pnpm run test
-pnpm run validate
+vp install
+vp fmt --write
+vp run type-check
+vp run generate
+vp run validate
+vp run test
 ```
 
 For non-interactive shells or CI-like environments, set `CI=true` before the commands above.
@@ -105,12 +106,12 @@ Tips:
 - Validate data against the registry schema: [schema.json](schema.json)
 
 ```bash
-pnpm install
-pnpm run format
-pnpm run lint
-pnpm run test
-pnpm run validate
-pnpm run generate
+vp install
+vp fmt --write
+vp run type-check
+vp run generate
+vp run validate
+vp run test
 ```
 
 Environment variables supported by the generator:

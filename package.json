@@ -1,10 +1,6 @@
 {
   "name": "arcane-templates",
   "private": true,
-  "packageManager": "pnpm@11.0.0+sha512.5bd187500e49cc6c3d891d973b432c02b844a5eb7209172c90a517a3ef4f579ed5c23d409b699e6a9dc418ff7b2b1890e63f6d74f1d3fc49848f37779c89c84c",
-  "engines": {
-    "node": ">=25"
-  },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "format": "prettier . --write",
@@ -17,7 +13,8 @@
     "ci": "pnpm run lint && pnpm run test && pnpm run generate",
     "stage": "rm -rf build && mkdir -p build/templates && cp -v registry.json build/ && cp -v schema.json build/ && if [ -d public ]; then rsync -a public/ build/; fi && rsync -a --delete templates/ build/templates/",
     "deploy": "pnpm run stage && wrangler version deploy",
-    "dev": "pnpm run generate && pnpm run stage && wrangler dev"
+    "dev": "pnpm run generate && pnpm run stage && wrangler dev",
+    "prepare": "vp config"
   },
   "devDependencies": {
     "@types/node": "^25.6.2",
@@ -26,6 +23,11 @@
     "prettier": "^3.8.3",
     "tsx": "^4.21.0",
     "typescript": "^6.0.3",
+    "vite-plus": "catalog:",
     "wrangler": "^4.90.1"
-  }
+  },
+  "engines": {
+    "node": ">=25"
+  },
+  "packageManager": "pnpm@11.0.0+sha512.5bd187500e49cc6c3d891d973b432c02b844a5eb7209172c90a517a3ef4f579ed5c23d409b699e6a9dc418ff7b2b1890e63f6d74f1d3fc49848f37779c89c84c"
 }

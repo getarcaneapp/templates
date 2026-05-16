@@ -39,20 +39,17 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.ARCANE_BOT_TOKEN }}
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v6
+      - name: Setup Vite+
+        uses: voidzero-dev/setup-vp@ca1c46663915d6c1042ae23bd39ab85718bfb0fa # v1
         with:
           node-version: "25"
-          cache: pnpm
+          cache: true
 
       - name: Install dependencies
-        run: pnpm install
+        run: vp install
 
       - name: Check Wrangler version
-        run: pnpm exec wrangler --version
+        run: vp exec wrangler --version
 
       - name: Generate registry.json
         env:
@@ -64,7 +61,7 @@ jobs:
           DOCS_BASE: https://github.com/getarcaneapp/templates/tree/${{ github.head_ref || github.ref_name }}/templates
           BUMP_PART: patch
           SCHEMA_URL: ${{ env.PREVIEW_BASE }}/schema.json
-        run: pnpm run generate
+        run: vp run generate
 
       - name: Stage build directory
         run: |
@@ -84,7 +81,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_WORKERS_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          pnpm exec wrangler versions upload --preview-alias "$PREVIEW_ALIAS"
+          vp exec wrangler versions upload --preview-alias "$PREVIEW_ALIAS"
 
       - name: Find Comment
         uses: peter-evans/find-comment@v4

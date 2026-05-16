@@ -33,20 +33,17 @@ jobs:
           git config --global user.name "getarcaneappbot"
           git config --global user.email "info@getarcane.app"
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
-
-      - name: Setup Node
-        uses: actions/setup-node@v6
+      - name: Setup Vite+
+        uses: voidzero-dev/setup-vp@ca1c46663915d6c1042ae23bd39ab85718bfb0fa # v1
         with:
           node-version: "25"
-          cache: pnpm
+          cache: true
 
       - name: Install dependencies
-        run: pnpm install
+        run: vp install
 
       - name: Validate templates
-        run: pnpm run type-check && pnpm run generate && pnpm run validate
+        run: vp run type-check && vp run generate && vp run validate
 
       - name: Generate registry.json
         env:
@@ -58,7 +55,7 @@ jobs:
           DOCS_BASE: "https://github.com/getarcaneapp/templates/tree/main/templates"
           BUMP_PART: minor
           SCHEMA_URL: "https://registry.getarcane.app/schema.json"
-        run: pnpm run generate
+        run: vp run generate
 
       - name: Commit registry.json
         uses: stefanzweifel/git-auto-commit-action@v7
@@ -85,10 +82,10 @@ jobs:
           create_git_tag_only: false
 
       - name: Stage build directory
-        run: pnpm run stage
+        run: vp run stage
 
       - name: Deploy to Cloudflare Workers
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_WORKERS_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: pnpm exec wrangler deploy
+        run: vp exec wrangler deploy

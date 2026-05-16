@@ -27,20 +27,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
-
-      - name: Setup Node
-        uses: actions/setup-node@v6
+      - name: Setup Vite+
+        uses: voidzero-dev/setup-vp@ca1c46663915d6c1042ae23bd39ab85718bfb0fa # v1
         with:
           node-version: "25"
-          cache: pnpm
+          cache: true
 
       - name: Install dependencies
-        run: pnpm install
+        run: vp install
 
       - name: Lint and validate
-        run: pnpm run type-check && pnpm run generate && pnpm run validate
+        run: vp run type-check && vp run generate && vp run validate
 
       - name: Run tests and generate registry
-        run: pnpm run test && pnpm run generate
+        run: vp run test && vp run generate
