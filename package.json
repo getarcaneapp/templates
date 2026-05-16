@@ -17,14 +17,14 @@
     "prepare": "vp config"
   },
   "devDependencies": {
-    "@types/node": "^25.6.2",
+    "@types/node": "^25.8.0",
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
     "prettier": "^3.8.3",
-    "tsx": "^4.21.0",
+    "tsx": "^4.22.0",
     "typescript": "^6.0.3",
     "vite-plus": "catalog:",
-    "wrangler": "^4.90.1"
+    "wrangler": "^4.91.0"
   },
   "engines": {
     "node": ">=25"
