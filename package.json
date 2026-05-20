@@ -21,10 +21,10 @@
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
     "prettier": "^3.8.3",
-    "tsx": "^4.22.0",
+    "tsx": "^4.22.3",
     "typescript": "^6.0.3",
     "vite-plus": "catalog:",
-    "wrangler": "^4.92.0"
+    "wrangler": "^4.93.0"
   },
   "engines": {
     "node": ">=25"
