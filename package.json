@@ -24,7 +24,7 @@
     "tsx": "^4.22.3",
     "typescript": "^6.0.3",
     "vite-plus": "catalog:",
-    "wrangler": "^4.94.0"
+    "wrangler": "^4.95.0"
   },
   "engines": {
     "node": ">=25"
