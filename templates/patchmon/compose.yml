@@ -47,14 +47,7 @@ services:
     networks:
       - patchmon-internal
     healthcheck:
-      test: [
-          "CMD",
-          "redis-cli",
-          "--no-auth-warning",
-          "-a",
-          "your-redis-password-here",
-          "ping",
-        ] # CHANGE THIS TO YOUR REDIS PASSWORD
+      test: ["CMD", "redis-cli", "--no-auth-warning", "-a", "your-redis-password-here", "ping"] # CHANGE THIS TO YOUR REDIS PASSWORD
       interval: 3s
       timeout: 5s
       retries: 7

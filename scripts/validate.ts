@@ -5,12 +5,7 @@ import path from "node:path";
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
 
-import {
-  buildRegistry,
-  exists,
-  findComposeFile,
-  TEMPLATES_DIR,
-} from "./lib/registry.js";
+import { buildRegistry, exists, findComposeFile, TEMPLATES_DIR } from "./lib/registry.js";
 
 const ROOT = process.cwd();
 
@@ -34,9 +29,7 @@ function run(command: string, args: string[], cwd: string): void {
     .join("\n")
     .trim();
 
-  fail(
-    `${command} ${args.join(" ")} failed in ${path.relative(ROOT, cwd) || "."}\n${output}`,
-  );
+  fail(`${command} ${args.join(" ")} failed in ${path.relative(ROOT, cwd) || "."}\n${output}`);
 }
 
 async function validateSchema(): Promise<void> {
@@ -58,17 +51,12 @@ async function validateSchema(): Promise<void> {
   const validate = ajv.compile(schema);
   if (!validate(registry)) {
     const details = (validate.errors || [])
-      .map(
-        (error) =>
-          `${error.instancePath || "/"} ${error.message || "validation failed"}`,
-      )
+      .map((error) => `${error.instancePath || "/"} ${error.message || "validation failed"}`)
       .join("\n");
     fail(`Generated registry.json does not match schema.json\n${details}`);
   }
 
-  console.log(
-    `Schema validation passed for ${registry.templates.length} templates`,
-  );
+  console.log(`Schema validation passed for ${registry.templates.length} templates`);
 }
 
 async function validateComposeFiles(): Promise<void> {
@@ -116,9 +104,7 @@ async function validateComposeFiles(): Promise<void> {
         ],
         templateDir,
       );
-      console.log(
-        `Compose validation passed for templates/${dir}/${composeFile}`,
-      );
+      console.log(`Compose validation passed for templates/${dir}/${composeFile}`);
     } finally {
       if (!hasEnvFile && (await exists(envPath))) {
         await fs.rm(envPath);

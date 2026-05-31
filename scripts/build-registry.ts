@@ -3,9 +3,7 @@ import { buildRegistry, writeRegistryFile } from "./lib/registry.js";
 async function build(): Promise<void> {
   const registry = await buildRegistry();
   await writeRegistryFile(registry);
-  console.log(
-    `Generated registry.json with ${registry.templates.length} templates`,
-  );
+  console.log(`Generated registry.json with ${registry.templates.length} templates`);
 }
 
 build().catch((err) => {

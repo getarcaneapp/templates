@@ -7,10 +7,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  actions: read
-  deployments: write
   contents: read
-  pull-requests: write
+  id-token: write
+  pull-requests: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}

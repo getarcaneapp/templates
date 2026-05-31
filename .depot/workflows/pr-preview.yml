@@ -1,7 +1,7 @@
 name: Build and Deploy Preview Registry
 
 on:
-  pull_request_target:
+  pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
     paths:
       - "templates/**"
@@ -20,10 +20,12 @@ permissions:
   actions: read
   deployments: write
   contents: read
+  id-token: write
   pull-requests: write
 
 jobs:
   build-and-deploy-preview:
+    if: ${{ github.event.pull_request.head.repo.owner.login == 'getarcaneapp' }}
     runs-on: macos-latest
     environment:
       name: ${{ github.event.pull_request.user.login }}-pr-${{ github.event.pull_request.number }}

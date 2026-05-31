@@ -34,10 +34,7 @@ function assertEqual<T>(actual: T, expected: T, message?: string) {
   }
 }
 
-const makeTemplate = (
-  id: string,
-  overrides: Partial<TemplateEntry> = {},
-): TemplateEntry => ({
+const makeTemplate = (id: string, overrides: Partial<TemplateEntry> = {}): TemplateEntry => ({
   id,
   name: id,
   description: `${id} description`,
@@ -108,9 +105,7 @@ async function main(): Promise<void> {
 
   await test("Existing template content changes trigger a patch bump path", () => {
     const previous = [makeTemplate("homepage")];
-    const current = [
-      makeTemplate("homepage", { content_hash: "f".repeat(64) }),
-    ];
+    const current = [makeTemplate("homepage", { content_hash: "f".repeat(64) })];
     const result = detectTemplateChanges(previous, current);
 
     assertEqual(result.addedIds, []);
@@ -134,10 +129,7 @@ async function main(): Promise<void> {
   await test("Added templates win over patch-only changes", () => {
     const result = detectTemplateChanges(
       [makeTemplate("homepage"), makeTemplate("old-template")],
-      [
-        makeTemplate("homepage", { content_hash: "f".repeat(64) }),
-        makeTemplate("new-template"),
-      ],
+      [makeTemplate("homepage", { content_hash: "f".repeat(64) }), makeTemplate("new-template")],
     );
 
     assertEqual(result.addedIds, ["new-template"]);

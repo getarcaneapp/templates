@@ -40,30 +40,18 @@ interface BuildRegistryOptions {
 
 const REGISTRY = {
   name: process.env.REGISTRY_NAME || "Arcane Community Templates",
-  description:
-    process.env.REGISTRY_DESCRIPTION ||
-    "Community Docker Compose Templates for Arcane",
+  description: process.env.REGISTRY_DESCRIPTION || "Community Docker Compose Templates for Arcane",
   author: process.env.REGISTRY_AUTHOR || "getarcaneapp",
   url: process.env.REGISTRY_URL || "https://github.com/getarcaneapp/templates",
 } satisfies Omit<RegistryFile, "version" | "templates">;
 
-const PUBLIC_BASE =
-  process.env.PUBLIC_BASE || "https://registry.getarcane.app/templates";
-const DOCS_BASE =
-  process.env.DOCS_BASE || `${REGISTRY.url}/tree/main/templates`;
-const SCHEMA_URL =
-  process.env.SCHEMA_URL || "https://registry.getarcane.app/schema.json";
+const PUBLIC_BASE = process.env.PUBLIC_BASE || "https://registry.getarcane.app/templates";
+const DOCS_BASE = process.env.DOCS_BASE || `${REGISTRY.url}/tree/main/templates`;
+const SCHEMA_URL = process.env.SCHEMA_URL || "https://registry.getarcane.app/schema.json";
 
-export function parseBumpPart(
-  value: string | undefined,
-  fallback: BumpPart,
-): BumpPart {
+export function parseBumpPart(value: string | undefined, fallback: BumpPart): BumpPart {
   const normalized = value?.toLowerCase();
-  if (
-    normalized === "major" ||
-    normalized === "minor" ||
-    normalized === "patch"
-  ) {
+  if (normalized === "major" || normalized === "minor" || normalized === "patch") {
     return normalized;
   }
 
@@ -71,10 +59,7 @@ export function parseBumpPart(
 }
 
 const BUMP_PART = parseBumpPart(process.env.BUMP_PART, "minor");
-const CHANGED_TEMPLATE_BUMP_PART = parseBumpPart(
-  process.env.CHANGED_TEMPLATE_BUMP_PART,
-  "patch",
-);
+const CHANGED_TEMPLATE_BUMP_PART = parseBumpPart(process.env.CHANGED_TEMPLATE_BUMP_PART, "patch");
 const COMPOSE_CANDIDATES = [
   "compose.yaml",
   "docker-compose.yml",
@@ -96,9 +81,7 @@ export function bumpSemver(version: string, part: BumpPart = "minor"): string {
   const match = String(version).match(/^(\d+)\.(\d+)\.(\d+)(?:[.-].*)?$/);
   if (!match) return "1.0.0";
 
-  let [major, minor, patch] = match
-    .slice(1)
-    .map((segment) => parseInt(segment, 10));
+  let [major, minor, patch] = match.slice(1).map((segment) => parseInt(segment, 10));
   if (part === "major") {
     major += 1;
     minor = 0;
@@ -113,16 +96,12 @@ export function bumpSemver(version: string, part: BumpPart = "minor"): string {
   return `${major}.${minor}.${patch}`;
 }
 
-export async function loadLocalRegistry(
-  log = true,
-): Promise<RegistryFile | null> {
+export async function loadLocalRegistry(log = true): Promise<RegistryFile | null> {
   const localRegistryPath = path.join(ROOT, "registry.json");
 
   if (await exists(localRegistryPath)) {
     try {
-      const data = JSON.parse(
-        await fs.readFile(localRegistryPath, "utf8"),
-      ) as RegistryFile;
+      const data = JSON.parse(await fs.readFile(localRegistryPath, "utf8")) as RegistryFile;
       if (log) {
         console.log(
           `Found local registry.json version: ${data.version} with ${data.templates?.length ?? 0} templates`,
@@ -131,9 +110,7 @@ export async function loadLocalRegistry(
       return data;
     } catch (error) {
       if (log) {
-        console.warn(
-          `Could not parse local registry.json: ${(error as Error).message}`,
-        );
+        console.warn(`Could not parse local registry.json: ${(error as Error).message}`);
       }
     }
   } else if (log) {
@@ -160,12 +137,7 @@ async function buildTemplateContentHashInternal(
   composeFile: string,
 ): Promise<string> {
   const hash = createHash("sha256");
-  const sources = [
-    "template.json",
-    composeFile,
-    ".env.example",
-    "README.md",
-  ] as const;
+  const sources = ["template.json", composeFile, ".env.example", "README.md"] as const;
 
   for (const source of sources) {
     const sourcePath = path.join(templateDir, source);
@@ -182,19 +154,14 @@ async function buildTemplateContentHashInternal(
   return hash.digest("hex");
 }
 
-export async function buildTemplateEntry(
-  dir: string,
-  templateDir: string,
-): Promise<TemplateEntry> {
+export async function buildTemplateEntry(dir: string, templateDir: string): Promise<TemplateEntry> {
   const id = toSlug(dir);
   const metaPath = path.join(templateDir, "template.json");
   if (!(await exists(metaPath))) {
     throw new Error(`Missing ${path.relative(ROOT, metaPath)} (required)`);
   }
 
-  const meta = JSON.parse(
-    await fs.readFile(metaPath, "utf8"),
-  ) as Partial<TemplateMeta>;
+  const meta = JSON.parse(await fs.readFile(metaPath, "utf8")) as Partial<TemplateMeta>;
   const composeFile = await findComposeFile(templateDir);
   const envExamplePath = path.join(templateDir, ".env.example");
   if (!(await exists(envExamplePath))) {
@@ -210,25 +177,18 @@ export async function buildTemplateEntry(
     compose_url: `${PUBLIC_BASE}/${id}/${composeFile}`,
     env_url: `${PUBLIC_BASE}/${id}/.env.example`,
     documentation_url: `${DOCS_BASE}/${id}`,
-    content_hash: await buildTemplateContentHashInternal(
-      templateDir,
-      composeFile,
-    ),
+    content_hash: await buildTemplateContentHashInternal(templateDir, composeFile),
     tags: Array.isArray(meta.tags) ? meta.tags.map(String) : [],
   };
 
   for (const key of ["name", "description", "version", "author"] as const) {
     if (!item[key] || typeof item[key] !== "string") {
-      throw new Error(
-        `templates/${dir}/template.json missing/invalid "${key}"`,
-      );
+      throw new Error(`templates/${dir}/template.json missing/invalid "${key}"`);
     }
   }
 
   if (!Array.isArray(item.tags) || item.tags.length === 0) {
-    throw new Error(
-      `templates/${dir}/template.json must include non-empty "tags"`,
-    );
+    throw new Error(`templates/${dir}/template.json must include non-empty "tags"`);
   }
 
   return item;
@@ -245,12 +205,8 @@ export function detectTemplateChanges(
   previousTemplates: TemplateEntry[] = [],
   currentTemplates: TemplateEntry[],
 ): TemplateChangeSummary {
-  const previousById = new Map(
-    previousTemplates.map((template) => [template.id, template]),
-  );
-  const currentById = new Map(
-    currentTemplates.map((template) => [template.id, template]),
-  );
+  const previousById = new Map(previousTemplates.map((template) => [template.id, template]));
+  const currentById = new Map(currentTemplates.map((template) => [template.id, template]));
   const addedIds: string[] = [];
   const updatedIds: string[] = [];
 
@@ -282,9 +238,7 @@ export function detectTemplateChanges(
 
 export async function collectTemplates(): Promise<TemplateEntry[]> {
   const entries = await fs.readdir(TEMPLATES_DIR, { withFileTypes: true });
-  const templateDirs = entries
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name);
+  const templateDirs = entries.filter((entry) => entry.isDirectory()).map((entry) => entry.name);
 
   const templates: TemplateEntry[] = [];
   for (const dir of templateDirs) {
@@ -295,18 +249,12 @@ export async function collectTemplates(): Promise<TemplateEntry[]> {
   return templates.sort((left, right) => left.id.localeCompare(right.id));
 }
 
-export async function buildRegistry(
-  options: BuildRegistryOptions = {},
-): Promise<RegistryFile> {
+export async function buildRegistry(options: BuildRegistryOptions = {}): Promise<RegistryFile> {
   const { log = true } = options;
   const previousRegistry = await loadLocalRegistry(log);
   const templates = await collectTemplates();
-  const baseVersion =
-    previousRegistry?.version || process.env.REGISTRY_VERSION || "1.0.0";
-  const changes = detectTemplateChanges(
-    previousRegistry?.templates || [],
-    templates,
-  );
+  const baseVersion = previousRegistry?.version || process.env.REGISTRY_VERSION || "1.0.0";
+  const changes = detectTemplateChanges(previousRegistry?.templates || [], templates);
   const nextVersion = changes.bumpPart
     ? bumpSemver(String(baseVersion), changes.bumpPart)
     : String(baseVersion);
@@ -345,9 +293,7 @@ export async function buildRegistry(
         `Detected template changes -> ${details.join(" | ")} -> bumping ${changes.bumpPart} to ${nextVersion}`,
       );
     } else {
-      console.log(
-        `No template changes detected -> keeping version ${baseVersion}`,
-      );
+      console.log(`No template changes detected -> keeping version ${baseVersion}`);
     }
   }
 
@@ -362,9 +308,7 @@ export async function buildRegistry(
   };
 }
 
-export async function writeRegistryFile(
-  registry: RegistryFile,
-): Promise<string> {
+export async function writeRegistryFile(registry: RegistryFile): Promise<string> {
   const outputPath = path.join(ROOT, "registry.json");
   const formatted = await prettier.format(JSON.stringify(registry), {
     filepath: outputPath,

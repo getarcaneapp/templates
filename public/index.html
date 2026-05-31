@@ -24,16 +24,8 @@
       body {
         background-color: var(--bg);
         background-image:
-          radial-gradient(
-            ellipse at 50% 0%,
-            var(--accent-glow) 0%,
-            transparent 60%
-          ),
-          radial-gradient(
-            ellipse at 0% 100%,
-            rgba(255, 255, 255, 0.02) 0%,
-            transparent 50%
-          );
+          radial-gradient(ellipse at 50% 0%, var(--accent-glow) 0%, transparent 60%),
+          radial-gradient(ellipse at 0% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
         color: var(--text);
         font-family: "Geist", sans-serif;
         margin: 0;
@@ -659,33 +651,17 @@
           React.createElement(
             "div",
             { className: "card-header" },
-            React.createElement(
-              "h3",
-              { className: "card-title" },
-              template.name,
-            ),
-            React.createElement(
-              "span",
-              { className: "version monospace" },
-              `v${template.version}`,
-            ),
+            React.createElement("h3", { className: "card-title" }, template.name),
+            React.createElement("span", { className: "version monospace" }, `v${template.version}`),
           ),
-          React.createElement(
-            "p",
-            { className: "card-desc" },
-            template.description,
-          ),
+          React.createElement("p", { className: "card-desc" }, template.description),
           template.tags &&
             template.tags.length > 0 &&
             React.createElement(
               "div",
               { className: "tags" },
               template.tags.map((tag) =>
-                React.createElement(
-                  "span",
-                  { className: "tag", key: tag },
-                  tag,
-                ),
+                React.createElement("span", { className: "tag", key: tag }, tag),
               ),
             ),
           React.createElement(
@@ -697,11 +673,7 @@
               "Docs",
               icons.link,
             ),
-            React.createElement(
-              "a",
-              { href: template.compose_url, target: "_blank" },
-              "Compose",
-            ),
+            React.createElement("a", { href: template.compose_url, target: "_blank" }, "Compose"),
           ),
         );
       }
@@ -763,16 +735,8 @@
                 React.createElement(
                   "div",
                   { className: "logic-term" },
-                  React.createElement(
-                    "span",
-                    { className: "logic-step monospace" },
-                    "Step 01",
-                  ),
-                  React.createElement(
-                    "h3",
-                    { className: "logic-title" },
-                    "Additions",
-                  ),
+                  React.createElement("span", { className: "logic-step monospace" }, "Step 01"),
+                  React.createElement("h3", { className: "logic-title" }, "Additions"),
                 ),
                 React.createElement(
                   "div",
@@ -788,16 +752,8 @@
                 React.createElement(
                   "div",
                   { className: "logic-term" },
-                  React.createElement(
-                    "span",
-                    { className: "logic-step monospace" },
-                    "Step 02",
-                  ),
-                  React.createElement(
-                    "h3",
-                    { className: "logic-title" },
-                    "Updates and removals",
-                  ),
+                  React.createElement("span", { className: "logic-step monospace" }, "Step 02"),
+                  React.createElement("h3", { className: "logic-title" }, "Updates and removals"),
                 ),
                 React.createElement(
                   "div",
@@ -813,16 +769,8 @@
                 React.createElement(
                   "div",
                   { className: "logic-term" },
-                  React.createElement(
-                    "span",
-                    { className: "logic-step monospace" },
-                    "Step 03",
-                  ),
-                  React.createElement(
-                    "h3",
-                    { className: "logic-title" },
-                    "Fingerprint inputs",
-                  ),
+                  React.createElement("span", { className: "logic-step monospace" }, "Step 03"),
+                  React.createElement("h3", { className: "logic-title" }, "Fingerprint inputs"),
                 ),
                 React.createElement(
                   "div",
@@ -847,11 +795,7 @@
             React.createElement(
               "div",
               { className: "side-card rail-card" },
-              React.createElement(
-                "h3",
-                { className: "rail-title" },
-                "Registry snapshot",
-              ),
+              React.createElement("h3", { className: "rail-title" }, "Registry snapshot"),
               React.createElement(
                 "div",
                 { className: "rail-block" },
@@ -860,11 +804,7 @@
                   { className: "rail-label monospace" },
                   "Registry version",
                 ),
-                React.createElement(
-                  "span",
-                  { className: "rail-value monospace" },
-                  registryVersion,
-                ),
+                React.createElement("span", { className: "rail-value monospace" }, registryVersion),
               ),
               React.createElement(
                 "div",
@@ -906,10 +846,7 @@
       }
 
       function App() {
-        const registryUrl = React.useMemo(
-          () => `${location.origin}/registry.json`,
-          [],
-        );
+        const registryUrl = React.useMemo(() => `${location.origin}/registry.json`, []);
         const [registry, setRegistry] = React.useState(null);
         const [templates, setTemplates] = React.useState([]);
         const [search, setSearch] = React.useState("");
@@ -965,11 +902,7 @@
                   { className: "empty-state" },
                   "No templates match that search yet.",
                 )
-              : React.createElement(
-                  "div",
-                  { className: "grid" },
-                  filtered.map(renderTemplateCard),
-                ),
+              : React.createElement("div", { className: "grid" }, filtered.map(renderTemplateCard)),
           );
         }
 
@@ -1061,8 +994,7 @@
                 React.createElement(
                   "button",
                   {
-                    className:
-                      activeTab === "templates" ? "tab-btn active" : "tab-btn",
+                    className: activeTab === "templates" ? "tab-btn active" : "tab-btn",
                     onClick: () => setActiveTab("templates"),
                     type: "button",
                   },
@@ -1071,8 +1003,7 @@
                 React.createElement(
                   "button",
                   {
-                    className:
-                      activeTab === "logic" ? "tab-btn active" : "tab-btn",
+                    className: activeTab === "logic" ? "tab-btn active" : "tab-btn",
                     onClick: () => setActiveTab("logic"),
                     type: "button",
                   },
@@ -1085,9 +1016,7 @@
         );
       }
 
-      createRoot(document.getElementById("root")).render(
-        React.createElement(App),
-      );
+      createRoot(document.getElementById("root")).render(React.createElement(App));
     </script>
   </body>
 </html>

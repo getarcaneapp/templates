@@ -79,15 +79,7 @@ services:
       # or you may add 'POSTGRES_HOST_AUTH_METHOD=trust' to ignore postgres security policy
       POSTGRES_HOST_AUTH_METHOD: trust
     healthcheck:
-      test:
-        [
-          "CMD",
-          "pg_isready",
-          "-U",
-          "${DB_USERNAME}",
-          "-d",
-          "${DB_DATABASE:-affine}",
-        ]
+      test: ["CMD", "pg_isready", "-U", "${DB_USERNAME}", "-d", "${DB_DATABASE:-affine}"]
       interval: 10s
       timeout: 5s
       retries: 5
