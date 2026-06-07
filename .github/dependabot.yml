@@ -1,49 +1,24 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
-    directory: "/"
+    directories:
+      - "/"
+    patterns: ["*"]
+    cooldown:
+      default-days: 2
     schedule:
-      interval: "daily"
-    groups:
-      prod-dependencies:
-        patterns:
-          - "*"
-        exclude-patterns:
-          - "@types/*"
-          - "typescript"
-          - "eslint*"
-          - "prettier*"
-          - "vite"
-          - "*-plugin"
-          - "*-loader"
-          - "jest*"
-          - "vitest*"
-          - "@testing-library/*"
-          - "@playwright/*"
-        update-types:
-          - "minor"
-          - "patch"
-      dev-dependencies:
-        patterns:
-          - "@types/*"
-          - "typescript"
-          - "eslint*"
-          - "prettier*"
-          - "vite"
-          - "*-plugin"
-          - "*-loader"
-          - "jest*"
-          - "vitest*"
-          - "@testing-library/*"
-          - "@playwright/*"
-        update-types:
-          - "minor"
-          - "patch"
-      frontend-major-updates:
-        patterns:
-          - "*"
-        update-types:
-          - "major"
+      interval: "weekly"
+      day: "wednesday"
+      time: "17:00"
+      timezone: "America/Chicago"
+    labels:
+      - "dependencies"
+    open-pull-requests-limit: 99
+    pull-request-branch-name:
+      separator: "-"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
 
   - package-ecosystem: "github-actions"
     directory: "/"
