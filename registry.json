@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.24.1",
+  "version": "1.24.2",
   "templates": [
     {
       "id": "affine",
@@ -15,7 +15,7 @@
       "compose_url": "https://registry.getarcane.app/templates/affine/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/affine/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/affine",
-      "content_hash": "1eefd6b38703d4b3695a14ba8d2c583731735263d5bfff7413b33d3dd80e1de7",
+      "content_hash": "7ad82e40069a42a75110b3134e3be1d126c4e2b0ff91a98ff469bf2f36cfa3b6",
       "tags": ["Productivity", "Notes"]
     },
     {
@@ -291,7 +291,7 @@
       "compose_url": "https://registry.getarcane.app/templates/patchmon/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/patchmon/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/patchmon",
-      "content_hash": "76abab2c03863eca2955c3e93db0dc35eca0c3abb9a4fef6c2ab311029171f42",
+      "content_hash": "9dd12f0ec91a7e64758237fa5765928dcdf3b30302fb0cbe53a8eb142097ea8a",
       "tags": ["tools", "linux"]
     },
     {
@@ -399,7 +399,7 @@
       "compose_url": "https://registry.getarcane.app/templates/rybbit/compose.yml",
       "env_url": "https://registry.getarcane.app/templates/rybbit/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/rybbit",
-      "content_hash": "c72991999da3ea29c106b91532775a6de63ab967ad66652f43ebb14c27f6cc31",
+      "content_hash": "ff6c94365a178fd782ae85199b897daf1cbce38fddf791d599b854993ea06ef6",
       "tags": ["analytics"]
     },
     {
