@@ -3,18 +3,14 @@ allowBuilds:
   sharp: true
   workerd: true
 catalog:
-  vite: npm:@voidzero-dev/vite-plus-core@latest
-  vite-plus: ^0.1.24
-  vitest: npm:@voidzero-dev/vite-plus-test@latest
+  vite: ^8.0.16
+  vite-plus: ^0.2.1
   ws: ">=8.20.1"
   undici: ">=7.28.0"
 overrides:
   vite: "catalog:"
-  vitest: "catalog:"
 peerDependencyRules:
   allowAny:
     - vite
-    - vitest
   allowedVersions:
     vite: "*"
-    vitest: "*"
