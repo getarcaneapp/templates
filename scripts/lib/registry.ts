@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import prettier from "prettier";
+import { format } from "oxfmt";
 
 const ROOT = process.cwd();
 export const TEMPLATES_DIR = path.join(ROOT, "templates");
@@ -310,9 +310,11 @@ export async function buildRegistry(options: BuildRegistryOptions = {}): Promise
 
 export async function writeRegistryFile(registry: RegistryFile): Promise<string> {
   const outputPath = path.join(ROOT, "registry.json");
-  const formatted = await prettier.format(JSON.stringify(registry), {
-    filepath: outputPath,
-  });
-  await fs.writeFile(outputPath, formatted, "utf8");
+  const result = await format(outputPath, `${JSON.stringify(registry, null, 2)}\n`);
+  if (result.errors.length > 0) {
+    throw new Error(`Could not format ${path.relative(ROOT, outputPath)} with Oxfmt`);
+  }
+
+  await fs.writeFile(outputPath, result.code, "utf8");
   return outputPath;
 }

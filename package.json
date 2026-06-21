@@ -3,8 +3,8 @@
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "format": "prettier . --write",
-    "format:check": "prettier . --check",
+    "format": "vp fmt . --write",
+    "format:check": "vp fmt . --check",
     "lint": "pnpm run type-check && pnpm run generate && pnpm run format:check && pnpm run validate",
     "type-check": "tsc --noEmit",
     "test": "tsx scripts/test-build-registry.ts",
@@ -21,9 +21,9 @@
     "@types/node": "^25.9.4",
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
-    "prettier": "^3.8.4",
+    "oxfmt": "0.55.0",
     "tsx": "^4.22.4",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.1-rc",
     "vite": "^8.0.16",
     "vite-plus": "catalog:",
     "wrangler": "^4.103.0"

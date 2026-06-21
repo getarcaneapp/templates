@@ -7,6 +7,7 @@ catalog:
   vite-plus: ^0.2.1
   ws: ">=8.20.1"
   undici: ">=7.28.0"
+  typescript: ">=7.0.1-rc"
 overrides:
   vite: "catalog:"
 peerDependencyRules:
