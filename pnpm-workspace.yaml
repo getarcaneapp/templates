@@ -6,7 +6,7 @@ catalog:
   vite: ^8.0.16
   vite-plus: ^0.2.1
   ws: ">=8.20.1"
-  undici: ">=7.28.0"
+  undici: ">=8.5.0"
   typescript: ">=7.0.1-rc"
 overrides:
   vite: "catalog:"
