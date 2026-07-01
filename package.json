@@ -23,10 +23,10 @@
     "ajv-formats": "^3.0.1",
     "oxfmt": "0.55.0",
     "tsx": "^4.22.4",
-    "typescript": "^7.0.1-rc",
-    "vite": "^8.0.16",
+    "typescript": "7.0.1-rc",
+    "vite": "^8.1.0",
     "vite-plus": "catalog:",
-    "wrangler": "^4.103.0"
+    "wrangler": "^4.105.0"
   },
   "engines": {
     "node": ">=26"
