@@ -3,7 +3,7 @@ allowBuilds:
   sharp: true
   workerd: true
 catalog:
-  vite: ^8.0.16
+  vite: npm:@voidzero-dev/vite-plus-core@0.2.1
   vite-plus: ^0.2.1
   ws: ">=8.20.1"
   undici: ">=8.5.0"
