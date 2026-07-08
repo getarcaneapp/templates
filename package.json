@@ -18,7 +18,7 @@
     "snyk": "snyk test --all-projects --dev"
   },
   "devDependencies": {
-    "@types/node": "^26.0.1",
+    "@types/node": "^26.1.0",
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
     "oxfmt": "0.57.0",
