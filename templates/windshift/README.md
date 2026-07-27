@@ -6,7 +6,7 @@
 
 Review the template environment variables:
 
-1. Set `BASE_URL` to the complete URL you will use to access Windshift. Keep `APP_PORT` and the port in `BASE_URL` aligned when running on localhost.
+1. Leave `BASE_URL` empty to use `http://localhost:<APP_PORT>`, or set it to the complete public URL you will use to access Windshift.
 2. Replace `SSO_SECRET` with the output of `openssl rand -hex 32`.
 3. Replace `POSTGRES_PASSWORD` with a strong, unique password.
 
