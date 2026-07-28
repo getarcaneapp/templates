@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.26.0",
+  "version": "1.27.0",
   "templates": [
     {
       "id": "actual",
@@ -857,6 +857,18 @@
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/web-check",
       "content_hash": "95fdb34ae05f50336d9b9524a41c7965877c0fb3faaa7644902c72628beac53c",
       "tags": ["security", "privacy"]
+    },
+    {
+      "id": "windshift",
+      "name": "Windshift",
+      "description": "Self-hosted work management for projects, workflows, collaboration, and delivery.",
+      "version": "1.0.0",
+      "author": "Windshift",
+      "compose_url": "https://registry.getarcane.app/templates/windshift/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/windshift/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/windshift",
+      "content_hash": "4ee242580c7d720d6afa47895f316c2e79143f7f1bd365444d2fe656f0c47396",
+      "tags": ["project-management", "work-management", "productivity"]
     },
     {
       "id": "wireguard",
