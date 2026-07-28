@@ -1,0 +1,59 @@
+x-arcane:
+  icon: https://windshift.sh/favicon-32x32.png
+  urls:
+    - https://windshift.sh/
+    - https://github.com/Windshiftapp/core
+
+services:
+  windshift:
+    image: ghcr.io/windshiftapp/windshift:v${WINDSHIFT_VERSION:-0.8.3}
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-8080}:8080"
+    environment:
+      BASE_URL: ${BASE_URL:-http://localhost:${APP_PORT:-8080}}
+      PORT: 8080
+      SSO_SECRET: ${SSO_SECRET}
+      ATTACHMENT_PATH: /data/attachments
+      DB_TYPE: postgres
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: ${POSTGRES_USER:-windshift}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-windshift}
+      LOG_LEVEL: info
+      LOG_FORMAT: json
+    volumes:
+      - windshift-data:/data
+    tmpfs:
+      - /tmp:exec,size=64M
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    depends_on:
+      db:
+        condition: service_healthy
+    labels:
+      com.getarcaneapp.arcane.icon: https://windshift.sh/favicon-32x32.png
+
+  db:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-windshift}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-windshift}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/postgresql.svg
+
+volumes:
+  windshift-data:
+  postgres-data:
