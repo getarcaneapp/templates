@@ -4,9 +4,9 @@ allowBuilds:
   workerd: true
 catalog:
   vite: npm:@voidzero-dev/vite-plus-core@0.2.1
-  vite-plus: ^0.2.5
+  vite-plus: ^0.2.6
   ws: ">=8.21.1"
-  undici: ">=8.8.0"
+  undici: ">=8.9.0"
   typescript: ">=7.0.2"
 overrides:
   vite: "catalog:"

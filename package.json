@@ -18,15 +18,15 @@
     "snyk": "snyk test --all-projects --dev"
   },
   "devDependencies": {
-    "@types/node": "^26.1.1",
+    "@types/node": "^26.1.2",
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
-    "oxfmt": "0.59.0",
+    "oxfmt": "0.61.0",
     "tsx": "^4.23.1",
     "typescript": "7.0.2",
     "vite": "^8.1.0",
     "vite-plus": "catalog:",
-    "wrangler": "^4.112.0"
+    "wrangler": "^4.114.0"
   },
   "engines": {
     "node": ">=26"
