@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.27.0",
+  "version": "1.28.0",
   "templates": [
     {
       "id": "actual",
@@ -185,6 +185,18 @@
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/convertx",
       "content_hash": "dd3a8621b4efbe7b9b1c94ba3a3e1f538c91d3e01e208e552f9e453e0853ba18",
       "tags": ["Tools", "Converter"]
+    },
+    {
+      "id": "dockroute",
+      "name": "DockRoute",
+      "description": "External-DNS for plain Docker hosts — reconciles DNS records and Cloudflare Tunnel routes from container labels.",
+      "version": "1.0.0",
+      "author": "danilodorgam",
+      "compose_url": "https://registry.getarcane.app/templates/dockroute/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/dockroute/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/dockroute",
+      "content_hash": "6648e059cb56e9176adcf22c50ad10723706565e1a80efa6bec60538f797408d",
+      "tags": ["dns", "networking", "automation", "cloudflare", "docker"]
     },
     {
       "id": "dozzle",
