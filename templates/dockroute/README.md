@@ -12,12 +12,11 @@ logged and skipped.
 
 ## Setup
 
-1. Set `DOCKER_SOCK_GID` in the environment to the group that owns your
-   Docker socket (`stat -c '%g' /var/run/docker.sock`) — the image runs as a
-   non-root user.
-2. Leave `DOCKROUTE_PROVIDER=log` for a zero-credential dry run, or set it to
-   `cloudflare` and fill in `CLOUDFLARE_API_TOKEN`.
-3. Opt containers in with labels:
+1. Leave `DOCKROUTE_PROVIDER=log` for a zero-credential dry run, or set it to
+   `cloudflare` and fill in `CLOUDFLARE_API_TOKEN`. Socket permissions are
+   handled automatically — the entrypoint grants the app user the socket's
+   group and drops privileges.
+2. Opt containers in with labels:
 
 ```yaml
 services:
