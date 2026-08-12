@@ -21,6 +21,7 @@ minimumReleaseAgeExclude:
   - vite-plus@0.2.9
 overrides:
   vite: "catalog:"
+  "fast-uri": ">=3.1.5"
 peerDependencyRules:
   allowAny:
     - vite
