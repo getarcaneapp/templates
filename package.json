@@ -1,6 +1,7 @@
 {
   "name": "arcane-templates",
   "private": true,
+  "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "format": "vp fmt . --write",

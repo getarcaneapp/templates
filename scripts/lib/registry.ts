@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { format } from "oxfmt";
+import { format } from "vite-plus/fmt";
 
 const ROOT = process.cwd();
 export const TEMPLATES_DIR = path.join(ROOT, "templates");
