@@ -1,0 +1,7 @@
+{
+  "name": "Kiwix Server",
+  "description": "A server for hosting Kiwix (.zim) archives, useful for offline access to Wikipedia and other content.",
+  "author": "LeviSnoot",
+  "version": "1.0.0",
+  "tags": ["archive", "local", "wiki"]
+}

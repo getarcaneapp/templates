@@ -1,0 +1,29 @@
+x-arcane:
+  icon-light: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/kiwix-light.svg
+  icon-dark: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/kiwix-dark.svg
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/kiwix.svg
+  urls:
+    - https://kiwix.org/en/
+    - https://wiki.kiwix.org/wiki/Kiwix-serve
+    - https://kiwix-tools.readthedocs.io/en/latest/kiwix-serve.html
+    - https://github.com/kiwix/kiwix-tools/tree/main/docker/server
+
+services:
+  kiwix:
+    container_name: kiwix
+    image: ghcr.io/kiwix/kiwix-serve:latest
+    ports:
+      - ${APP_PORT:-8080}:8080
+    volumes:
+      - ${ZIM_PATH}:/data
+    environment:
+      - DOWNLOAD=${DOWNLOAD_URL:-}
+    command: ["*.zim"]
+    healthcheck:
+      test:
+        ["CMD", "wget", "--spider", "--tries=1", "-q", "http://localhost:8080/catalog/v2/root.xml"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    restart: unless-stopped
