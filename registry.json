@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.28.0",
+  "version": "1.29.0",
   "templates": [
     {
       "id": "actual",
@@ -377,6 +377,18 @@
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/jellyfin-server",
       "content_hash": "5d43881150ccddfc47806a16b82be90756c1978464c94b882e72965b135e76eb",
       "tags": ["media", "streaming"]
+    },
+    {
+      "id": "kiwix-serve",
+      "name": "Kiwix Server",
+      "description": "A server for hosting Kiwix (.zim) archives, useful for offline access to Wikipedia and other content.",
+      "version": "1.0.0",
+      "author": "LeviSnoot",
+      "compose_url": "https://registry.getarcane.app/templates/kiwix-serve/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/kiwix-serve/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/kiwix-serve",
+      "content_hash": "0ce74633595389bbdb746aff7f1e9ba3e5dd06eecc1fa383d241c0615622a68d",
+      "tags": ["archive", "local", "wiki"]
     },
     {
       "id": "komga",
