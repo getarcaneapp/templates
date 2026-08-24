@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.30.0",
+  "version": "1.31.0",
   "templates": [
     {
       "id": "actual",
@@ -389,6 +389,18 @@
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/jellyfin-server",
       "content_hash": "5d43881150ccddfc47806a16b82be90756c1978464c94b882e72965b135e76eb",
       "tags": ["media", "streaming"]
+    },
+    {
+      "id": "jellystat",
+      "name": "Jellystat",
+      "description": "A free and open source Statistics App for Jellyfin",
+      "version": "1.0.0",
+      "author": "LeviSnoot",
+      "compose_url": "https://registry.getarcane.app/templates/jellystat/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/jellystat/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/jellystat",
+      "content_hash": "6e23ea9e29e5de70aa985b7e6fe3fef27b38fd0672a50ae3d5da59f0c60ae578",
+      "tags": ["jellyfin", "media", "statistics", "monitoring"]
     },
     {
       "id": "kiwix-serve",
