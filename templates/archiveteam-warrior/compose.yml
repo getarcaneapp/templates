@@ -1,0 +1,18 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/archiveteam-warrior.png
+  urls:
+    - https://github.com/ArchiveTeam/warrior-dockerfile
+    - https://tracker.archiveteam.org
+
+services:
+  archiveteam-warrior:
+    image: atdr.meo.ws/archiveteam/warrior-dockerfile
+    container_name: archiveteam-warrior
+    environment:
+      - DOWNLOADER=${DOWNLOADER:-}
+      - CONCURRENT_ITEMS=${CONCURRENT_ITEMS:-2}
+      - SHARED_RSYNC_THREADS=${SHARED_RSYNC_THREADS:-2}
+      - SELECTED_PROJECT=${SELECTED_PROJECT:-}
+    ports:
+      - ${APP_PORT}:8001
+    restart: on-failure
