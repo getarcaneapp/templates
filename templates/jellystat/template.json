@@ -1,0 +1,7 @@
+{
+  "name": "Jellystat",
+  "description": "A free and open source Statistics App for Jellyfin",
+  "author": "LeviSnoot",
+  "version": "1.0.0",
+  "tags": ["jellyfin", "media", "statistics", "monitoring"]
+}
