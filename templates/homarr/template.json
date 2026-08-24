@@ -1,0 +1,7 @@
+{
+  "name": "Homarr",
+  "description": "A modern and easy to use dashboard. 40+ integrations. 20K+ icons built in. Authentication out of the box. No YAML, drag and drop configuration.",
+  "author": "LeviSnoot",
+  "version": "1.0.0",
+  "tags": ["dashboard", "home", "server"]
+}

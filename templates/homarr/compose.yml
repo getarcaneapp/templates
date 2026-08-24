@@ -1,0 +1,23 @@
+x-arcane:
+  icon-light: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/homarr-light.svg
+  icon-dark: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/homarr-dark.svg
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/homarr.svg
+  urls:
+    - https://homarr.dev/
+    - https://github.com/homarr-labs/homarr
+
+services:
+  homarr:
+    container_name: homarr
+    image: ghcr.io/homarr-labs/homarr:latest
+    restart: unless-stopped
+    volumes:
+      # - /var/run/docker.sock:/var/run/docker.sock # Optional, only if you want docker integration
+      - homarr_data:/appdata
+    environment:
+      - SECRET_ENCRYPTION_KEY=${SECRET_ENCRYPTION_KEY}
+    ports:
+      - "${APP_PORT:-7575}:7575"
+
+volumes:
+  homarr_data:
