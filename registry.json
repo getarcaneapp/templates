@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.29.0",
+  "version": "1.30.0",
   "templates": [
     {
       "id": "actual",
@@ -53,6 +53,18 @@
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/appsmith",
       "content_hash": "01f26d8eb22ec810347f0023e58ad79cb707400077fc2bed8dfbe074488f3061",
       "tags": ["development", "low-code", "productivity"]
+    },
+    {
+      "id": "archiveteam-warrior",
+      "name": "Archiveteam Warrior",
+      "description": "Let your machine contribute to archiving the web by running Archiveteam Warrior projects.",
+      "version": "1.0.0",
+      "author": "LeviSnoot",
+      "compose_url": "https://registry.getarcane.app/templates/archiveteam-warrior/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/archiveteam-warrior/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/archiveteam-warrior",
+      "content_hash": "cd81505f4be9e0816943466e4c77c7d5042190e51aaca4daa3710957491d37a2",
+      "tags": ["archive", "preservation", "web"]
     },
     {
       "id": "audiobookshelf",
