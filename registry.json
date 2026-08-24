@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.31.0",
+  "version": "1.32.0",
   "templates": [
     {
       "id": "actual",
@@ -317,6 +317,18 @@
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/grafana-prometheus",
       "content_hash": "08070f36e1789a79706cb9ba8bfe33ab82fe1580ff355711aa9fd008c06a6231",
       "tags": ["monitoring", "metrics", "dashboards"]
+    },
+    {
+      "id": "homarr",
+      "name": "Homarr",
+      "description": "A modern and easy to use dashboard. 40+ integrations. 20K+ icons built in. Authentication out of the box. No YAML, drag and drop configuration.",
+      "version": "1.0.0",
+      "author": "LeviSnoot",
+      "compose_url": "https://registry.getarcane.app/templates/homarr/compose.yml",
+      "env_url": "https://registry.getarcane.app/templates/homarr/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/homarr",
+      "content_hash": "7aecbdd0f28cd079dc63a169077402f66fcd18fba38623f779b973ae8aa1e548",
+      "tags": ["dashboard", "home", "server"]
     },
     {
       "id": "home-assistant",
