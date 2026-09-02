@@ -17,22 +17,32 @@ concurrency:
 
 jobs:
   build:
-    if: ${{ github.actor != 'getarcaneappbot' }}
+    if: ${{ github.actor != 'arcane-github-automation[bot]' }}
     runs-on: depot-ubuntu-latest
     environment:
       name: production
       url: https://registry.getarcane.app
     steps:
+      - name: Request App Token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ secrets.ARCANE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.ARCANE_APP_PRIVATE_KEY }}
+          owner: getarcaneapp
+          repositories: templates
+          permission-contents: write
+
       - name: Checkout
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          token: ${{ secrets.ARCANE_BOT_TOKEN }}
+          token: ${{ steps.app-token.outputs.token }}
 
       - name: Configure Git
         run: |
-          git config --global user.name "getarcaneappbot"
-          git config --global user.email "info@getarcane.app"
+          git config --global user.name "arcane-github-automation[bot]"
+          git config --global user.email "315613249+arcane-github-automation[bot]@users.noreply.github.com"
 
       - name: Setup Vite+
         uses: voidzero-dev/setup-vp@ca1c46663915d6c1042ae23bd39ab85718bfb0fa # v1
@@ -64,9 +74,9 @@ jobs:
           repository: "."
           branch: ""
           commit_message: "chore: update registry.json [skip ci]"
-          commit_user_name: getarcaneappbot
-          commit_user_email: info@getarcane.app
-          commit_author: "getarcaneappbot <info@getarcane.app>"
+          commit_user_name: arcane-github-automation[bot]
+          commit_user_email: 315613249+arcane-github-automation[bot]@users.noreply.github.com
+          commit_author: "arcane-github-automation[bot] <315613249+arcane-github-automation[bot]@users.noreply.github.com>"
           commit_options: ""
           file_pattern: "registry.json"
           add_options: ""

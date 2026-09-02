@@ -34,12 +34,23 @@ jobs:
       PREVIEW_ALIAS: pr-${{ github.event.pull_request.number }}
       PREVIEW_BASE: https://pr-${{ github.event.pull_request.number }}-arcane-templates.ofkm.workers.dev
     steps:
+      - name: Request App Token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ secrets.ARCANE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.ARCANE_APP_PRIVATE_KEY }}
+          owner: getarcaneapp
+          repositories: templates
+          permission-contents: read
+          permission-pull-requests: write
+
       - name: Checkout
         uses: actions/checkout@v6
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
-          token: ${{ secrets.ARCANE_BOT_TOKEN }}
+          token: ${{ steps.app-token.outputs.token }}
 
       - name: Setup Vite+
         uses: voidzero-dev/setup-vp@ca1c46663915d6c1042ae23bd39ab85718bfb0fa # v1
@@ -89,8 +100,9 @@ jobs:
         uses: peter-evans/find-comment@v4
         id: fc
         with:
+          token: ${{ steps.app-token.outputs.token }}
           issue-number: ${{ github.event.pull_request.number }}
-          comment-author: "getarcaneappbot"
+          comment-author: "arcane-github-automation[bot]"
           body-includes: Preview deployed successfully!
 
       - name: Comment preview URL
@@ -98,7 +110,7 @@ jobs:
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
-          token: ${{ secrets.ARCANE_BOT_TOKEN }}
+          token: ${{ steps.app-token.outputs.token }}
           body: |
             Preview deployed successfully!
 

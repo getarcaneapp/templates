@@ -32,15 +32,25 @@ jobs:
     if: ${{ github.repository_owner == 'getarcaneapp' }}
     runs-on: ubuntu-latest
     steps:
+      - name: Request App Token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ secrets.ARCANE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.ARCANE_APP_PRIVATE_KEY }}
+          owner: getarcaneapp
+          repositories: templates
+          permission-administration: write
+          permission-deployments: write
+
       - name: Delete old environments and deployments
         uses: actions/github-script@v9
         env:
           RETENTION_DAYS: ${{ github.event.inputs.retention_days || '14' }}
           DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
           KEEP: ${{ github.event.inputs.keep || 'production' }}
-          HAS_ADMIN_TOKEN: ${{ secrets.ARCANE_BOT_TOKEN != '' }}
         with:
-          github-token: ${{ secrets.ARCANE_BOT_TOKEN || github.token }}
+          github-token: ${{ steps.app-token.outputs.token }}
           script: |
             const keep = (process.env.KEEP || 'production')
               .split(',')
@@ -48,16 +58,10 @@ jobs:
               .filter(Boolean);
             const retentionDays = parseInt(process.env.RETENTION_DAYS || '14', 10);
             const dryRun = String(process.env.DRY_RUN || 'true').toLowerCase() === 'true';
-            const hasAdminToken = String(process.env.HAS_ADMIN_TOKEN || 'false').toLowerCase() === 'true';
-            const effectiveDryRun = dryRun || !hasAdminToken;
             const cutoffMs = retentionDays * 24 * 60 * 60 * 1000;
             const now = Date.now();
             const previewEnvironmentPattern = /^.+-pr-\d+$/;
             const cleanupDescription = 'Removed by preview environment cleanup workflow';
-
-            if (!hasAdminToken) {
-              core.warning('ARCANE_BOT_TOKEN is not configured. The default workflow token cannot delete repository environments, so this run will report candidates without deleting them.');
-            }
 
             const envs = await github.paginate('GET /repos/{owner}/{repo}/environments', {
               owner: context.repo.owner,
@@ -97,9 +101,9 @@ jobs:
 
                 let deploymentDeleteFailed = false;
                 for (const deployment of deployments) {
-                  core.info(`${effectiveDryRun ? '[DRY-RUN] Would delete' : 'Deleting'} deployment #${deployment.id} for environment "${env.name}" (created ${deployment.created_at})`);
+                  core.info(`${dryRun ? '[DRY-RUN] Would delete' : 'Deleting'} deployment #${deployment.id} for environment "${env.name}" (created ${deployment.created_at})`);
 
-                  if (!effectiveDryRun) {
+                  if (!dryRun) {
                     try {
                       await github.request('POST /repos/{owner}/{repo}/deployments/{deployment_id}/statuses', {
                         owner: context.repo.owner,
@@ -129,8 +133,8 @@ jobs:
                   }
                 }
 
-                core.info(`${effectiveDryRun ? '[DRY-RUN] Would delete' : 'Deleting'} environment "${env.name}" (updated ${updatedAt})`);
-                if (!effectiveDryRun && !deploymentDeleteFailed) {
+                core.info(`${dryRun ? '[DRY-RUN] Would delete' : 'Deleting'} environment "${env.name}" (updated ${updatedAt})`);
+                if (!dryRun && !deploymentDeleteFailed) {
                   try {
                     await github.request('DELETE /repos/{owner}/{repo}/environments/{environment_name}', {
                       owner: context.repo.owner,
@@ -152,7 +156,7 @@ jobs:
             core.summary
               .addHeading('Environment cleanup')
               .addRaw(`Retention: ${retentionDays} days\n`)
-              .addRaw(`Dry-run: ${effectiveDryRun}\n`)
+              .addRaw(`Dry-run: ${dryRun}\n`)
               .addRaw(`Preview-only filter: ${previewEnvironmentPattern}\n`)
               .addRaw(`Checked: ${envs.length}\n`)
               .addRaw(`Eligible preview environments: ${candidateEnvironments}\n`)
