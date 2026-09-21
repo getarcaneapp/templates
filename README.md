@@ -45,6 +45,33 @@ The generated registry entry shape looks like this:
 }
 ```
 
+## Generating Templates
+
+The repository includes a dependency-free importer for turning Compose projects and
+Portainer registries into Arcane template directories:
+
+```bash
+# Import a local compose file, including a JSON Compose file
+vp run generate:template -- --input ./compose.yaml --id my-app
+
+# Import an existing project directory or a public GitHub repository
+vp run generate:template -- --input ./path/to/project --output templates
+vp run generate:template -- --input https://github.com/owner/compose-project
+
+# Import every entry from a Portainer templates JSON file or URL
+vp run generate:template -- --input ./portainer-templates.json --output templates
+vp run generate:template -- --input https://example.com/templates.json
+```
+
+The importer recognizes `compose.yaml`, `compose.yml`, `docker-compose.yaml`, and
+`docker-compose.yml`. It copies an existing `.env.example` and `README.md`, or
+creates `.env.example` from Portainer `env` definitions. Portainer entries may
+provide inline `composeFile`/`stackfile`, `composeFileUrl`, or a GitHub
+`repository` with `stackfile`/`composeFilePath`. Existing output directories are
+protected by default; pass `--force` to replace one. Metadata can be overridden
+with `--id`, `--name`, `--description`, `--author`, and repeatable/comma-separated
+`--tag` options.
+
 ## Contributing a Template
 
 1. Fork this repo

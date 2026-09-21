@@ -9,6 +9,7 @@
     "lint": "pnpm run type-check && pnpm run generate && pnpm run format:check && pnpm run validate",
     "type-check": "tsc --noEmit",
     "test": "tsx scripts/test-build-registry.ts",
+    "generate:template": "tsx scripts/generate-template.ts",
     "validate": "tsx scripts/validate.ts",
     "generate": "tsx scripts/build-registry.ts",
     "ci": "pnpm run lint && pnpm run test && pnpm run generate",
