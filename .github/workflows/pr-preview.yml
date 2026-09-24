@@ -32,12 +32,11 @@ jobs:
       url: ${{ env.PREVIEW_BASE }}
     env:
       PREVIEW_ALIAS: pr-${{ github.event.pull_request.number }}
-      PREVIEW_BASE: https://pr-${{ github.event.pull_request.number
-        }}-arcane-templates.ofkm.workers.dev
+      PREVIEW_BASE: https://pr-${{ github.event.pull_request.number}}-arcane-templates.ofkm.workers.dev
     steps:
       - name: Request App Token
         id: app-token
-        uses: actions/create-github-app-token@v3
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         with:
           client-id: ${{ secrets.ARCANE_APP_CLIENT_ID }}
           private-key: ${{ secrets.ARCANE_APP_PRIVATE_KEY }}
@@ -47,14 +46,14 @@ jobs:
           permission-pull-requests: write
 
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
           token: ${{ steps.app-token.outputs.token }}
 
       - name: Setup Vite+
-        uses: voidzero-dev/setup-vp@24d870228786dc83ae73482406bdd1e7befaec14 # v1.21.0
+        uses: voidzero-dev/setup-vp@3754dd7dbdb32bd8f6d28b6043de13ad3a75f21f # v1.21.1
         with:
           node-version: "26"
           cache: true
@@ -99,7 +98,7 @@ jobs:
           vp exec wrangler versions upload --preview-alias "$PREVIEW_ALIAS"
 
       - name: Find Comment
-        uses: peter-evans/find-comment@v4
+        uses: peter-evans/find-comment@b30e6a3c0ed37e7c023ccd3f1db5c6c0b0c23aad # v4.0.0
         id: fc
         with:
           token: ${{ steps.app-token.outputs.token }}
@@ -108,7 +107,7 @@ jobs:
           body-includes: Preview deployed successfully!
 
       - name: Comment preview URL
-        uses: peter-evans/create-or-update-comment@v5
+        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}

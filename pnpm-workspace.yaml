@@ -1,5 +1,8 @@
 autoDedupe: true
 
+update:
+  githubActions: true
+
 allowBuilds:
   esbuild: true
   sharp: true
