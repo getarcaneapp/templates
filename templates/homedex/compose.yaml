@@ -1,0 +1,72 @@
+x-arcane:
+  icon: https://raw.githubusercontent.com/HarshShah0203/homedex/main/docs/brand/homedex-icon-512.png
+  urls:
+    - https://github.com/HarshShah0203/homedex
+    - https://harshshah0203.github.io/homedex/
+
+services:
+  # Read-only Docker API for Homedex: POST=0 rejects every mutating call, only
+  # the inventory endpoints are allowed, and it has no published port.
+  docker-socket-proxy:
+    image: tecnativa/docker-socket-proxy:v0.4.2
+    restart: unless-stopped
+    environment:
+      CONTAINERS: 1
+      IMAGES: 1
+      INFO: 1
+      NETWORKS: 1
+      VERSION: 1
+      POST: 0
+      ALLOW_START: 0
+      ALLOW_STOP: 0
+      ALLOW_RESTARTS: 0
+    volumes:
+      # `:ro` protects the socket file; POST=0 is what filters the API calls.
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    read_only: true
+    tmpfs:
+      - /run
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - discovery
+
+  homedex:
+    image: ghcr.io/harshshah0203/homedex:${HOMEDEX_VERSION:-0.2.3}
+    restart: unless-stopped
+    depends_on:
+      - docker-socket-proxy
+    ports:
+      # Loopback by default. Set HOMEDEX_BIND=0.0.0.0 to open it to your LAN,
+      # and set HOMEDEX_ADMIN_PASSWORD with it.
+      - "${HOMEDEX_BIND:-127.0.0.1}:${HOMEDEX_PORT:-7377}:7377"
+    environment:
+      HOMEDEX_DATA_DIR: /data
+      HOMEDEX_LISTEN: ":7377"
+      HOMEDEX_ADMIN_PASSWORD: ${HOMEDEX_ADMIN_PASSWORD:-}
+      HOMEDEX_SECURE_COOKIES: ${HOMEDEX_SECURE_COOKIES:-false}
+    volumes:
+      - homedex-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - app
+      - discovery
+    labels:
+      com.getarcaneapp.arcane.icon: https://raw.githubusercontent.com/HarshShah0203/homedex/main/docs/brand/homedex-icon-512.png
+
+networks:
+  app: {}
+  discovery:
+    internal: true
+
+volumes:
+  homedex-data:
