@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.32.0",
+  "version": "1.33.0",
   "templates": [
     {
       "id": "actual",
@@ -341,6 +341,18 @@
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/home-assistant",
       "content_hash": "51080526fcf83120ad82eb54908fafd39e32263cef22b815f5d9bcdb70f8f147",
       "tags": ["home-automation", "iot", "smart-home"]
+    },
+    {
+      "id": "homedex",
+      "name": "Homedex",
+      "description": "Read-only homelab inventory: records the services, hosts, ports, routes, certificates, domains and changes it discovers from Docker, Proxmox VE, Tailscale and reverse proxies, and never changes anything. Reads Docker through a bundled socket proxy that rejects every write.",
+      "version": "1.0.0",
+      "author": "Harsh Shah",
+      "compose_url": "https://registry.getarcane.app/templates/homedex/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/homedex/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/homedex",
+      "content_hash": "5dbebd2a24c529dc1206608b2ce90b915d43af409f7433a61a6b1dab7208455c",
+      "tags": ["inventory", "monitoring", "homelab", "networking", "docker"]
     },
     {
       "id": "homepage",
