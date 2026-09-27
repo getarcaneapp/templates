@@ -1,0 +1,7 @@
+{
+  "name": "Homedex",
+  "description": "Read-only homelab inventory: records the services, hosts, ports, routes, certificates, domains and changes it discovers from Docker, Proxmox VE, Tailscale and reverse proxies, and never changes anything. Reads Docker through a bundled socket proxy that rejects every write.",
+  "version": "1.0.0",
+  "author": "Harsh Shah",
+  "tags": ["inventory", "monitoring", "homelab", "networking", "docker"]
+}
