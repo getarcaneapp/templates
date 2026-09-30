@@ -19,14 +19,14 @@
     "snyk": "snyk test --all-projects --dev"
   },
   "devDependencies": {
-    "@types/node": "^26.6.2",
+    "@types/node": "^26.6.3",
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
     "tsx": "^4.23.15",
     "typescript": "7.0.2",
     "vite": "catalog:",
     "vite-plus": "catalog:",
-    "wrangler": "^4.136.3"
+    "wrangler": "^4.143.0"
   },
   "engines": {
     "node": ">=26"
