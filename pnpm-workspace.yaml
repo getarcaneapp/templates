@@ -11,8 +11,8 @@ allowBuilds:
 catalog:
   vite: npm:@voidzero-dev/vite-plus-core@1.0.0
   vite-plus: 1.0.0
-  ws: ">=8.21.3"
-  undici: ">=8.10.2"
+  ws: ">=8.22.0"
+  undici: ">=8.11.2"
   typescript: ">=7.0.2"
 
 overrides:
