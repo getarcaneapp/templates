@@ -3,5 +3,6 @@
   "description": "Youtube alternative front-end.",
   "version": "1.0.0",
   "author": "rjcndev",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/invidious.svg",
   "tags": ["youtube"]
 }

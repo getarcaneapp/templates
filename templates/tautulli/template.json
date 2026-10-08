@@ -3,5 +3,6 @@
   "description": "Monitoring and tracking tool for Plex Media Server",
   "version": "1.0.0",
   "author": "xPand4B",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/tautulli.svg",
   "tags": ["media", "streaming", "tautulli", "plex", "monitoring"]
 }

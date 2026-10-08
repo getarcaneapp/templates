@@ -3,5 +3,6 @@
   "description": "A simple and easy-to-use OIDC provider that allows users to authenticate with their passkeys to your services.",
   "version": "1.1.0",
   "author": "Community",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/pocket-id.svg",
   "tags": ["oidc"]
 }

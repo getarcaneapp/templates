@@ -3,5 +3,6 @@
   "description": "Self-hosted photo and video backup solution for mobile and web libraries.",
   "version": "1.0.0",
   "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/immich.svg",
   "tags": ["photos", "backup", "media"]
 }

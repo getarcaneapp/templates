@@ -3,5 +3,6 @@
   "description": "Identity provider for SSO, OAuth2/OIDC, SAML, LDAP, and application access.",
   "version": "1.0.0",
   "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/authentik.svg",
   "tags": ["identity", "sso", "authentication"]
 }

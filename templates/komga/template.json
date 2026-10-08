@@ -3,5 +3,6 @@
   "description": "Media server for comics, manga, magazines, and eBooks.",
   "version": "1.0.0",
   "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/komga.svg",
   "tags": ["books", "comics", "media"]
 }

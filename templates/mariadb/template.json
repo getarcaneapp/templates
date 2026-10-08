@@ -3,5 +3,6 @@
   "description": "Open source relational SQL database.",
   "version": "1.0.0",
   "author": "rjcndev",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/mariadb.svg",
   "tags": ["SQL", "MySQL"]
 }

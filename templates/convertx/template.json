@@ -3,5 +3,6 @@
   "description": "File converter. Supports 1000+ formats.",
   "version": "1.0.0",
   "author": "rjcndev",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/convertx.webp",
   "tags": ["Tools", "Converter"]
 }

@@ -3,5 +3,6 @@
   "description": "Open-source low-code platform for building internal tools and dashboards.",
   "version": "1.0.0",
   "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/appsmith.webp",
   "tags": ["development", "low-code", "productivity"]
 }

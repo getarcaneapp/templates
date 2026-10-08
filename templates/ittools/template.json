@@ -3,5 +3,6 @@
   "description": "Collection of online tools for developers.",
   "version": "1.0.0",
   "author": "rjcndev",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/it-tools.svg",
   "tags": ["Tools"]
 }

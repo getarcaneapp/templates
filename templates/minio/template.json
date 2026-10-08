@@ -3,5 +3,6 @@
   "description": "S3-compatible object storage server with a web console.",
   "version": "1.0.0",
   "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/minio.svg",
   "tags": ["storage", "s3"]
 }

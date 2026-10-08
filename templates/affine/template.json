@@ -3,5 +3,6 @@
   "description": "AFFiNE is a workspace with fully merged docs, whiteboards and databases.",
   "version": "1.0.0",
   "author": "lesi97",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/affine.svg",
   "tags": ["Productivity", "Notes"]
 }

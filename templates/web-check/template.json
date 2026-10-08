@@ -3,5 +3,6 @@
   "description": "All-in-one OSINT tool for analysing any website.",
   "version": "1.0.0",
   "author": "rjcndev",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/web-check.svg",
   "tags": ["security", "privacy"]
 }

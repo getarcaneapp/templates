@@ -3,5 +3,6 @@
   "description": "Web file manager for browsing, uploading, renaming, editing, and sharing files.",
   "version": "1.0.0",
   "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/file-browser.svg",
   "tags": ["files", "file-manager"]
 }

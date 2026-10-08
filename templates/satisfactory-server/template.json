@@ -3,5 +3,6 @@
   "description": "Unofficial Satisfactory Dedicated Server image for hosting your own Satisfactory game server.",
   "version": "1.0.1",
   "author": "xPand4B",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/satisfactory.webp",
   "tags": ["satisfactory", "game", "gameserver"]
 }

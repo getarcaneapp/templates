@@ -3,5 +3,6 @@
   "description": "Web UI for managing Nginx proxy hosts, SSL certificates, and access lists.",
   "version": "1.0.0",
   "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/nginx-proxy-manager.svg",
   "tags": ["reverse-proxy", "nginx", "ssl"]
 }

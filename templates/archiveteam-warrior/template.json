@@ -3,5 +3,6 @@
   "description": "Let your machine contribute to archiving the web by running Archiveteam Warrior projects.",
   "author": "LeviSnoot",
   "version": "1.0.0",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/archiveteam-warrior.png",
   "tags": ["archive", "preservation", "web"]
 }

@@ -3,5 +3,6 @@
   "description": "Document management system that turns scanned and uploaded documents into a searchable archive.",
   "version": "1.0.0",
   "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/paperless-ngx.svg",
   "tags": ["documents", "ocr", "productivity"]
 }

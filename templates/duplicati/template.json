@@ -3,5 +3,6 @@
   "description": "Backup client with encrypted, deduplicated backups to local or remote storage.",
   "version": "1.0.0",
   "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/duplicati.svg",
   "tags": ["backup", "storage"]
 }

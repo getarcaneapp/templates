@@ -3,5 +3,6 @@
   "description": "A lightweight CalDAV and CardDAV server for managing calendars and contacts.",
   "version": "1.0.0",
   "author": "rjcndev",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/baikal.png",
   "tags": ["Calendar", "CalDAV", "CardDAV", "Contacts"]
 }

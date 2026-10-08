@@ -3,5 +3,6 @@
   "description": "Home automation platform for local smart home control and integrations.",
   "version": "1.0.0",
   "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/home-assistant.svg",
   "tags": ["home-automation", "iot", "smart-home"]
 }

@@ -3,5 +3,6 @@
   "description": "A free and open source Statistics App for Jellyfin",
   "author": "LeviSnoot",
   "version": "1.0.0",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/jellystat.png",
   "tags": ["jellyfin", "media", "statistics", "monitoring"]
 }

@@ -3,5 +3,6 @@
   "description": "A black hole (DNS/DHCP) for Internet advertisements.",
   "version": "1.0.0",
   "author": "rjcndev",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/pi-hole.svg",
   "tags": ["DNS", "DHCP", "DNSMASQ", "NTP"]
 }

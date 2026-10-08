@@ -3,5 +3,6 @@
   "description": "Recipe manager and meal planner for personal or household cookbooks.",
   "version": "1.0.0",
   "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/mealie.svg",
   "tags": ["recipes", "meal-planning"]
 }

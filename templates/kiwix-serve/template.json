@@ -3,5 +3,6 @@
   "description": "A server for hosting Kiwix (.zim) archives, useful for offline access to Wikipedia and other content.",
   "author": "LeviSnoot",
   "version": "1.0.0",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/kiwix.svg",
   "tags": ["archive", "local", "wiki"]
 }

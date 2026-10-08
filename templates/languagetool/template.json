@@ -3,5 +3,6 @@
   "description": "Style and Grammar Checker for 25+ Languages.",
   "version": "1.0.0",
   "author": "rjcndev",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/languagetool.svg",
   "tags": ["Tools"]
 }

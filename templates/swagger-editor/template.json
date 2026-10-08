@@ -3,5 +3,6 @@
   "description": "Editor for APIs in the OpenAPI Specification.",
   "version": "1.0.0",
   "author": "rjcndev",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/swagger.svg",
   "tags": ["Tools", "API", "OpenAPI"]
 }

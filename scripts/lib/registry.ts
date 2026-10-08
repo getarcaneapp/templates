@@ -13,6 +13,7 @@ export interface TemplateMeta {
   description: string;
   version: string;
   author: string;
+  icon_url?: string;
   tags: string[];
 }
 
@@ -177,6 +178,7 @@ export async function buildTemplateEntry(dir: string, templateDir: string): Prom
     compose_url: `${PUBLIC_BASE}/${id}/${composeFile}`,
     env_url: `${PUBLIC_BASE}/${id}/.env.example`,
     documentation_url: `${DOCS_BASE}/${id}`,
+    ...(meta.icon_url ? { icon_url: String(meta.icon_url) } : {}),
     content_hash: await buildTemplateContentHashInternal(templateDir, composeFile),
     tags: Array.isArray(meta.tags) ? meta.tags.map(String) : [],
   };

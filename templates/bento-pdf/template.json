@@ -3,5 +3,6 @@
   "description": "Client-side PDF toolkit",
   "version": "1.0.0",
   "author": "xPand4B",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/bentopdf.svg",
   "tags": ["Productivity", "PDF"]
 }
