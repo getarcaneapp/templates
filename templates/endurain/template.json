@@ -3,5 +3,6 @@
   "description": "Endurain is a fitness tracking with control over their data and hosting environment.",
   "version": "1.0.0",
   "author": "rjcndev",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/endurain.svg",
   "tags": ["fitness", "gps-tracker"]
 }

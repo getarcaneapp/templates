@@ -3,5 +3,6 @@
   "description": "Fast self-hosted RSS and Atom feed reader.",
   "version": "1.0.0",
   "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/freshrss.svg",
   "tags": ["rss", "feed-reader"]
 }

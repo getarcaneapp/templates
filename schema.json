@@ -98,6 +98,10 @@
           "description": "The URL to the template's documentation or README.",
           "$ref": "#/definitions/url"
         },
+        "icon_url": {
+          "description": "Optional URL to the template icon shown in Arcane.",
+          "$ref": "#/definitions/url"
+        },
         "content_hash": {
           "description": "SHA-256 fingerprint of the template source files used to detect updates.",
           "type": "string",

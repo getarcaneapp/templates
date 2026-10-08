@@ -40,6 +40,7 @@ The generated registry entry shape looks like this:
   "compose_url": "https://registry.getarcane.app/templates/homepage/compose.yaml",
   "env_url": "https://registry.getarcane.app/templates/homepage/.env.example",
   "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/homepage",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/homepage.svg",
   "content_hash": "4c0ffee4c0ffee4c0ffee4c0ffee4c0ffee4c0ffee4c0ffee4c0ffee4c0ffee",
   "tags": ["dashboard", "homepage"]
 }
@@ -75,6 +76,7 @@ If the template needs extra setup notes, add `README.md` too.
   "description": "What it does and why it’s useful.",
   "version": "1.0.0",
   "author": "Your Name or Org",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/my-awesome-template.svg",
   "tags": ["category", "another-tag"]
 }
 ```
@@ -99,6 +101,7 @@ Tips:
 - The generator accepts compose files named: compose.yaml, docker-compose.yml, docker-compose.yaml, compose.yml.
 - `.env.example` is required.
 - Tags should be lowercase, hyphenated.
+- Set `icon_url` in `template.json` so Arcane shows the template icon. Keep `x-arcane.icon` in the compose file too, so deployed projects keep their icon.
 - `README.md` changes are included in the template fingerprint, so docs updates are visible in the published registry version.
 
 ## Development

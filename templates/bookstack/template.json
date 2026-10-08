@@ -3,5 +3,6 @@
   "description": "Simple self-hosted platform for organizing documentation and wiki content.",
   "version": "1.0.0",
   "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/bookstack.svg",
   "tags": ["wiki", "documentation"]
 }

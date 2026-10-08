@@ -3,5 +3,6 @@
   "description": "Easy-to-use self-hosted uptime monitoring tool.",
   "version": "1.0.0",
   "author": "xPand4B",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/uptime-kuma.svg",
   "tags": ["monitoring", "uptime"]
 }

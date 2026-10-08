@@ -3,5 +3,6 @@
   "description": "Minimal self-hosted bookmark manager.",
   "version": "1.0.0",
   "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/linkding.svg",
   "tags": ["bookmarks", "productivity"]
 }

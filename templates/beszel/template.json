@@ -3,5 +3,6 @@
   "description": "Lightweight server monitoring hub with Docker stats, historical data, and alerts.",
   "version": "1.0.0",
   "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/beszel.svg",
   "tags": ["monitoring", "metrics", "servers"]
 }

@@ -3,5 +3,6 @@
   "description": "Linux Patch Monitoring Automation Platform.",
   "version": "1.0.0",
   "author": "rjcndev",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/patchmon.svg",
   "tags": ["tools", "linux"]
 }

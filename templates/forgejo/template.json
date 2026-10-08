@@ -3,5 +3,6 @@
   "description": "Lightweight self-hosted Git forge for repositories, issues, pull requests, and packages.",
   "version": "1.0.0",
   "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/forgejo.svg",
   "tags": ["git", "development", "forge"]
 }

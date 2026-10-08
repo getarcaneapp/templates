@@ -3,5 +3,6 @@
   "description": "Movie collection manager for automated downloading, sorting, and library organization.",
   "version": "1.0.0",
   "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/radarr.svg",
   "tags": ["media", "movies", "automation"]
 }

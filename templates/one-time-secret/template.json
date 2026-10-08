@@ -3,5 +3,6 @@
   "description": "One Time Secret is a secure password sharing application. Keep sensitive information out of your email & chat logs.",
   "version": "1.0.0",
   "author": "lesi97",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/onetime-secret.svg",
   "tags": ["Security", "Productivity", "Utilities"]
 }

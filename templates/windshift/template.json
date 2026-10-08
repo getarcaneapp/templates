@@ -3,5 +3,6 @@
   "description": "Self-hosted work management for projects, workflows, collaboration, and delivery.",
   "version": "1.0.0",
   "author": "Windshift",
+  "icon_url": "https://windshift.sh/favicon-32x32.png",
   "tags": ["project-management", "work-management", "productivity"]
 }

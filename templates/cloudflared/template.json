@@ -3,5 +3,6 @@
   "description": "Tunneling daemon for proxying traffic from the Cloudflare network",
   "version": "1.0.0",
   "author": "xPand4B",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/cloudflare-zero-trust.svg",
   "tags": ["networking", "cloudflare", "tunneling"]
 }

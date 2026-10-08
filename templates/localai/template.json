@@ -3,5 +3,6 @@
   "description": "Open Source alternative to OpenAI.",
   "version": "1.0.0",
   "author": "rjcndev",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/localai.webp",
   "tags": ["AI", "LLM", "ChatGPT", "OpenAI"]
 }

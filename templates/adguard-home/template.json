@@ -3,5 +3,6 @@
   "description": "Network-wide DNS server for blocking ads, tracking, and malicious domains.",
   "version": "1.0.0",
   "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/adguard-home.svg",
   "tags": ["dns", "adblock", "privacy"]
 }

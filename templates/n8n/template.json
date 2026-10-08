@@ -3,5 +3,6 @@
   "description": "Workflow automation platform for connecting APIs, services, and custom logic.",
   "version": "1.0.0",
   "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/n8n.svg",
   "tags": ["automation", "workflow"]
 }

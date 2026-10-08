@@ -3,5 +3,6 @@
   "description": "Remote development with VS Code",
   "version": "1.0.0",
   "author": "xPand4B",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/visual-studio-code.svg",
   "tags": ["development", "vs-code", "remote"]
 }
