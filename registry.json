@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.33.1",
+  "version": "1.33.2",
   "templates": [
     {
       "id": "actual",
@@ -754,7 +754,7 @@
       "env_url": "https://registry.getarcane.app/templates/pocket-id/.env.example",
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/pocket-id",
       "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/pocket-id.svg",
-      "content_hash": "5a1497866f387b0dafa62a568401c3f03dc6853991bf22a423683c09033ee90e",
+      "content_hash": "edeab091df8ec5d79c6145c9e6d5d89827c4372ec0d6b94eacd1ec1f60691f56",
       "tags": ["oidc"]
     },
     {
