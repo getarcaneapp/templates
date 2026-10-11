@@ -1,0 +1,65 @@
+x-arcane:
+  icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/linkwarden.svg"
+  urls:
+    - "https://docs.linkwarden.app/self-hosting/installation"
+services:
+  linkwarden:
+    image: "ghcr.io/linkwarden/linkwarden:latest"
+    restart: "unless-stopped"
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      DATABASE_URL: "postgresql://linkwarden:${DB_PASSWORD:?Set DB_PASSWORD in .env}@db:5432/linkwarden"
+      NEXTAUTH_URL: "${NEXTAUTH_URL:-http://localhost:3000/api/v1/auth}"
+      NEXTAUTH_SECRET: "${NEXTAUTH_SECRET:?Set NEXTAUTH_SECRET in .env}"
+      MEILI_HOST: "http://meilisearch:7700"
+      MEILI_MASTER_KEY: "${MEILI_MASTER_KEY:?Set MEILI_MASTER_KEY in .env}"
+      NEXT_PUBLIC_DISABLE_REGISTRATION: "${DISABLE_REGISTRATION:-false}"
+    volumes:
+      - "data:/data/data"
+    depends_on:
+      db:
+        condition: "service_healthy"
+      meilisearch:
+        condition: "service_healthy"
+    labels:
+      com.getarcaneapp.arcane.icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/linkwarden.svg"
+  db:
+    image: "postgres:16-alpine"
+    restart: "unless-stopped"
+    environment:
+      POSTGRES_DB: "linkwarden"
+      POSTGRES_USER: "linkwarden"
+      POSTGRES_PASSWORD: "${DB_PASSWORD:?Set DB_PASSWORD in .env}"
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+    healthcheck:
+      test:
+        - "CMD-SHELL"
+        - "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"
+      interval: "10s"
+      timeout: "5s"
+      retries: 10
+      start_period: "30s"
+  meilisearch:
+    image: "getmeili/meilisearch:v1.13.3"
+    restart: "unless-stopped"
+    environment:
+      MEILI_MASTER_KEY: "${MEILI_MASTER_KEY:?Set MEILI_MASTER_KEY in .env}"
+      MEILI_NO_ANALYTICS: "true"
+    volumes:
+      - "search-data:/meili_data"
+    healthcheck:
+      test:
+        - "CMD"
+        - "curl"
+        - "-f"
+        - "http://localhost:7700/health"
+      interval: "10s"
+      timeout: "5s"
+      retries: 10
+      start_period: "30s"
+volumes:
+  data: {}
+  db-data: {}
+  search-data: {}

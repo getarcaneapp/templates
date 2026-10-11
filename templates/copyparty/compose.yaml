@@ -1,0 +1,28 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/copyparty.svg
+  urls:
+    - https://github.com/9001/copyparty/blob/hovudstraum/scripts/docker/README.md
+
+services:
+  copyparty:
+    image: copyparty/ac:latest
+    restart: unless-stopped
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${PORT:-3923}:3923"
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/copyparty.svg
+    environment:
+      TZ: ${TZ:-Etc/UTC}
+    command:
+      - -a
+      - ${USERNAME:-admin}:${PASSWORD:?Set a strong Copyparty password}
+      - -v
+      - /w::rwmda,${USERNAME:-admin}
+      - --hist
+      - /cfg/hists
+    volumes:
+      - ${FILES_PATH:-/srv/copyparty}:/w
+      - state:/cfg
+
+volumes:
+  state:

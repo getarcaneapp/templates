@@ -1,0 +1,49 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/photoprism.svg
+  urls:
+    - https://docs.photoprism.app/getting-started/docker-compose/
+
+services:
+  photoprism:
+    image: photoprism/photoprism:latest
+    restart: unless-stopped
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${PORT:-2342}:2342"
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/photoprism.svg
+    environment:
+      TZ: ${TZ:-Etc/UTC}
+      PHOTOPRISM_ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set a strong PhotoPrism administrator password}
+      PHOTOPRISM_SITE_URL: ${SITE_URL:-http://localhost:2342/}
+      PHOTOPRISM_AUTH_MODE: password
+      PHOTOPRISM_READONLY: "true"
+      PHOTOPRISM_DATABASE_DRIVER: mysql
+      PHOTOPRISM_DATABASE_SERVER: database:3306
+      PHOTOPRISM_DATABASE_NAME: photoprism
+      PHOTOPRISM_DATABASE_USER: photoprism
+      PHOTOPRISM_DATABASE_PASSWORD: ${DB_PASSWORD:?Set a database password}
+    depends_on:
+      database:
+        condition: service_healthy
+    volumes:
+      - storage:/photoprism/storage
+      - ${ORIGINALS_PATH:-/srv/photos}:/photoprism/originals:ro
+  database:
+    image: mariadb:11
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: photoprism
+      MARIADB_USER: photoprism
+      MARIADB_PASSWORD: ${DB_PASSWORD:?Set a database password}
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?Set a database root password}
+    healthcheck:
+      test: [CMD, healthcheck.sh, --connect, --innodb_initialized]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - database:/var/lib/mysql
+
+volumes:
+  storage:
+  database:

@@ -1,0 +1,36 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/recyclarr.svg
+  urls:
+    - https://recyclarr.dev/guide/installation/docker/
+
+services:
+  recyclarr:
+    image: ghcr.io/recyclarr/recyclarr:8
+    restart: unless-stopped
+    user: "${PUID:-1000}:${PGID:-1000}"
+    environment:
+      TZ: ${TZ:-Etc/UTC}
+      CRON_SCHEDULE: ${CRON_SCHEDULE:-@daily}
+    volumes:
+      - ${BASE_PATH}/config:/config
+    configs:
+      - source: recyclarr-config
+        target: /config/recyclarr.yml
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/recyclarr.svg
+
+configs:
+  recyclarr-config:
+    content: |
+      sonarr:
+        series:
+          base_url: ${SONARR_URL:?Set SONARR_URL}
+          api_key: ${SONARR_API_KEY:?Set SONARR_API_KEY}
+          quality_definition:
+            type: series
+      radarr:
+        movies:
+          base_url: ${RADARR_URL:?Set RADARR_URL}
+          api_key: ${RADARR_API_KEY:?Set RADARR_API_KEY}
+          quality_definition:
+            type: movie

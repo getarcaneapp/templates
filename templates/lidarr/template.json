@@ -1,0 +1,8 @@
+{
+  "name": "Lidarr",
+  "description": "Music library management and automated downloading.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/lidarr.svg",
+  "tags": ["media", "music"]
+}

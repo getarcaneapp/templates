@@ -1,0 +1,8 @@
+{
+  "name": "Vikunja",
+  "description": "Project and task management with lists, boards, and calendars.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/vikunja.svg",
+  "tags": ["tasks", "productivity"]
+}

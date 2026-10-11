@@ -1,0 +1,38 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/tdarr.png
+  urls:
+    - https://docs.tdarr.io/docs/installation/docker/run-compose/
+
+services:
+  tdarr:
+    image: ghcr.io/haveagitgat/tdarr:latest
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-8265}:8265"
+      - "${SERVER_PORT:-8266}:8266"
+    environment:
+      TZ: ${TZ:-Etc/UTC}
+      PUID: ${PUID:-1000}
+      PGID: ${PGID:-1000}
+      serverIP: 0.0.0.0
+      serverPort: "8266"
+      webUIPort: "8265"
+      internalNode: "true"
+      inContainer: "true"
+      nodeName: CpuNode
+      transcodecpuWorkers: "1"
+      healthcheckcpuWorkers: "1"
+      transcodegpuWorkers: "0"
+      healthcheckgpuWorkers: "0"
+      ffmpegVersion: "7"
+      auth: "true"
+      seededApiKey: ${TDARR_API_KEY:?Set TDARR_API_KEY}
+      apiKey: ${TDARR_API_KEY:?Set TDARR_API_KEY}
+    volumes:
+      - ${BASE_PATH}/server:/app/server
+      - ${BASE_PATH}/configs:/app/configs
+      - ${BASE_PATH}/logs:/app/logs
+      - ${BASE_PATH}/cache:/temp
+      - ${DATA_PATH}:/data
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/tdarr.png

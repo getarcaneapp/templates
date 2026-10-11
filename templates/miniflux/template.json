@@ -1,0 +1,8 @@
+{
+  "name": "Miniflux",
+  "description": "A minimalist RSS and Atom feed reader with private subscriptions.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/miniflux.svg",
+  "tags": ["rss", "reading"]
+}

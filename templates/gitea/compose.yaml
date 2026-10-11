@@ -1,0 +1,28 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/gitea.svg
+  urls:
+    - https://docs.gitea.com/installation/install-with-docker/
+
+services:
+  gitea:
+    image: docker.gitea.com/gitea:latest
+    restart: unless-stopped
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${APP_PORT:-3006}:3000"
+      - "${SSH_PORT:-2223}:22"
+    environment:
+      USER_UID: ${PUID:-1000}
+      USER_GID: ${PGID:-1000}
+      GITEA__database__DB_TYPE: sqlite3
+      GITEA__server__DOMAIN: ${DOMAIN:-localhost}
+      GITEA__server__SSH_DOMAIN: ${DOMAIN:-localhost}
+      GITEA__server__ROOT_URL: ${BASE_URL:-http://localhost:3006/}
+      GITEA__server__SSH_PORT: ${SSH_PORT:-2223}
+      GITEA__service__DISABLE_REGISTRATION: "true"
+    volumes:
+      - gitea-data:/data
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/gitea.svg
+
+volumes:
+  gitea-data:

@@ -1,0 +1,29 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/backrest.svg
+  urls:
+    - https://github.com/garethgeorge/backrest#docker
+
+services:
+  backrest:
+    image: ghcr.io/garethgeorge/backrest:latest
+    restart: unless-stopped
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${PORT:-9898}:9898"
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/backrest.svg
+    environment:
+      BACKREST_DATA: /data
+      BACKREST_CONFIG: /config/config.json
+      XDG_CACHE_HOME: /cache
+      TZ: ${TZ:-Etc/UTC}
+    volumes:
+      - data:/data
+      - config:/config
+      - cache:/cache
+      - ${SOURCE_PATH:-/srv/backup-source}:/userdata:ro
+      - ${REPOSITORY_PATH:-/srv/backrest-repos}:/repos
+
+volumes:
+  data:
+  config:
+  cache:

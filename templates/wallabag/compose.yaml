@@ -1,0 +1,22 @@
+x-arcane:
+  icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/wallabag.svg"
+  urls:
+    - "https://github.com/wallabag/docker"
+services:
+  wallabag:
+    image: "wallabag/wallabag:latest"
+    restart: "unless-stopped"
+    ports:
+      - "${PORT:-8080}:80"
+    environment:
+      SYMFONY__ENV__DOMAIN_NAME: "${PUBLIC_URL:-http://localhost:8080}"
+      SYMFONY__ENV__SECRET: "${APP_SECRET:?Set APP_SECRET in .env}"
+      SYMFONY__ENV__DATABASE_DRIVER: "pdo_sqlite"
+    volumes:
+      - "data:/var/www/wallabag/data"
+      - "images:/var/www/wallabag/web/assets/images"
+    labels:
+      com.getarcaneapp.arcane.icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/wallabag.svg"
+volumes:
+  data: {}
+  images: {}

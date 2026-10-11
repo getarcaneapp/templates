@@ -1,0 +1,8 @@
+{
+  "name": "SFTPGo",
+  "description": "Managed SFTP file transfer with a web administration console.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/sftpgo.svg",
+  "tags": ["files", "sftp"]
+}

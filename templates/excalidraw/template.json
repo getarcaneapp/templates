@@ -1,0 +1,8 @@
+{
+  "name": "Excalidraw",
+  "description": "A browser-based whiteboard for hand-drawn diagrams and sketches.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/excalidraw.svg",
+  "tags": ["drawing", "productivity"]
+}

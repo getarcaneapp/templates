@@ -1,0 +1,22 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/deluge.svg
+  urls:
+    - https://docs.linuxserver.io/images/docker-deluge/
+
+services:
+  deluge:
+    image: lscr.io/linuxserver/deluge:latest
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-8112}:8112"
+      - "${TORRENT_PORT:-6881}:${TORRENT_PORT:-6881}/tcp"
+      - "${TORRENT_PORT:-6881}:${TORRENT_PORT:-6881}/udp"
+    environment:
+      TZ: ${TZ:-Etc/UTC}
+      PUID: ${PUID:-1000}
+      PGID: ${PGID:-1000}
+    volumes:
+      - ${BASE_PATH}/config:/config
+      - ${DATA_PATH}:/data
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/deluge.svg

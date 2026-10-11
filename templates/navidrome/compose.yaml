@@ -1,0 +1,19 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/navidrome.svg
+  urls:
+    - https://www.navidrome.org/docs/installation/docker/
+
+services:
+  navidrome:
+    image: deluan/navidrome:latest
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-4533}:4533"
+    user: "${PUID:-1000}:${PGID:-1000}"
+    environment:
+      TZ: ${TZ:-Etc/UTC}
+    volumes:
+      - ${BASE_PATH}/data:/data
+      - ${MUSIC_PATH}:/music:ro
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/navidrome.svg

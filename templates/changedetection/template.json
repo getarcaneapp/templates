@@ -1,0 +1,8 @@
+{
+  "name": "Changedetection.io",
+  "description": "Monitor websites for content changes and deliver notifications.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/changedetection.svg",
+  "tags": ["monitoring", "automation"]
+}

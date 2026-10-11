@@ -1,0 +1,8 @@
+{
+  "name": "Bazarr",
+  "description": "Subtitle management for Sonarr and Radarr libraries.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/bazarr.svg",
+  "tags": ["media", "library"]
+}

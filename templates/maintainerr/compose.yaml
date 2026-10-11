@@ -1,0 +1,18 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/maintainerr.svg
+  urls:
+    - https://docs.maintainerr.info/installation/
+
+services:
+  maintainerr:
+    image: ghcr.io/maintainerr/maintainerr:latest
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-6246}:6246"
+    user: "${PUID:-1000}:${PGID:-1000}"
+    environment:
+      TZ: ${TZ:-Etc/UTC}
+    volumes:
+      - ${BASE_PATH}/data:/opt/data
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/maintainerr.svg

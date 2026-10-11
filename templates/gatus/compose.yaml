@@ -1,0 +1,35 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/gatus.svg
+  urls:
+    - https://github.com/TwiN/gatus#docker
+
+services:
+  gatus:
+    image: twinproduction/gatus:latest
+    restart: unless-stopped
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${PORT:-8084}:8080"
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/gatus.svg
+    configs:
+      - source: gatus
+        target: /config/config.yaml
+    volumes:
+      - data:/data
+
+configs:
+  gatus:
+    content: |
+      storage:
+        type: sqlite
+        path: /data/data.db
+      endpoints:
+        - name: monitored-service
+          url: "${MONITOR_URL:-https://example.com}"
+          interval: ${CHECK_INTERVAL:-5m}
+          conditions:
+            - "[STATUS] == 200"
+            - "[RESPONSE_TIME] < 3000"
+
+volumes:
+  data:

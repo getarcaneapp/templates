@@ -1,0 +1,8 @@
+{
+  "name": "Notifiarr",
+  "description": "Connect self-hosted services to Notifiarr notifications and integrations.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://raw.githubusercontent.com/selfhst/icons/main/svg/notifiarr.svg",
+  "tags": ["media", "automation"]
+}

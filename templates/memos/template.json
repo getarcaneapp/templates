@@ -1,0 +1,8 @@
+{
+  "name": "Memos",
+  "description": "A lightweight Markdown notes and knowledge management service.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/memos.png",
+  "tags": ["notes", "productivity"]
+}

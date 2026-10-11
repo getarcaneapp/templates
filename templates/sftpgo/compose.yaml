@@ -1,0 +1,25 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/sftpgo.svg
+  urls:
+    - https://github.com/sftpgo/docs/blob/main/docs/docker.md
+
+services:
+  sftpgo:
+    image: drakkan/sftpgo:latest
+    restart: unless-stopped
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${PORT:-8080}:8080"
+      - "${BIND_ADDRESS:-127.0.0.1}:${SFTP_PORT:-2022}:2022"
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/sftpgo.svg
+    environment:
+      SFTPGO_DATA_PROVIDER__CREATE_DEFAULT_ADMIN: "true"
+      SFTPGO_DEFAULT_ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      SFTPGO_DEFAULT_ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set a strong SFTPGo administrator password}
+    volumes:
+      - data:/srv/sftpgo
+      - state:/var/lib/sftpgo
+
+volumes:
+  data:
+  state:

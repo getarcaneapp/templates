@@ -1,0 +1,20 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/node-red.svg
+  urls:
+    - https://nodered.org/docs/getting-started/docker
+
+services:
+  node-red:
+    image: nodered/node-red:latest
+    restart: unless-stopped
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${APP_PORT:-1880}:1880"
+    environment:
+      TZ: ${TZ:-Etc/UTC}
+    volumes:
+      - node-red-data:/data
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/node-red.svg
+
+volumes:
+  node-red-data:

@@ -1,0 +1,8 @@
+{
+  "name": "Maintainerr",
+  "description": "Rule-based media collection and lifecycle management for Plex.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/maintainerr.svg",
+  "tags": ["media", "automation"]
+}

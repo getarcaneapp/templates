@@ -1,0 +1,51 @@
+x-arcane:
+  icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/miniflux.svg"
+  urls:
+    - "https://miniflux.app/docs/docker.html"
+services:
+  miniflux:
+    image: "miniflux/miniflux:latest"
+    restart: "unless-stopped"
+    ports:
+      - "${PORT:-8080}:8080"
+    environment:
+      DATABASE_URL: "postgres://miniflux:${DB_PASSWORD:?Set DB_PASSWORD in .env}@db:5432/miniflux?sslmode=disable"
+      RUN_MIGRATIONS: "1"
+      CREATE_ADMIN: "${CREATE_ADMIN:-1}"
+      ADMIN_USERNAME: "${ADMIN_USERNAME:-admin}"
+      ADMIN_PASSWORD: "${ADMIN_PASSWORD:?Set ADMIN_PASSWORD in .env}"
+      BASE_URL: "${BASE_URL:-http://localhost:8080}"
+    depends_on:
+      db:
+        condition: "service_healthy"
+    healthcheck:
+      test:
+        - "CMD"
+        - "/usr/bin/miniflux"
+        - "-healthcheck"
+        - "auto"
+      interval: "10s"
+      timeout: "5s"
+      retries: 10
+      start_period: "30s"
+    labels:
+      com.getarcaneapp.arcane.icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/miniflux.svg"
+  db:
+    image: "postgres:16-alpine"
+    restart: "unless-stopped"
+    environment:
+      POSTGRES_DB: "miniflux"
+      POSTGRES_USER: "miniflux"
+      POSTGRES_PASSWORD: "${DB_PASSWORD:?Set DB_PASSWORD in .env}"
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+    healthcheck:
+      test:
+        - "CMD-SHELL"
+        - "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"
+      interval: "10s"
+      timeout: "5s"
+      retries: 10
+      start_period: "30s"
+volumes:
+  db-data: {}

@@ -1,0 +1,8 @@
+{
+  "name": "Wiki.js",
+  "description": "A collaborative wiki with Markdown editing and flexible authentication.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/wiki-js.svg",
+  "tags": ["wiki", "productivity"]
+}

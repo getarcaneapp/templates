@@ -1,0 +1,8 @@
+{
+  "name": "NZBGet",
+  "description": "Efficient Usenet downloader with repair and unpacking support.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://raw.githubusercontent.com/selfhst/icons/main/svg/nzbget.svg",
+  "tags": ["media", "downloads"]
+}

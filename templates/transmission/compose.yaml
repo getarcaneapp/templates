@@ -1,0 +1,25 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/transmission.svg
+  urls:
+    - https://docs.linuxserver.io/images/docker-transmission/
+
+services:
+  transmission:
+    image: lscr.io/linuxserver/transmission:latest
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-9091}:9091"
+      - "${TORRENT_PORT:-51413}:${TORRENT_PORT:-51413}/tcp"
+      - "${TORRENT_PORT:-51413}:${TORRENT_PORT:-51413}/udp"
+    environment:
+      TZ: ${TZ:-Etc/UTC}
+      PUID: ${PUID:-1000}
+      PGID: ${PGID:-1000}
+      USER: ${RPC_USERNAME:-admin}
+      PASS: ${RPC_PASSWORD:?Set RPC_PASSWORD}
+      PEERPORT: ${TORRENT_PORT:-51413}
+    volumes:
+      - ${BASE_PATH}/config:/config
+      - ${DATA_PATH}:/data
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/transmission.svg

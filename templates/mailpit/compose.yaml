@@ -1,0 +1,22 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/mailpit.svg
+  urls:
+    - https://mailpit.axllent.org/docs/install/docker/
+
+services:
+  mailpit:
+    image: axllent/mailpit:latest
+    restart: unless-stopped
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${APP_PORT:-8025}:8025"
+      - "${BIND_ADDRESS:-127.0.0.1}:${SMTP_PORT:-1025}:1025"
+    environment:
+      MP_DATABASE: /data/mailpit.db
+      MP_MAX_MESSAGES: ${MAX_MESSAGES:-5000}
+    volumes:
+      - mailpit-data:/data
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/mailpit.svg
+
+volumes:
+  mailpit-data:

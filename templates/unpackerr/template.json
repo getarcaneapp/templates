@@ -1,0 +1,8 @@
+{
+  "name": "Unpackerr",
+  "description": "Extract downloaded archives for Sonarr and Radarr imports.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/unpackerr.png",
+  "tags": ["media", "automation"]
+}

@@ -1,0 +1,19 @@
+x-arcane:
+  icon: https://raw.githubusercontent.com/selfhst/icons/main/svg/notifiarr.svg
+  urls:
+    - https://notifiarr.wiki/pages/client/install/
+
+services:
+  notifiarr:
+    image: ghcr.io/notifiarr/notifiarr:latest
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-5454}:5454"
+    hostname: ${CLIENT_HOSTNAME:-notifiarr}
+    environment:
+      TZ: ${TZ:-Etc/UTC}
+      DN_API_KEY: ${NOTIFIARR_API_KEY:?Set NOTIFIARR_API_KEY}
+    volumes:
+      - ${BASE_PATH}/config:/config
+    labels:
+      com.getarcaneapp.arcane.icon: https://raw.githubusercontent.com/selfhst/icons/main/svg/notifiarr.svg

@@ -1,0 +1,8 @@
+{
+  "name": "PhotoPrism",
+  "description": "Private photo management with automatic indexing and search.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/photoprism.svg",
+  "tags": ["photos", "media"]
+}

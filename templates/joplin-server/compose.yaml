@@ -1,0 +1,58 @@
+x-arcane:
+  icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/joplin.svg"
+  urls:
+    - "https://github.com/laurent22/joplin/blob/dev/packages/server/README.md"
+services:
+  joplin:
+    image: "joplin/server:latest"
+    restart: "unless-stopped"
+    ports:
+      - "${PORT:-22300}:22300"
+    environment:
+      APP_PORT: "22300"
+      APP_BASE_URL: "${APP_BASE_URL:-http://localhost:22300}"
+      DB_CLIENT: "pg"
+      POSTGRES_HOST: "db"
+      POSTGRES_PORT: "5432"
+      POSTGRES_DATABASE: "joplin"
+      POSTGRES_USER: "joplin"
+      POSTGRES_PASSWORD: "${DB_PASSWORD:?Set DB_PASSWORD in .env}"
+      TRANSCRIBE_ENABLED: "0"
+    depends_on:
+      db:
+        condition: "service_healthy"
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - >-
+          const u = new URL(process.env.APP_BASE_URL);
+          require('http').get('http://127.0.0.1:22300/api/ping',
+          {headers: {host: u.host, 'X-Forwarded-Proto': u.protocol.slice(0, -1)}},
+          r => process.exit(r.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1));
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    labels:
+      com.getarcaneapp.arcane.icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/joplin.svg"
+  db:
+    image: "postgres:16-alpine"
+    restart: "unless-stopped"
+    environment:
+      POSTGRES_DB: "joplin"
+      POSTGRES_USER: "joplin"
+      POSTGRES_PASSWORD: "${DB_PASSWORD:?Set DB_PASSWORD in .env}"
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+    healthcheck:
+      test:
+        - "CMD-SHELL"
+        - "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"
+      interval: "10s"
+      timeout: "5s"
+      retries: 10
+      start_period: "30s"
+volumes:
+  db-data: {}

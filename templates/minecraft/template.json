@@ -1,0 +1,8 @@
+{
+  "name": "Minecraft Java Server",
+  "description": "A persistent Minecraft Java Edition server with configurable resources.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/minecraft.svg",
+  "tags": ["games", "minecraft"]
+}

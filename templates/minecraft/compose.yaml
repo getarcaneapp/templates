@@ -1,0 +1,38 @@
+x-arcane:
+  icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/minecraft.svg"
+  urls:
+    - "https://docker-minecraft-server.readthedocs.io/en/latest/"
+services:
+  minecraft:
+    image: "itzg/minecraft-server:java25"
+    restart: "unless-stopped"
+    ports:
+      - "${PORT:-25565}:25565"
+    environment:
+      EULA: "${EULA:-false}"
+      TYPE: "${SERVER_TYPE:-VANILLA}"
+      VERSION: "${MINECRAFT_VERSION:-LATEST}"
+      MEMORY: "${JAVA_MEMORY:-2G}"
+      MAX_PLAYERS: "${MAX_PLAYERS:-20}"
+      MOTD: "${MOTD:-Arcane Minecraft Server}"
+      ONLINE_MODE: "true"
+      ENABLE_RCON: "true"
+      RCON_PASSWORD: "${RCON_PASSWORD:?Set RCON_PASSWORD in .env}"
+    volumes:
+      - "data:/data"
+    cpus: "${CPUS:-2}"
+    mem_limit: "${CONTAINER_MEMORY:-3G}"
+    stdin_open: true
+    tty: true
+    healthcheck:
+      test:
+        - "CMD"
+        - "mc-health"
+      interval: "10s"
+      timeout: "5s"
+      retries: 10
+      start_period: "2m"
+    labels:
+      com.getarcaneapp.arcane.icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/minecraft.svg"
+volumes:
+  data: {}

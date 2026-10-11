@@ -1,0 +1,40 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/glance.svg
+  urls:
+    - https://github.com/glanceapp/glance/blob/main/docs/configuration.md
+
+services:
+  glance:
+    image: glanceapp/glance:latest
+    restart: unless-stopped
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${APP_PORT:-8087}:8080"
+    configs:
+      - source: glance-config
+        target: /app/config/glance.yml
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/glance.svg
+
+configs:
+  glance-config:
+    content: |
+      server:
+        port: 8080
+      pages:
+        - name: Home
+          columns:
+            - size: small
+              widgets:
+                - type: calendar
+            - size: full
+              widgets:
+                - type: search
+                  search-engine: duckduckgo
+                - type: bookmarks
+                  groups:
+                    - title: Homelab
+                      links:
+                        - title: Arcane
+                          url: https://getarcane.app
+                        - title: Self-hosting news
+                          url: https://selfh.st

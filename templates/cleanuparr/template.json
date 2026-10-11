@@ -1,0 +1,8 @@
+{
+  "name": "Cleanuparr",
+  "description": "Configurable download queue cleanup for Arr applications and download clients.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/cleanuparr.png",
+  "tags": ["media", "automation"]
+}

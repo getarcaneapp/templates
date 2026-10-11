@@ -1,0 +1,16 @@
+x-arcane:
+  icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/trilium-notes.svg"
+  urls:
+    - "https://docs.triliumnotes.org/user-guide/setup/server/installation/docker"
+services:
+  trilium:
+    image: "triliumnext/trilium:latest"
+    restart: "unless-stopped"
+    ports:
+      - "${PORT:-8080}:8080"
+    volumes:
+      - "data:/home/node/trilium-data"
+    labels:
+      com.getarcaneapp.arcane.icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/trilium-notes.svg"
+volumes:
+  data: {}

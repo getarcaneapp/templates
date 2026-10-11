@@ -1,0 +1,24 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/unpackerr.png
+  urls:
+    - https://unpackerr.zip/docs/install/docker/
+
+services:
+  unpackerr:
+    image: golift/unpackerr:latest
+    restart: unless-stopped
+    user: "${PUID:-1000}:${PGID:-1000}"
+    environment:
+      TZ: ${TZ:-Etc/UTC}
+      UN_SONARR_0_URL: ${SONARR_URL:?Set SONARR_URL}
+      UN_SONARR_0_API_KEY: ${SONARR_API_KEY:?Set SONARR_API_KEY}
+      UN_SONARR_0_PATHS_0: /data/downloads
+      UN_SONARR_0_DELETE_ORIG: "false"
+      UN_RADARR_0_URL: ${RADARR_URL:?Set RADARR_URL}
+      UN_RADARR_0_API_KEY: ${RADARR_API_KEY:?Set RADARR_API_KEY}
+      UN_RADARR_0_PATHS_0: /data/downloads
+      UN_RADARR_0_DELETE_ORIG: "false"
+    volumes:
+      - ${DATA_PATH}:/data
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/unpackerr.png

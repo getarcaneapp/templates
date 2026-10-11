@@ -1,0 +1,8 @@
+{
+  "name": "Gatus",
+  "description": "A status dashboard with scheduled endpoint health checks.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/gatus.svg",
+  "tags": ["monitoring", "status"]
+}

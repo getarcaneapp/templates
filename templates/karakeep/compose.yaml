@@ -1,0 +1,64 @@
+x-arcane:
+  icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/karakeep.svg"
+  urls:
+    - "https://docs.karakeep.app/installation/docker"
+services:
+  karakeep:
+    image: "ghcr.io/karakeep-app/karakeep:release"
+    restart: "unless-stopped"
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      DATA_DIR: "/data"
+      MEILI_ADDR: "http://meilisearch:7700"
+      MEILI_MASTER_KEY: "${MEILI_MASTER_KEY:?Set MEILI_MASTER_KEY in .env}"
+      BROWSER_WEB_URL: "http://chrome:9222"
+      NEXTAUTH_URL: "${NEXTAUTH_URL:-http://localhost:3000}"
+      NEXTAUTH_SECRET: "${NEXTAUTH_SECRET:?Set NEXTAUTH_SECRET in .env}"
+      DISABLE_SIGNUPS: "${DISABLE_SIGNUPS:-false}"
+    volumes:
+      - "data:/data"
+    depends_on:
+      chrome:
+        condition: "service_healthy"
+      meilisearch:
+        condition: "service_healthy"
+    labels:
+      com.getarcaneapp.arcane.icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/karakeep.svg"
+  chrome:
+    image: "ghcr.io/karakeep-app/karakeep-chrome:release"
+    restart: "unless-stopped"
+    init: true
+    command:
+      - "--disable-gpu"
+      - "--disable-dev-shm-usage"
+      - "--hide-scrollbars"
+      - "--disable-blink-features=AutomationControlled"
+      - "--window-size=1440,900"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:9222/json/version"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+  meilisearch:
+    image: "getmeili/meilisearch:v1.41.0"
+    restart: "unless-stopped"
+    environment:
+      MEILI_MASTER_KEY: "${MEILI_MASTER_KEY:?Set MEILI_MASTER_KEY in .env}"
+      MEILI_NO_ANALYTICS: "true"
+    volumes:
+      - "search-data:/meili_data"
+    healthcheck:
+      test:
+        - "CMD"
+        - "curl"
+        - "-f"
+        - "http://localhost:7700/health"
+      interval: "10s"
+      timeout: "5s"
+      retries: 10
+      start_period: "30s"
+volumes:
+  data: {}
+  search-data: {}

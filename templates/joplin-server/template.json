@@ -1,0 +1,8 @@
+{
+  "name": "Joplin Server",
+  "description": "A private synchronization server for Joplin notes and attachments.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/joplin.svg",
+  "tags": ["notes", "productivity"]
+}

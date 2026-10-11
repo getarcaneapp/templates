@@ -1,0 +1,8 @@
+{
+  "name": "Backrest",
+  "description": "Restic backup management with schedules, snapshots, and restore tools.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/backrest.svg",
+  "tags": ["backup", "storage"]
+}

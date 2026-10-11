@@ -1,0 +1,41 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/nocodb.svg
+  urls:
+    - https://github.com/nocodb/nocodb#docker-with-pg
+
+services:
+  nocodb:
+    image: nocodb/nocodb:latest
+    restart: unless-stopped
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${APP_PORT:-8086}:8080"
+    environment:
+      NC_DB: pg://database:5432?u=nocodb&p=${DB_PASSWORD}&d=nocodb
+      NC_AUTH_JWT_SECRET: ${JWT_SECRET}
+      NC_PUBLIC_URL: ${BASE_URL:-http://localhost:8086}
+    volumes:
+      - nocodb-data:/usr/app/data
+    depends_on:
+      database:
+        condition: service_healthy
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/nocodb.svg
+
+  database:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: nocodb
+      POSTGRES_USER: nocodb
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - nocodb-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  nocodb-data:
+  nocodb-db:

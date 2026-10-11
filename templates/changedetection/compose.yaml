@@ -1,0 +1,21 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/changedetection.svg
+  urls:
+    - https://github.com/dgtlmoon/changedetection.io#installation
+
+services:
+  changedetection:
+    image: ghcr.io/dgtlmoon/changedetection.io:latest
+    restart: unless-stopped
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${PORT:-5000}:5000"
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/changedetection.svg
+    environment:
+      BASE_URL: ${BASE_URL:-http://localhost:5000}
+      TZ: ${TZ:-Etc/UTC}
+    volumes:
+      - data:/datastore
+
+volumes:
+  data:

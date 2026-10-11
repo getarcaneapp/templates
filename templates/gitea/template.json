@@ -1,0 +1,8 @@
+{
+  "name": "Gitea",
+  "description": "Self-hosted Git repositories, code review, issues, and project collaboration.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/gitea.svg",
+  "tags": ["git", "development"]
+}

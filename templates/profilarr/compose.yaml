@@ -1,0 +1,19 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/profilarr.svg
+  urls:
+    - https://github.com/Dictionarry-Hub/profilarr
+
+services:
+  profilarr:
+    image: ghcr.io/dictionarry-hub/profilarr:latest
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-6868}:6868"
+    environment:
+      TZ: ${TZ:-Etc/UTC}
+      PUID: ${PUID:-1000}
+      PGID: ${PGID:-1000}
+    volumes:
+      - ${BASE_PATH}/config:/config
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/profilarr.svg

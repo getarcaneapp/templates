@@ -1,0 +1,41 @@
+x-arcane:
+  icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/wiki-js.svg"
+  urls:
+    - "https://docs.requarks.io/install/docker"
+services:
+  wiki:
+    image: "ghcr.io/requarks/wiki:2"
+    restart: "unless-stopped"
+    ports:
+      - "${PORT:-8080}:3000"
+    environment:
+      DB_TYPE: "postgres"
+      DB_HOST: "db"
+      DB_PORT: "5432"
+      DB_USER: "wiki"
+      DB_PASS: "${DB_PASSWORD:?Set DB_PASSWORD in .env}"
+      DB_NAME: "wiki"
+    depends_on:
+      db:
+        condition: "service_healthy"
+    labels:
+      com.getarcaneapp.arcane.icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/wiki-js.svg"
+  db:
+    image: "postgres:16-alpine"
+    restart: "unless-stopped"
+    environment:
+      POSTGRES_DB: "wiki"
+      POSTGRES_USER: "wiki"
+      POSTGRES_PASSWORD: "${DB_PASSWORD:?Set DB_PASSWORD in .env}"
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+    healthcheck:
+      test:
+        - "CMD-SHELL"
+        - "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"
+      interval: "10s"
+      timeout: "5s"
+      retries: 10
+      start_period: "30s"
+volumes:
+  db-data: {}

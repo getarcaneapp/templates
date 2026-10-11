@@ -1,0 +1,8 @@
+{
+  "name": "Linkwarden",
+  "description": "Collaborative bookmarks with archived screenshots, PDFs, and search.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/linkwarden.svg",
+  "tags": ["bookmarks", "productivity"]
+}

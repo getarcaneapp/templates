@@ -1,0 +1,22 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/gotify.svg
+  urls:
+    - https://gotify.net/docs/install
+
+services:
+  gotify:
+    image: gotify/server:latest
+    restart: unless-stopped
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${PORT:-8091}:80"
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/gotify.svg
+    environment:
+      GOTIFY_DEFAULTUSER_NAME: ${ADMIN_USERNAME:-admin}
+      GOTIFY_DEFAULTUSER_PASS: ${ADMIN_PASSWORD:?Set a strong Gotify administrator password}
+      TZ: ${TZ:-Etc/UTC}
+    volumes:
+      - data:/app/data
+
+volumes:
+  data:

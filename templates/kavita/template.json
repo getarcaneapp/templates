@@ -1,0 +1,8 @@
+{
+  "name": "Kavita",
+  "description": "Digital library server for comics, manga, and ebooks.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/kavita.svg",
+  "tags": ["media", "library"]
+}

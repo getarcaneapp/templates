@@ -1,0 +1,20 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/cleanuparr.png
+  urls:
+    - https://cleanuparr.github.io/docs/installation/detailed/
+
+services:
+  cleanuparr:
+    image: ghcr.io/cleanuparr/cleanuparr:latest
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-11011}:11011"
+    environment:
+      TZ: ${TZ:-Etc/UTC}
+      PUID: ${PUID:-1000}
+      PGID: ${PGID:-1000}
+    volumes:
+      - ${BASE_PATH}/config:/config
+      - ${DATA_PATH}:/data
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/cleanuparr.png

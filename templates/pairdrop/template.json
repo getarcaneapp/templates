@@ -1,0 +1,8 @@
+{
+  "name": "PairDrop",
+  "description": "Peer to peer file sharing between devices through a web browser.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/pairdrop.svg",
+  "tags": ["files", "sharing"]
+}

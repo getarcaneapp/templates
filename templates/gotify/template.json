@@ -1,0 +1,8 @@
+{
+  "name": "Gotify",
+  "description": "A private push notification server with a web client.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/gotify.svg",
+  "tags": ["notifications", "messaging"]
+}

@@ -1,0 +1,12 @@
+x-arcane:
+  icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/excalidraw.svg"
+  urls:
+    - "https://github.com/excalidraw/excalidraw"
+services:
+  excalidraw:
+    image: "excalidraw/excalidraw:latest"
+    restart: "unless-stopped"
+    ports:
+      - "${PORT:-8080}:80"
+    labels:
+      com.getarcaneapp.arcane.icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/excalidraw.svg"

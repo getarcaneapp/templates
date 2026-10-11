@@ -1,0 +1,8 @@
+{
+  "name": "Glance",
+  "description": "Customizable dashboard for feeds, bookmarks, calendars, and self-hosted services.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/glance.svg",
+  "tags": ["dashboard", "feeds"]
+}

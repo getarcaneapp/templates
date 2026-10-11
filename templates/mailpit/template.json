@@ -1,0 +1,8 @@
+{
+  "name": "Mailpit",
+  "description": "Local SMTP capture server and web inbox for testing application email.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/mailpit.svg",
+  "tags": ["email", "development", "testing"]
+}

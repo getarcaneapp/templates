@@ -1,0 +1,8 @@
+{
+  "name": "Node-RED",
+  "description": "Visual flow-based automation for connecting devices, APIs, and online services.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/node-red.svg",
+  "tags": ["automation", "iot", "development"]
+}

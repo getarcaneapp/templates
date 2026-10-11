@@ -1,0 +1,8 @@
+{
+  "name": "ntfy",
+  "description": "Publish and subscribe to push notifications through HTTP topics.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/ntfy.svg",
+  "tags": ["notifications", "messaging"]
+}

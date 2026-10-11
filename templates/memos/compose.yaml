@@ -1,0 +1,24 @@
+x-arcane:
+  icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/memos.png"
+  urls:
+    - "https://usememos.com/docs/deploy/docker"
+services:
+  memos:
+    image: "neosmemo/memos:stable"
+    restart: "unless-stopped"
+    ports:
+      - "${PORT:-5230}:5230"
+    environment:
+      MEMOS_INSTANCE_URL: "${INSTANCE_URL:-http://localhost:5230}"
+    volumes:
+      - "data:/var/opt/memos"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:5230/"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    labels:
+      com.getarcaneapp.arcane.icon: "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/memos.png"
+volumes:
+  data: {}

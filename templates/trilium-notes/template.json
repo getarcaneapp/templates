@@ -1,0 +1,8 @@
+{
+  "name": "Trilium Notes",
+  "description": "Hierarchical notes with rich editing and personal knowledge management.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/trilium-notes.svg",
+  "tags": ["notes", "productivity"]
+}

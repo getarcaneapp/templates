@@ -1,0 +1,20 @@
+x-arcane:
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/autobrr.svg
+  urls:
+    - https://autobrr.com/installation/docker/
+
+services:
+  autobrr:
+    image: ghcr.io/autobrr/autobrr:latest
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-7474}:7474"
+    user: "${PUID:-1000}:${PGID:-1000}"
+    environment:
+      TZ: ${TZ:-Etc/UTC}
+      AUTOBRR__HOST: 0.0.0.0
+      AUTOBRR__PORT: "7474"
+    volumes:
+      - ${BASE_PATH}/config:/config
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/autobrr.svg

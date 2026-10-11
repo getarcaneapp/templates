@@ -1,0 +1,8 @@
+{
+  "name": "HomeBox",
+  "description": "Home inventory and organization with photos, labels, and searchable items.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/homebox.svg",
+  "tags": ["inventory", "organization"]
+}

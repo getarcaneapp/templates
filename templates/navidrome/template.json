@@ -1,0 +1,8 @@
+{
+  "name": "Navidrome",
+  "description": "Personal music streaming server with Subsonic-compatible clients.",
+  "version": "1.0.0",
+  "author": "getarcaneapp",
+  "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/navidrome.svg",
+  "tags": ["media", "music"]
+}
