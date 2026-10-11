@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.33.2",
+  "version": "1.34.0",
   "templates": [
     {
       "id": "actual",
@@ -98,6 +98,32 @@
       "tags": ["identity", "sso", "authentication"]
     },
     {
+      "id": "autobrr",
+      "name": "autobrr",
+      "description": "IRC announce monitoring and filtered download automation.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/autobrr/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/autobrr/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/autobrr",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/autobrr.svg",
+      "content_hash": "b6aa1754b0d2b919757a16d669a6519dc7e159aae52f392fc7595af5216f3b82",
+      "tags": ["media", "automation"]
+    },
+    {
+      "id": "backrest",
+      "name": "Backrest",
+      "description": "Restic backup management with schedules, snapshots, and restore tools.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/backrest/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/backrest/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/backrest",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/backrest.svg",
+      "content_hash": "9517c292240a4fa242cce9fbee4a8f828a68c7dcec212f1177938d379f69031d",
+      "tags": ["backup", "storage"]
+    },
+    {
       "id": "baikal",
       "name": "Baikal",
       "description": "A lightweight CalDAV and CardDAV server for managing calendars and contacts.",
@@ -109,6 +135,19 @@
       "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/baikal.png",
       "content_hash": "2768cc0b250d06c6875088dde337831dfae03b69e2c053d6bc681ed4da3aead8",
       "tags": ["Calendar", "CalDAV", "CardDAV", "Contacts"]
+    },
+    {
+      "id": "bazarr",
+      "name": "Bazarr",
+      "description": "Subtitle management for Sonarr and Radarr libraries.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/bazarr/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/bazarr/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/bazarr",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/bazarr.svg",
+      "content_hash": "4198e9f96764fb2f30c633b883784ad6254b577136f83a351afb85c14ef3d43e",
+      "tags": ["media", "library"]
     },
     {
       "id": "bento-pdf",
@@ -176,6 +215,32 @@
       "tags": ["books", "ebooks", "media"]
     },
     {
+      "id": "changedetection",
+      "name": "Changedetection.io",
+      "description": "Monitor websites for content changes and deliver notifications.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/changedetection/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/changedetection/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/changedetection",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/changedetection.svg",
+      "content_hash": "a527de7378d757b0d9f5e30c0a5a8ea5c92bcd8b2db75aba78d378793b7c1f60",
+      "tags": ["monitoring", "automation"]
+    },
+    {
+      "id": "cleanuparr",
+      "name": "Cleanuparr",
+      "description": "Configurable download queue cleanup for Arr applications and download clients.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/cleanuparr/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/cleanuparr/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/cleanuparr",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/cleanuparr.png",
+      "content_hash": "93b29749cc9eae35bb2cb2fa95448c5b69df1de00dd383aa2be36411199a9562",
+      "tags": ["media", "automation"]
+    },
+    {
       "id": "cloudflared",
       "name": "Cloudflared",
       "description": "Tunneling daemon for proxying traffic from the Cloudflare network",
@@ -213,6 +278,32 @@
       "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/convertx.webp",
       "content_hash": "00d4bf662163b76444589c21a152f9e4a268695350dc25c0575d34ba72c25475",
       "tags": ["Tools", "Converter"]
+    },
+    {
+      "id": "copyparty",
+      "name": "Copyparty",
+      "description": "Authenticated file sharing, uploads, and media browsing.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/copyparty/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/copyparty/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/copyparty",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/copyparty.svg",
+      "content_hash": "3a3c0674a4fafca376577c9c17dd31e8e3e0571b273007f8dcbd5a9be99589b9",
+      "tags": ["files", "sharing"]
+    },
+    {
+      "id": "deluge",
+      "name": "Deluge",
+      "description": "Extensible BitTorrent client with a browser interface.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/deluge/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/deluge/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/deluge",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/deluge.svg",
+      "content_hash": "18f945fa7150e53f9ca108ce3a4b07d3b962209cac4f7e95067ceb76819c1304",
+      "tags": ["media", "downloads"]
     },
     {
       "id": "dockroute",
@@ -265,6 +356,19 @@
       "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/endurain.svg",
       "content_hash": "a5b47a705aa8c37d38eb928c74879ad8d3c1adf9aa03f2c3b5f8c19cddf1c2e6",
       "tags": ["fitness", "gps-tracker"]
+    },
+    {
+      "id": "excalidraw",
+      "name": "Excalidraw",
+      "description": "A browser-based whiteboard for hand-drawn diagrams and sketches.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/excalidraw/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/excalidraw/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/excalidraw",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/excalidraw.svg",
+      "content_hash": "7436938f1db57ec75b0837537c738111be50e0762dca211ca4581d72b12721bd",
+      "tags": ["drawing", "productivity"]
     },
     {
       "id": "filebrowser",
@@ -330,6 +434,58 @@
       "tags": ["rss", "feed-reader"]
     },
     {
+      "id": "gatus",
+      "name": "Gatus",
+      "description": "A status dashboard with scheduled endpoint health checks.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/gatus/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/gatus/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/gatus",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/gatus.svg",
+      "content_hash": "33d3e36d5050308e91560ec4e48cf7522724e9638f7c019ac9492d1d22cfaefd",
+      "tags": ["monitoring", "status"]
+    },
+    {
+      "id": "gitea",
+      "name": "Gitea",
+      "description": "Self-hosted Git repositories, code review, issues, and project collaboration.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/gitea/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/gitea/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/gitea",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/gitea.svg",
+      "content_hash": "ab2d33f4b6edb0f61fa613979d5ba4e36b69be85863623eb697cdef757293676",
+      "tags": ["git", "development"]
+    },
+    {
+      "id": "glance",
+      "name": "Glance",
+      "description": "Customizable dashboard for feeds, bookmarks, calendars, and self-hosted services.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/glance/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/glance/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/glance",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/glance.svg",
+      "content_hash": "7411bbef9143555454296575d7622310e30f851ddf22aafa00e7b5ca0bdfb4b8",
+      "tags": ["dashboard", "feeds"]
+    },
+    {
+      "id": "gotify",
+      "name": "Gotify",
+      "description": "A private push notification server with a web client.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/gotify/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/gotify/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/gotify",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/gotify.svg",
+      "content_hash": "7d3cf8464e11a6a8c681a3c3200d1e823c89f7ce324a36b29588664913f232a3",
+      "tags": ["notifications", "messaging"]
+    },
+    {
       "id": "grafana-prometheus",
       "name": "Grafana and Prometheus",
       "description": "Monitoring stack with Prometheus metrics collection, Node Exporter, and Grafana dashboards.",
@@ -341,6 +497,19 @@
       "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/grafana.svg",
       "content_hash": "533ff3c4f74c241e1975d5988ad79d9a3f04edfb2df2ae057246c9bb664f027e",
       "tags": ["monitoring", "metrics", "dashboards"]
+    },
+    {
+      "id": "grocy",
+      "name": "Grocy",
+      "description": "Household groceries, stock, recipes, chores, and shopping lists.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/grocy/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/grocy/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/grocy",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/grocy.svg",
+      "content_hash": "292acf0f6f35b0b51fedd924e5e875f339ec727738650aed0d5989af506b788e",
+      "tags": ["household", "inventory"]
     },
     {
       "id": "homarr",
@@ -367,6 +536,19 @@
       "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/home-assistant.svg",
       "content_hash": "832f0af01a83d8138269639620c8a3b59ea2c72327b63d507f97e99c5903bb5f",
       "tags": ["home-automation", "iot", "smart-home"]
+    },
+    {
+      "id": "homebox",
+      "name": "HomeBox",
+      "description": "Home inventory and organization with photos, labels, and searchable items.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/homebox/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/homebox/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/homebox",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/homebox.svg",
+      "content_hash": "03a3fa6032ef08a7179fc5e12563504a688b4fa18846b3bb4c7377fe3baa157b",
+      "tags": ["inventory", "organization"]
     },
     {
       "id": "homedex",
@@ -460,6 +642,45 @@
       "tags": ["jellyfin", "media", "statistics", "monitoring"]
     },
     {
+      "id": "joplin-server",
+      "name": "Joplin Server",
+      "description": "A private synchronization server for Joplin notes and attachments.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/joplin-server/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/joplin-server/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/joplin-server",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/joplin.svg",
+      "content_hash": "5d741167ece406556044203f20d4cd75db574699661716a1123c2298b37f1c02",
+      "tags": ["notes", "productivity"]
+    },
+    {
+      "id": "karakeep",
+      "name": "Karakeep",
+      "description": "Save and search bookmarks, notes, and images with optional AI tagging.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/karakeep/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/karakeep/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/karakeep",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/karakeep.svg",
+      "content_hash": "c8f9d85ad6cf997e606ac9463c77561813292cb6fe16f9b90eaa51fb0802c3a4",
+      "tags": ["bookmarks", "productivity"]
+    },
+    {
+      "id": "kavita",
+      "name": "Kavita",
+      "description": "Digital library server for comics, manga, and ebooks.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/kavita/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/kavita/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/kavita",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/kavita.svg",
+      "content_hash": "431d998ac099ae3e8354db051a817e6c8e6020a4d4f31da47fcd90d9e29a2533",
+      "tags": ["media", "library"]
+    },
+    {
       "id": "kiwix-serve",
       "name": "Kiwix Server",
       "description": "A server for hosting Kiwix (.zim) archives, useful for offline access to Wikipedia and other content.",
@@ -499,6 +720,19 @@
       "tags": ["Tools"]
     },
     {
+      "id": "lidarr",
+      "name": "Lidarr",
+      "description": "Music library management and automated downloading.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/lidarr/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/lidarr/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/lidarr",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/lidarr.svg",
+      "content_hash": "3660e4e866e0cf631a56b1aba8f9a95d09713601bffbd3a2547dde716430c25f",
+      "tags": ["media", "music"]
+    },
+    {
       "id": "linkding",
       "name": "Linkding",
       "description": "Minimal self-hosted bookmark manager.",
@@ -509,6 +743,19 @@
       "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/linkding",
       "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/linkding.svg",
       "content_hash": "cb43555e92a11cd5ae769837b90184c2b57b397e731a168ccac7c578af5e094e",
+      "tags": ["bookmarks", "productivity"]
+    },
+    {
+      "id": "linkwarden",
+      "name": "Linkwarden",
+      "description": "Collaborative bookmarks with archived screenshots, PDFs, and search.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/linkwarden/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/linkwarden/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/linkwarden",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/linkwarden.svg",
+      "content_hash": "07e67f183cd3535961652b2d684d1a8ddc23ee3a89b5336c575c651cc3db4fcc",
       "tags": ["bookmarks", "productivity"]
     },
     {
@@ -523,6 +770,32 @@
       "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/localai.webp",
       "content_hash": "6698959eaa64ecd1bdf0c155f1f3c6fa90a4b9c1b01dbc06207deb58e3155b90",
       "tags": ["AI", "LLM", "ChatGPT", "OpenAI"]
+    },
+    {
+      "id": "mailpit",
+      "name": "Mailpit",
+      "description": "Local SMTP capture server and web inbox for testing application email.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/mailpit/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/mailpit/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/mailpit",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/mailpit.svg",
+      "content_hash": "e976457858954c906443514a42d2c85ff9875ab2cd973268ad28f70d6b2a8895",
+      "tags": ["email", "development", "testing"]
+    },
+    {
+      "id": "maintainerr",
+      "name": "Maintainerr",
+      "description": "Rule-based media collection and lifecycle management for Plex.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/maintainerr/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/maintainerr/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/maintainerr",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/maintainerr.svg",
+      "content_hash": "45d111dcf53584a45a21762d44a3978fe9420737cc63b0fc701c1c141617132c",
+      "tags": ["media", "automation"]
     },
     {
       "id": "mariadb",
@@ -564,6 +837,19 @@
       "tags": ["recipes", "meal-planning"]
     },
     {
+      "id": "memos",
+      "name": "Memos",
+      "description": "A lightweight Markdown notes and knowledge management service.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/memos/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/memos/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/memos",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/memos.png",
+      "content_hash": "299f94220e649fdff711bc3eb720657e7c22a294c7352e13b157a04b9438dee5",
+      "tags": ["notes", "productivity"]
+    },
+    {
       "id": "metube",
       "name": "MeTube",
       "description": "Self-hosted YouTube downloader.",
@@ -575,6 +861,32 @@
       "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/metube.svg",
       "content_hash": "3ed0e77e4ef1f6cf8a06af54a550d6ac3f6f53ecd10d077f79c67ce75c909003",
       "tags": ["youtube"]
+    },
+    {
+      "id": "minecraft",
+      "name": "Minecraft Java Server",
+      "description": "A persistent Minecraft Java Edition server with configurable resources.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/minecraft/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/minecraft/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/minecraft",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/minecraft.svg",
+      "content_hash": "00e3b73933423e9fb2be5f51b6e85bf464305a5664adc95729e007f30047e67c",
+      "tags": ["games", "minecraft"]
+    },
+    {
+      "id": "miniflux",
+      "name": "Miniflux",
+      "description": "A minimalist RSS and Atom feed reader with private subscriptions.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/miniflux/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/miniflux/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/miniflux",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/miniflux.svg",
+      "content_hash": "afc10d89c3a0e4dd8c904d3c7ea4d90b5e8d4a84b02468cd173dfbf497b7752b",
+      "tags": ["rss", "reading"]
     },
     {
       "id": "minio",
@@ -615,6 +927,19 @@
       "tags": ["automation", "workflow"]
     },
     {
+      "id": "navidrome",
+      "name": "Navidrome",
+      "description": "Personal music streaming server with Subsonic-compatible clients.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/navidrome/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/navidrome/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/navidrome",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/navidrome.svg",
+      "content_hash": "46bbca2329ed1e5bae1b6dc88545a903f9b46e5b77558100e190a7ad5e0f1dbd",
+      "tags": ["media", "music"]
+    },
+    {
       "id": "nextcloud",
       "name": "Nextcloud All-in-One",
       "description": "☁️ Nextcloud server, a safe home for all your data.",
@@ -641,6 +966,71 @@
       "tags": ["reverse-proxy", "nginx", "ssl"]
     },
     {
+      "id": "nocodb",
+      "name": "NocoDB",
+      "description": "Spreadsheet-style database application for organizing data and building collaborative workflows.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/nocodb/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/nocodb/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/nocodb",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/nocodb.svg",
+      "content_hash": "1ba6a0bd24ec3b033a89a265ed61a1cf09b5b88c76dddf0bb6f66d7a68b6ede9",
+      "tags": ["database", "productivity", "no-code"]
+    },
+    {
+      "id": "node-red",
+      "name": "Node-RED",
+      "description": "Visual flow-based automation for connecting devices, APIs, and online services.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/node-red/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/node-red/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/node-red",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/node-red.svg",
+      "content_hash": "9893cfb4e6157cc95b4f68e0403a340e4716a62d70c49465606d84e29a46da89",
+      "tags": ["automation", "iot", "development"]
+    },
+    {
+      "id": "notifiarr",
+      "name": "Notifiarr",
+      "description": "Connect self-hosted services to Notifiarr notifications and integrations.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/notifiarr/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/notifiarr/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/notifiarr",
+      "icon_url": "https://raw.githubusercontent.com/selfhst/icons/main/svg/notifiarr.svg",
+      "content_hash": "cbf7d69c1d2e046171bb3a0a7aa942adfa1c5524c72247afc9b0ea07dba4c326",
+      "tags": ["media", "automation"]
+    },
+    {
+      "id": "ntfy",
+      "name": "ntfy",
+      "description": "Publish and subscribe to push notifications through HTTP topics.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/ntfy/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/ntfy/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/ntfy",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/ntfy.svg",
+      "content_hash": "c778b3f8489caaa83ef5e0ba8fcffa29fbebd4ea8cb887c09e6047aa592b3b12",
+      "tags": ["notifications", "messaging"]
+    },
+    {
+      "id": "nzbget",
+      "name": "NZBGet",
+      "description": "Efficient Usenet downloader with repair and unpacking support.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/nzbget/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/nzbget/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/nzbget",
+      "icon_url": "https://raw.githubusercontent.com/selfhst/icons/main/svg/nzbget.svg",
+      "content_hash": "a48ea4ece2fd66852d241fec171d6502cde5ac8f505ce60deeb90d7f1131afc2",
+      "tags": ["media", "downloads"]
+    },
+    {
       "id": "omnitools",
       "name": "OmniTools",
       "description": "Self-hosted collection of powerful web-based tools for everyday tasks.",
@@ -665,6 +1055,19 @@
       "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/onetime-secret.svg",
       "content_hash": "3de24982f7b15498f0df36b67a20459baed1d1343bba0f93c553aea4582b28d2",
       "tags": ["Security", "Productivity", "Utilities"]
+    },
+    {
+      "id": "pairdrop",
+      "name": "PairDrop",
+      "description": "Peer to peer file sharing between devices through a web browser.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/pairdrop/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/pairdrop/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/pairdrop",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/pairdrop.svg",
+      "content_hash": "6abb3cca1f7666a5787aa38252388baf27c285db04ed657701295d43da87e434",
+      "tags": ["files", "sharing"]
     },
     {
       "id": "paperless-ngx",
@@ -706,6 +1109,19 @@
       "tags": ["database", "postgresql"]
     },
     {
+      "id": "photoprism",
+      "name": "PhotoPrism",
+      "description": "Private photo management with automatic indexing and search.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/photoprism/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/photoprism/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/photoprism",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/photoprism.svg",
+      "content_hash": "aba7858c91af3a2d40a659ee0502dc76871d5fd2be3aa803541a801be5fa0e40",
+      "tags": ["photos", "media"]
+    },
+    {
       "id": "pi-hole",
       "name": "Pi-hole",
       "description": "A black hole (DNS/DHCP) for Internet advertisements.",
@@ -730,6 +1146,19 @@
       "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/pinchflat.webp",
       "content_hash": "672786691d72fae533aab61351f342b71e10957e9d23e299fa7ad390b93d9fe4",
       "tags": ["youtube", "youtube-dl"]
+    },
+    {
+      "id": "planka",
+      "name": "Planka",
+      "description": "Collaborative Kanban boards for organizing projects and tasks.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/planka/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/planka/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/planka",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/planka.svg",
+      "content_hash": "99d98cf02ffc61f9a92ffa10912d5bfd6c2c4a8030347af0945a387cc8770e88",
+      "tags": ["tasks", "productivity"]
     },
     {
       "id": "plex",
@@ -797,6 +1226,19 @@
       "tags": ["SQL"]
     },
     {
+      "id": "profilarr",
+      "name": "Profilarr",
+      "description": "Manage and synchronize quality profiles and custom formats for Arr applications.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/profilarr/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/profilarr/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/profilarr",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/profilarr.svg",
+      "content_hash": "141279f999e854f5dcf885d39648683fc753c0216a556167a06a80a270fbdd4d",
+      "tags": ["media", "automation"]
+    },
+    {
       "id": "prowlarr",
       "name": "Prowlarr",
       "description": "Indexer manager and proxy for media automation apps.",
@@ -808,6 +1250,19 @@
       "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/prowlarr.svg",
       "content_hash": "03d5a12db2d04c1a038bfbce58c14e7391fd38304619c2cf2373090ddd42275e",
       "tags": ["media", "indexers", "downloaders"]
+    },
+    {
+      "id": "qbittorrent",
+      "name": "qBittorrent",
+      "description": "BitTorrent client with a web interface and download automation support.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/qbittorrent/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/qbittorrent/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/qbittorrent",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/qbittorrent.svg",
+      "content_hash": "ee60f94cfce619af8c9ecac5b33f34cb115cae644aefd73383385975bc4061f6",
+      "tags": ["media", "downloads"]
     },
     {
       "id": "radarr",
@@ -823,6 +1278,19 @@
       "tags": ["media", "movies", "automation"]
     },
     {
+      "id": "recyclarr",
+      "name": "Recyclarr",
+      "description": "Scheduled synchronization of Sonarr and Radarr quality definitions.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/recyclarr/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/recyclarr/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/recyclarr",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/recyclarr.svg",
+      "content_hash": "a3657446d234e7763a9ee2c69b9cebe5e84c3c5baf4e783b07d346cd0fa98909",
+      "tags": ["media", "automation"]
+    },
+    {
       "id": "redis",
       "name": "Redis",
       "description": "In-memory data store commonly used for caching, queues, and application state.",
@@ -834,6 +1302,19 @@
       "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/redis.svg",
       "content_hash": "3a0241b90c6fad535530a17892c6947b3e7d9f6cc1c24b66bc1dc45067ddf9fd",
       "tags": ["database", "cache"]
+    },
+    {
+      "id": "romm",
+      "name": "RomM",
+      "description": "Manage a ROM library with artwork, metadata, saves, and browser play.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/romm/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/romm/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/romm",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/romm.svg",
+      "content_hash": "b7693e553adf9ca73408904be8ce49db7f0ba74ac375fbadb593afd0ecd60576",
+      "tags": ["games", "roms"]
     },
     {
       "id": "rybbit",
@@ -849,6 +1330,19 @@
       "tags": ["analytics"]
     },
     {
+      "id": "sabnzbd",
+      "name": "SABnzbd",
+      "description": "Usenet downloader with automated repair and extraction.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/sabnzbd/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/sabnzbd/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/sabnzbd",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/sabnzbd.svg",
+      "content_hash": "7c872d7a8d794f9c72a0597836ccd66502507dfbda0ff3f87c98bf58d79d3998",
+      "tags": ["media", "downloads"]
+    },
+    {
       "id": "satisfactory-server",
       "name": "Satisfactory Dedicated Server",
       "description": "Unofficial Satisfactory Dedicated Server image for hosting your own Satisfactory game server.",
@@ -860,6 +1354,19 @@
       "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/satisfactory.webp",
       "content_hash": "4b4d9f13fc67f83b93ad6fd492d2d27a712306de25bfb5e9a6e4578fe9aada68",
       "tags": ["satisfactory", "game", "gameserver"]
+    },
+    {
+      "id": "searxng",
+      "name": "SearXNG",
+      "description": "Privacy-respecting metasearch across multiple search engines.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/searxng/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/searxng/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/searxng",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/searxng.svg",
+      "content_hash": "efdb4b56800e67db658c417f3ce08dbf978d52dd0529c5a126ec49bacf303626",
+      "tags": ["search", "privacy"]
     },
     {
       "id": "seerr",
@@ -875,6 +1382,19 @@
       "tags": ["media", "streaming", "requests", "jellyfin", "plex", "seerr"]
     },
     {
+      "id": "sftpgo",
+      "name": "SFTPGo",
+      "description": "Managed SFTP file transfer with a web administration console.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/sftpgo/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/sftpgo/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/sftpgo",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/sftpgo.svg",
+      "content_hash": "e765f48f555bd68d70f05344c0ae1a4c9e5bd761a96aab00d2fd8f2b1dd2e430",
+      "tags": ["files", "sftp"]
+    },
+    {
       "id": "sonarr",
       "name": "Sonarr",
       "description": "TV series manager for automated downloading, sorting, and library organization.",
@@ -886,6 +1406,32 @@
       "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/sonarr.svg",
       "content_hash": "24e4021b6099f521f1ad947c329b69062b9312b1a51826892532287b19def681",
       "tags": ["media", "tv", "automation"]
+    },
+    {
+      "id": "speedtest-tracker",
+      "name": "Speedtest Tracker",
+      "description": "Schedule internet speed tests and chart connection performance.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/speedtest-tracker/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/speedtest-tracker/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/speedtest-tracker",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/speedtest-tracker.svg",
+      "content_hash": "50200d410b1dd2cf3f24363baa1c6342d9d31c528b701a2f2b61420bd34f7b55",
+      "tags": ["monitoring", "network"]
+    },
+    {
+      "id": "stirling-pdf",
+      "name": "Stirling PDF",
+      "description": "PDF editing, conversion, merging, OCR, and document tools in a web interface.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/stirling-pdf/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/stirling-pdf/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/stirling-pdf",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/stirling-pdf.svg",
+      "content_hash": "b24b7c66e52c3360da6a81dcf40765e9d70c17464b354e74ee7558047f6b8ab2",
+      "tags": ["pdf", "documents", "tools"]
     },
     {
       "id": "string-is",
@@ -952,6 +1498,71 @@
       "tags": ["media", "streaming", "tautulli", "plex", "monitoring"]
     },
     {
+      "id": "tdarr",
+      "name": "Tdarr",
+      "description": "Distributed media transcoding with a bundled CPU worker.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/tdarr/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/tdarr/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/tdarr",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/tdarr.png",
+      "content_hash": "6437d764f97abd4c7f28a113ac3262a8c995b6d07fff214f9c045c355a3eb5b1",
+      "tags": ["media", "automation"]
+    },
+    {
+      "id": "transmission",
+      "name": "Transmission",
+      "description": "Lightweight BitTorrent client with a web interface and RPC API.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/transmission/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/transmission/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/transmission",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/transmission.svg",
+      "content_hash": "c51817014b4bd9d716aa56f232b5fbbbfe98afbcdb44cc60bcf5dccbb5570ff4",
+      "tags": ["media", "downloads"]
+    },
+    {
+      "id": "trilium-notes",
+      "name": "Trilium Notes",
+      "description": "Hierarchical notes with rich editing and personal knowledge management.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/trilium-notes/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/trilium-notes/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/trilium-notes",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/trilium-notes.svg",
+      "content_hash": "9912ff21364a8ea5e01d5f1d8913a2baa4214d7773af00cc8ffb279bd331092e",
+      "tags": ["notes", "productivity"]
+    },
+    {
+      "id": "umami",
+      "name": "Umami",
+      "description": "Privacy-focused website analytics with dashboards and event tracking.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/umami/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/umami/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/umami",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/umami.svg",
+      "content_hash": "baf84a3885a3140ea63a701a958be203ec27a6e81c1903f3e42e1281ed05849f",
+      "tags": ["analytics", "web"]
+    },
+    {
+      "id": "unpackerr",
+      "name": "Unpackerr",
+      "description": "Extract downloaded archives for Sonarr and Radarr imports.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/unpackerr/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/unpackerr/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/unpackerr",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/unpackerr.png",
+      "content_hash": "81d890c15d980c16d9844ed06dfedef483caa953f7102d09be478d2864d3d819",
+      "tags": ["media", "automation"]
+    },
+    {
       "id": "uptime-kuma",
       "name": "Uptime Kuma",
       "description": "Easy-to-use self-hosted uptime monitoring tool.",
@@ -991,6 +1602,32 @@
       "tags": ["Utilities", "Productivity"]
     },
     {
+      "id": "vikunja",
+      "name": "Vikunja",
+      "description": "Project and task management with lists, boards, and calendars.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/vikunja/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/vikunja/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/vikunja",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/vikunja.svg",
+      "content_hash": "45f2764abe8e9e5efbf5537340bc15f02e33c55b2563285aaf008586971b42db",
+      "tags": ["tasks", "productivity"]
+    },
+    {
+      "id": "wallabag",
+      "name": "wallabag",
+      "description": "Save web articles for distraction-free reading and offline access.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/wallabag/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/wallabag/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/wallabag",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/wallabag.svg",
+      "content_hash": "1d963c2b00407bff473a124dd967940cb8f41ef74527feba71edcd14902730f6",
+      "tags": ["bookmarks", "reading"]
+    },
+    {
       "id": "web-check",
       "name": "Web-Check",
       "description": "All-in-one OSINT tool for analysing any website.",
@@ -1002,6 +1639,19 @@
       "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/web-check.svg",
       "content_hash": "d410015745817ad77503bb4225c337e6599c099d8be1b08ae56470c6cbf44584",
       "tags": ["security", "privacy"]
+    },
+    {
+      "id": "wiki-js",
+      "name": "Wiki.js",
+      "description": "A collaborative wiki with Markdown editing and flexible authentication.",
+      "version": "1.0.0",
+      "author": "getarcaneapp",
+      "compose_url": "https://registry.getarcane.app/templates/wiki-js/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/wiki-js/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/wiki-js",
+      "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/wiki-js.svg",
+      "content_hash": "395ca5b81cbbcaa06384d779a69bbd8c34976b2fa75aebee0030a2e4eca0f64e",
+      "tags": ["wiki", "productivity"]
     },
     {
       "id": "windshift",
