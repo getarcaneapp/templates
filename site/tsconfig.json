@@ -1,0 +1,30 @@
+{
+  "extends": "$app/tsconfig",
+  "include": ["src", "vite.config.ts"],
+  "compilerOptions": {
+    "paths": {
+      "#lib/*.svelte": ["./src/lib/*.svelte"]
+    },
+    "target": "ES2025",
+    "verbatimModuleSyntax": true,
+    "allowJs": true,
+    "checkJs": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowUnusedLabels": false,
+    "noUncheckedSideEffectImports": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowUnreachableCode": false,
+    "noUncheckedIndexedAccess": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "moduleResolution": "bundler",
+    "types": ["$app/types", "node"]
+  },
+  "exclude": ["node_modules/**"]
+}

@@ -1,0 +1,97 @@
+name: Template request
+description: Ask for a new Docker Compose template
+title: "[Template request] "
+labels: ["template-request", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Want to add it yourself? `vp run new <id>` scaffolds a template that passes the linter; see [CONTRIBUTING.md](https://github.com/getarcaneapp/templates/blob/main/CONTRIBUTING.md).
+  - type: input
+    id: name
+    attributes:
+      label: Application name
+      placeholder: Paperless-ngx
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Project URL
+      description: Homepage or source repository.
+      placeholder: https://github.com/paperless-ngx/paperless-ngx
+    validations:
+      required: true
+  - type: input
+    id: image
+    attributes:
+      label: Container image
+      description: The official image, if one exists.
+      placeholder: ghcr.io/paperless-ngx/paperless-ngx
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Tags from tags.json that fit the application.
+      multiple: true
+      options:
+        - ai
+        - analytics
+        - archive
+        - automation
+        - backup
+        - bookmarks
+        - books
+        - calendar
+        - dashboard
+        - database
+        - development
+        - dns
+        - docker
+        - documents
+        - downloads
+        - email
+        - files
+        - finance
+        - fitness
+        - games
+        - git
+        - hobby
+        - home-automation
+        - household
+        - identity
+        - logging
+        - media
+        - media-management
+        - media-server
+        - monitoring
+        - music
+        - networking
+        - notes
+        - notifications
+        - photos
+        - privacy
+        - productivity
+        - reverse-proxy
+        - rss
+        - search
+        - security
+        - storage
+        - tasks
+        - tools
+        - video
+        - vpn
+        - wiki
+    validations:
+      required: true
+  - type: textarea
+    id: services
+    attributes:
+      label: Services
+      description: Extra services the template needs, such as a database or cache.
+      placeholder: postgres, redis
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else
+      description: Upstream compose files, required configuration, or setup steps worth knowing about.

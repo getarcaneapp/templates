@@ -3,5 +3,6 @@
   "description": "The modern spam protection.",
   "version": "1.0.0",
   "author": "rjcndev",
-  "tags": ["Tools"]
+  "icon_url": "https://github.com/mosparo.png",
+  "tags": ["tools"]
 }

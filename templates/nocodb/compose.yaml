@@ -35,6 +35,8 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/postgresql.svg
 
 volumes:
   nocodb-data:

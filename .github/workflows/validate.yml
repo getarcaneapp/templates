@@ -6,9 +6,13 @@ on:
       - ".github/workflows/validate.yml"
       - "package.json"
       - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
       - "schema.json"
       - "scripts/**"
+      - "site/**"
+      - "tags.json"
       - "templates/**"
+      - "vite.config.ts"
       - "tsconfig.json"
   workflow_dispatch:
 

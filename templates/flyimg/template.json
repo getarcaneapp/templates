@@ -3,5 +3,6 @@
   "description": "App that resizes and crops images on the fly.",
   "version": "1.0.0",
   "author": "rjcndev",
-  "tags": ["Tools"]
+  "icon_url": "https://github.com/flyimg.png",
+  "tags": ["tools"]
 }

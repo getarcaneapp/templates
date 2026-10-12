@@ -3,5 +3,6 @@
   "description": "Make beautiful isometric infrastructure diagrams.",
   "version": "1.0.0",
   "author": "rjcndev",
-  "tags": ["tools", "infra", "devops"]
+  "icon_url": "https://github.com/stan-smith.png",
+  "tags": ["tools", "development"]
 }

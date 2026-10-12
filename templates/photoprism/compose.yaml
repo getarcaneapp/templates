@@ -43,6 +43,8 @@ services:
       retries: 10
     volumes:
       - database:/var/lib/mysql
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/mariadb.svg
 
 volumes:
   storage:

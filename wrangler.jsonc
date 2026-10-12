@@ -3,6 +3,7 @@
   "compatibility_date": "2025-06-05",
   "assets": {
     "directory": "./build",
+    "not_found_handling": "404-page",
   },
   "preview_urls": true,
   "workers_dev": true,

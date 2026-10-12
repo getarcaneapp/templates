@@ -1,13 +1,25 @@
 {
+  "include": ["scripts/**/*.ts"],
   "compilerOptions": {
-    "target": "esnext",
+    "target": "ES2025",
     "module": "esnext",
     "moduleResolution": "bundler",
-    "strict": true,
+    "verbatimModuleSyntax": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
+    "noEmit": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowUnusedLabels": false,
+    "noUncheckedSideEffectImports": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowUnreachableCode": false,
+    "noUncheckedIndexedAccess": true,
+    "noPropertyAccessFromIndexSignature": true,
     "types": ["node"]
   },
-  "include": ["scripts/**/*.ts"]
+  "exclude": ["node_modules/**"]
 }
