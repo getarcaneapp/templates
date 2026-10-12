@@ -4,7 +4,7 @@ x-arcane:
     - "https://docker-minecraft-server.readthedocs.io/en/latest/"
 services:
   minecraft:
-    image: "itzg/minecraft-server:java25"
+    image: "itzg/minecraft-server:latest"
     restart: "unless-stopped"
     ports:
       - "${PORT:-25565}:25565"

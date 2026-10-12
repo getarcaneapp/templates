@@ -1,9 +1,24 @@
 import { createHash } from "node:crypto";
-import { promises as fs } from "node:fs";
+import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import { format } from "vite-plus/fmt";
+import { type Document, parseDocument } from "yaml";
 
-const ROOT = process.cwd();
+// Walk up from the working directory so scripts run from the repo root and the site
+// (which builds from site/) resolve the same templates directory.
+function findRepoRoot(start: string): string {
+  let dir = path.resolve(start);
+  while (true) {
+    if (existsSync(path.join(dir, "schema.json")) && existsSync(path.join(dir, "templates"))) {
+      return dir;
+    }
+    const parent = path.dirname(dir);
+    if (parent === dir) return path.resolve(start);
+    dir = parent;
+  }
+}
+
+export const ROOT = findRepoRoot(process.cwd());
 export const TEMPLATES_DIR = path.join(ROOT, "templates");
 
 export type BumpPart = "major" | "minor" | "patch";
@@ -11,7 +26,8 @@ export type BumpPart = "major" | "minor" | "patch";
 export interface TemplateMeta {
   name: string;
   description: string;
-  version: string;
+  /** Optional: when omitted, the generator derives it from the previous registry entry. */
+  version?: string;
   author: string;
   icon_url?: string;
   tags: string[];
@@ -19,6 +35,7 @@ export interface TemplateMeta {
 
 export interface TemplateEntry extends TemplateMeta {
   id: string;
+  version: string;
   compose_url: string;
   env_url: string;
   documentation_url: string;
@@ -40,15 +57,16 @@ interface BuildRegistryOptions {
 }
 
 const REGISTRY = {
-  name: process.env.REGISTRY_NAME || "Arcane Community Templates",
-  description: process.env.REGISTRY_DESCRIPTION || "Community Docker Compose Templates for Arcane",
-  author: process.env.REGISTRY_AUTHOR || "getarcaneapp",
-  url: process.env.REGISTRY_URL || "https://github.com/getarcaneapp/templates",
+  name: process.env["REGISTRY_NAME"] || "Arcane Community Templates",
+  description:
+    process.env["REGISTRY_DESCRIPTION"] || "Community Docker Compose Templates for Arcane",
+  author: process.env["REGISTRY_AUTHOR"] || "getarcaneapp",
+  url: process.env["REGISTRY_URL"] || "https://github.com/getarcaneapp/templates",
 } satisfies Omit<RegistryFile, "version" | "templates">;
 
-const PUBLIC_BASE = process.env.PUBLIC_BASE || "https://registry.getarcane.app/templates";
-const DOCS_BASE = process.env.DOCS_BASE || `${REGISTRY.url}/tree/main/templates`;
-const SCHEMA_URL = process.env.SCHEMA_URL || "https://registry.getarcane.app/schema.json";
+const PUBLIC_BASE = process.env["PUBLIC_BASE"] || "https://registry.getarcane.app/templates";
+const DOCS_BASE = process.env["DOCS_BASE"] || `${REGISTRY.url}/tree/main/templates`;
+const SCHEMA_URL = process.env["SCHEMA_URL"] || "https://registry.getarcane.app/schema.json";
 
 export function parseBumpPart(value: string | undefined, fallback: BumpPart): BumpPart {
   const normalized = value?.toLowerCase();
@@ -59,14 +77,14 @@ export function parseBumpPart(value: string | undefined, fallback: BumpPart): Bu
   return fallback;
 }
 
-const BUMP_PART = parseBumpPart(process.env.BUMP_PART, "minor");
-const CHANGED_TEMPLATE_BUMP_PART = parseBumpPart(process.env.CHANGED_TEMPLATE_BUMP_PART, "patch");
-const COMPOSE_CANDIDATES = [
-  "compose.yaml",
-  "docker-compose.yml",
-  "docker-compose.yaml",
-  "compose.yml",
-] as const;
+const BUMP_PART = parseBumpPart(process.env["BUMP_PART"], "minor");
+const CHANGED_TEMPLATE_BUMP_PART = parseBumpPart(
+  process.env["CHANGED_TEMPLATE_BUMP_PART"],
+  "patch",
+);
+export const COMPOSE_FILE = "compose.yaml";
+/** Older names the linter recognizes so `lint:templates --fix` can rename them. */
+export const LEGACY_COMPOSE_FILES = ["compose.yml", "docker-compose.yml", "docker-compose.yaml"];
 
 export const exists = async (targetPath: string): Promise<boolean> =>
   !!(await fs.stat(targetPath).catch(() => null));
@@ -82,7 +100,9 @@ export function bumpSemver(version: string, part: BumpPart = "minor"): string {
   const match = String(version).match(/^(\d+)\.(\d+)\.(\d+)(?:[.-].*)?$/);
   if (!match) return "1.0.0";
 
-  let [major, minor, patch] = match.slice(1).map((segment) => parseInt(segment, 10));
+  let major = Number(match[1]);
+  let minor = Number(match[2]);
+  let patch = Number(match[3]);
   if (part === "major") {
     major += 1;
     minor = 0;
@@ -122,15 +142,108 @@ export async function loadLocalRegistry(log = true): Promise<RegistryFile | null
 }
 
 export async function findComposeFile(templateDir: string): Promise<string> {
-  for (const candidate of COMPOSE_CANDIDATES) {
-    if (await exists(path.join(templateDir, candidate))) {
-      return candidate;
+  if (await exists(path.join(templateDir, COMPOSE_FILE))) {
+    return COMPOSE_FILE;
+  }
+
+  const relative = path.relative(ROOT, templateDir);
+  for (const legacy of LEGACY_COMPOSE_FILES) {
+    if (await exists(path.join(templateDir, legacy))) {
+      throw new Error(
+        `${relative}/${legacy} must be named ${COMPOSE_FILE} (run \`vp run lint:templates --fix\`)`,
+      );
     }
   }
 
-  throw new Error(
-    `No compose file found in ${path.relative(ROOT, templateDir)} (looked for ${COMPOSE_CANDIDATES.join(", ")})`,
-  );
+  throw new Error(`No ${COMPOSE_FILE} found in ${relative}`);
+}
+
+export interface LoadedTemplate {
+  id: string;
+  dir: string;
+  meta: Partial<TemplateMeta> | null;
+  metaError?: string;
+  /** Actual compose filename on disk, which may be a legacy name. */
+  composeFile: string | null;
+  composeRaw: string;
+  compose: Document.Parsed | null;
+  envRaw: string | null;
+  env: Map<string, string>;
+  readme: string | null;
+}
+
+const readOptional = (filePath: string): Promise<string | null> =>
+  fs.readFile(filePath, "utf8").catch(() => null);
+
+/** Parse a dotenv file: `KEY=value`, optional quotes, and ` #` trailing comments. */
+export function parseEnv(raw: string): Map<string, string> {
+  const env = new Map<string, string>();
+  for (const line of raw.split(/\r?\n/)) {
+    const match = line.match(/^\s*(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)\s*=(.*)$/);
+    if (!match?.[1]) continue;
+
+    let value = (match[2] ?? "").trim();
+    const quote = value[0];
+    if ((quote === '"' || quote === "'") && value.indexOf(quote, 1) > 0) {
+      value = value.slice(1, value.indexOf(quote, 1));
+    } else {
+      value = value.replace(/(^|\s)#.*$/, "").trim();
+    }
+    env.set(match[1], value);
+  }
+  return env;
+}
+
+/** Read every source file of a template into one object for the linter and the site. */
+export async function loadTemplate(dir: string): Promise<LoadedTemplate> {
+  const templateDir = path.join(TEMPLATES_DIR, dir);
+  const names = [COMPOSE_FILE, ...LEGACY_COMPOSE_FILES];
+  let composeFile: string | null = null;
+  for (const name of names) {
+    if (await exists(path.join(templateDir, name))) {
+      composeFile = name;
+      break;
+    }
+  }
+
+  let meta: Partial<TemplateMeta> | null = null;
+  let metaError: string | undefined;
+  const metaRaw = await readOptional(path.join(templateDir, "template.json"));
+  if (metaRaw === null) {
+    metaError = "template.json is missing";
+  } else {
+    try {
+      meta = JSON.parse(metaRaw) as Partial<TemplateMeta>;
+    } catch (error) {
+      metaError = `template.json is not valid JSON: ${(error as Error).message}`;
+    }
+  }
+
+  const composeRaw = composeFile
+    ? await fs.readFile(path.join(templateDir, composeFile), "utf8")
+    : "";
+  const envRaw = await readOptional(path.join(templateDir, ".env.example"));
+
+  return {
+    id: dir,
+    dir: templateDir,
+    meta,
+    metaError,
+    composeFile,
+    composeRaw,
+    compose: composeFile ? parseDocument(composeRaw) : null,
+    envRaw,
+    env: parseEnv(envRaw ?? ""),
+    readme: await readOptional(path.join(templateDir, "README.md")),
+  };
+}
+
+export async function listTemplateDirs(): Promise<string[]> {
+  const entries = await fs.readdir(TEMPLATES_DIR, { withFileTypes: true });
+  return entries
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .sort();
 }
 
 async function buildTemplateContentHashInternal(
@@ -183,7 +296,7 @@ export async function buildTemplateEntry(dir: string, templateDir: string): Prom
     tags: Array.isArray(meta.tags) ? meta.tags.map(String) : [],
   };
 
-  for (const key of ["name", "description", "version", "author"] as const) {
+  for (const key of ["name", "description", "author"] as const) {
     if (!item[key] || typeof item[key] !== "string") {
       throw new Error(`templates/${dir}/template.json missing/invalid "${key}"`);
     }
@@ -238,9 +351,33 @@ export function detectTemplateChanges(
   return { addedIds, updatedIds, removedIds, bumpPart };
 }
 
+/**
+ * Fill in versions for templates whose template.json omits `version`: new templates start
+ * at 1.0.0, changed templates get a patch bump over their previous registry version, and
+ * unchanged templates keep it. A version written in template.json always wins.
+ */
+export function applyAutoVersions(
+  templates: TemplateEntry[],
+  previousTemplates: TemplateEntry[] = [],
+): TemplateEntry[] {
+  const previousById = new Map(previousTemplates.map((template) => [template.id, template]));
+  return templates.map((template) => {
+    if (template.version) return template;
+
+    const previous = previousById.get(template.id);
+    let version = "1.0.0";
+    if (previous) {
+      version =
+        previous.content_hash === template.content_hash
+          ? previous.version
+          : bumpSemver(previous.version, "patch");
+    }
+    return { ...template, version };
+  });
+}
+
 export async function collectTemplates(): Promise<TemplateEntry[]> {
-  const entries = await fs.readdir(TEMPLATES_DIR, { withFileTypes: true });
-  const templateDirs = entries.filter((entry) => entry.isDirectory()).map((entry) => entry.name);
+  const templateDirs = await listTemplateDirs();
 
   const templates: TemplateEntry[] = [];
   for (const dir of templateDirs) {
@@ -254,8 +391,8 @@ export async function collectTemplates(): Promise<TemplateEntry[]> {
 export async function buildRegistry(options: BuildRegistryOptions = {}): Promise<RegistryFile> {
   const { log = true } = options;
   const previousRegistry = await loadLocalRegistry(log);
-  const templates = await collectTemplates();
-  const baseVersion = previousRegistry?.version || process.env.REGISTRY_VERSION || "1.0.0";
+  const templates = applyAutoVersions(await collectTemplates(), previousRegistry?.templates || []);
+  const baseVersion = previousRegistry?.version || process.env["REGISTRY_VERSION"] || "1.0.0";
   const changes = detectTemplateChanges(previousRegistry?.templates || [], templates);
   const nextVersion = changes.bumpPart
     ? bumpSemver(String(baseVersion), changes.bumpPart)

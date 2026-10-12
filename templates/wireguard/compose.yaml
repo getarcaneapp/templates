@@ -5,7 +5,7 @@ x-arcane:
 
 services:
   wireguard:
-    image: linuxserver/wireguard
+    image: linuxserver/wireguard:latest
     container_name: wireguard
     cap_add:
       - NET_ADMIN

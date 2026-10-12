@@ -4,5 +4,5 @@
   "version": "1.0.0",
   "author": "Harsh Shah",
   "icon_url": "https://raw.githubusercontent.com/HarshShah0203/homedex/main/docs/brand/homedex-icon-512.png",
-  "tags": ["inventory", "monitoring", "homelab", "networking", "docker"]
+  "tags": ["household", "monitoring", "dashboard", "networking", "docker"]
 }

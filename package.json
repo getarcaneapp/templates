@@ -6,17 +6,21 @@
     "preinstall": "npx only-allow pnpm",
     "format": "vp fmt . --write",
     "format:check": "vp fmt . --check",
-    "lint": "pnpm run type-check && pnpm run generate && pnpm run format:check && pnpm run validate",
-    "type-check": "tsc --noEmit",
-    "test": "tsx scripts/test-build-registry.ts",
-    "validate": "tsx scripts/validate.ts",
+    "lint": "vp run type-check && vp run generate && vp run format:check && vp run validate",
+    "type-check": "tsc --noEmit && pnpm --filter @arcane-templates/site check",
+    "test": "vp test",
+    "validate": "tsx scripts/lint-templates.ts",
     "generate": "tsx scripts/build-registry.ts",
-    "ci": "pnpm run lint && pnpm run test && pnpm run generate",
-    "stage": "rm -rf build && mkdir -p build/templates && cp -v registry.json build/ && cp -v schema.json build/ && if [ -d public ]; then rsync -a public/ build/; fi && rsync -a --delete templates/ build/templates/",
-    "deploy": "pnpm run stage && wrangler version deploy",
-    "dev": "pnpm run generate && pnpm run stage && wrangler dev",
+    "ci": "vp run lint && vp run test && vp run generate",
+    "stage": "rm -rf build && vp run build:site && cp registry.json schema.json build/ && cp -R templates/. build/templates/",
+    "deploy": "vp run stage && wrangler version deploy",
+    "dev": "pnpm --filter @arcane-templates/site dev",
     "prepare": "vp config",
-    "snyk": "snyk test --all-projects --dev"
+    "snyk": "snyk test --all-projects --dev",
+    "lint:templates": "tsx scripts/lint-templates.ts",
+    "build:site": "pnpm --filter @arcane-templates/site build",
+    "dev:worker": "vp run generate && vp run stage && wrangler dev",
+    "new": "tsx scripts/new-template.ts"
   },
   "devDependencies": {
     "@types/node": "^26.6.4",
@@ -26,7 +30,8 @@
     "typescript": "7.0.2",
     "vite": "catalog:",
     "vite-plus": "catalog:",
-    "wrangler": "^4.147.0"
+    "wrangler": "^4.147.0",
+    "yaml": "^2.9.1"
   },
   "engines": {
     "node": ">=26"

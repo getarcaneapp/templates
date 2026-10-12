@@ -1,0 +1,22 @@
+x-arcane:
+  icon: https://github.com/stan-smith.png
+  urls:
+    - https://github.com/stan-smith/FossFLOW
+
+services:
+  fossflow:
+    image: stnsmith/fossflow:latest
+    container_name: fossflow
+    restart: unless-stopped
+    pull_policy: always
+    ports:
+      - 8111:80
+    environment:
+      - NODE_ENV=production
+      - ENABLE_SERVER_STORAGE=${ENABLE_SERVER_STORAGE:-true}
+      - STORAGE_PATH=/data/diagrams
+      - ENABLE_GIT_BACKUP=${ENABLE_GIT_BACKUP:-false}
+    volumes:
+      - /path/to/diagrams:/data/diagrams
+    labels:
+      com.getarcaneapp.arcane.icon: https://github.com/stan-smith.png

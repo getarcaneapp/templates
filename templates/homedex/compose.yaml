@@ -8,7 +8,7 @@ services:
   # Read-only Docker API for Homedex: POST=0 rejects every mutating call, only
   # the inventory endpoints are allowed, and it has no published port.
   docker-socket-proxy:
-    image: tecnativa/docker-socket-proxy:v0.4.2
+    image: tecnativa/docker-socket-proxy:latest
     restart: unless-stopped
     environment:
       CONTAINERS: 1
@@ -33,6 +33,8 @@ services:
       - no-new-privileges:true
     networks:
       - discovery
+    labels:
+      com.getarcaneapp.arcane.icon: https://raw.githubusercontent.com/HarshShah0203/homedex/main/docs/brand/homedex-icon-512.png
 
   homedex:
     image: ghcr.io/harshshah0203/homedex:${HOMEDEX_VERSION:-0.2.3}

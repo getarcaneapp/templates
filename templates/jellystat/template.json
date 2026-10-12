@@ -4,5 +4,5 @@
   "author": "LeviSnoot",
   "version": "1.0.0",
   "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/jellystat.png",
-  "tags": ["jellyfin", "media", "statistics", "monitoring"]
+  "tags": ["media-server", "media", "analytics", "monitoring"]
 }

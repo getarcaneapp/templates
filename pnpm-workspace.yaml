@@ -1,3 +1,6 @@
+packages:
+  - site
+
 autoDedupe: true
 
 update:

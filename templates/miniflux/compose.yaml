@@ -47,5 +47,7 @@ services:
       timeout: "5s"
       retries: 10
       start_period: "30s"
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/postgresql.svg
 volumes:
   db-data: {}

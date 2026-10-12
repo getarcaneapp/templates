@@ -4,7 +4,7 @@ x-arcane:
     - "https://docs.requarks.io/install/docker"
 services:
   wiki:
-    image: "ghcr.io/requarks/wiki:2"
+    image: "ghcr.io/requarks/wiki:latest"
     restart: "unless-stopped"
     ports:
       - "${PORT:-8080}:3000"
@@ -37,5 +37,7 @@ services:
       timeout: "5s"
       retries: 10
       start_period: "30s"
+    labels:
+      com.getarcaneapp.arcane.icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/postgresql.svg
 volumes:
   db-data: {}

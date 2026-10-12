@@ -5,9 +5,10 @@ on:
     types: [opened, synchronize, reopened, ready_for_review]
     paths:
       - "templates/**"
-      - "scripts/build-registry.ts"
+      - "scripts/**"
       - "schema.json"
-      - "public/**"
+      - "tags.json"
+      - "site/**"
       - "tsconfig.json"
       - "package.json"
       - "pnpm-lock.yaml"
@@ -77,18 +78,8 @@ jobs:
           SCHEMA_URL: ${{ env.PREVIEW_BASE }}/schema.json
         run: vp run generate
 
-      - name: Stage build directory
-        run: |
-          rm -rf build
-          mkdir -p build/templates
-          cp -v registry.json build/
-          cp -v schema.json build/
-          mkdir -p build
-          # include static homepage assets
-          if [ -d public ]; then
-            rsync -a public/ build/
-          fi
-          rsync -a --delete templates/ build/templates/
+      - name: Build site and stage build directory
+        run: vp run stage
 
       - name: Upload and Deploy Preview
         env:
