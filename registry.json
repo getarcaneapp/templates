@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.34.1",
+  "version": "1.35.0",
   "templates": [
     {
       "id": "actual",
@@ -1396,6 +1396,19 @@
       "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/sftpgo.svg",
       "content_hash": "a1975817a155d941edfaf5c3019361207822cb883b5adbb182a6f8301a639921",
       "tags": ["files"]
+    },
+    {
+      "id": "solidping",
+      "name": "SolidPing",
+      "description": "Uptime and synthetic monitoring with status pages, incidents and on-call alerts.",
+      "version": "1.0.0",
+      "author": "fclairamb",
+      "compose_url": "https://registry.getarcane.app/templates/solidping/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/solidping/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/solidping",
+      "icon_url": "https://raw.githubusercontent.com/fclairamb/solidping/main/res/logo_256.png",
+      "content_hash": "5eac907a9748ddcce6a22d24258b346d31b8d3d607b97a53a52abb435a87f04b",
+      "tags": ["monitoring"]
     },
     {
       "id": "sonarr",
