@@ -1,0 +1,22 @@
+x-arcane:
+  icon: https://raw.githubusercontent.com/fclairamb/solidping/main/res/logo_256.png
+  urls:
+    - https://docs.solidping.io/docs/installation/docker
+
+services:
+  solidping:
+    image: ghcr.io/fclairamb/solidping:latest
+    hostname: solidping
+    restart: unless-stopped
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${PORT:-4000}:4000"
+    environment:
+      TZ: ${TZ:-Etc/UTC}
+      SP_BASE_URL: ${BASE_URL:-http://localhost:4000}
+    labels:
+      com.getarcaneapp.arcane.icon: https://raw.githubusercontent.com/fclairamb/solidping/main/res/logo_256.png
+    volumes:
+      - data:/data
+
+volumes:
+  data:
