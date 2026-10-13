@@ -1,0 +1,7 @@
+{
+  "name": "SolidPing",
+  "description": "Uptime and synthetic monitoring with status pages, incidents and on-call alerts.",
+  "author": "fclairamb",
+  "icon_url": "https://raw.githubusercontent.com/fclairamb/solidping/main/res/logo_256.png",
+  "tags": ["monitoring"]
+}
