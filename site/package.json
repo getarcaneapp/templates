@@ -24,7 +24,7 @@
     "@types/node": "^26.6.5",
     "@typescript/native": "npm:typescript@^7.0.2",
     "bits-ui": "^2.19.5",
-    "marked": "^18.1.0",
+    "marked": "^18.1.1",
     "shiki": "^4.5.0",
     "svelte": "^5.57.2",
     "svelte-check": "^4.7.6",
