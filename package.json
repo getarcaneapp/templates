@@ -30,7 +30,7 @@
     "typescript": "7.0.2",
     "vite": "catalog:",
     "vite-plus": "catalog:",
-    "wrangler": "^4.151.1",
+    "wrangler": "^4.153.0",
     "yaml": "^2.9.1"
   },
   "engines": {
