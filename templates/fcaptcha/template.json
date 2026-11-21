@@ -1,0 +1,7 @@
+{
+  "name": "FCaptcha",
+  "description": "Self-hosted CAPTCHA widget and token verifier for forms and other application actions.",
+  "author": "WebDecoy",
+  "icon_url": "https://webdecoy.com/logo.png",
+  "tags": ["security", "development"]
+}
