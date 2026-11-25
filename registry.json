@@ -4,7 +4,7 @@
   "description": "Community Docker Compose Templates for Arcane",
   "author": "getarcaneapp",
   "url": "https://github.com/getarcaneapp/templates",
-  "version": "1.35.0",
+  "version": "1.36.0",
   "templates": [
     {
       "id": "actual",
@@ -369,6 +369,19 @@
       "icon_url": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/excalidraw.svg",
       "content_hash": "d8b0388aa3b12a78de7df445e9ec43d8c3da13dd83007f69c0f595d03999c991",
       "tags": ["productivity"]
+    },
+    {
+      "id": "fcaptcha",
+      "name": "FCaptcha",
+      "description": "Self-hosted CAPTCHA widget and token verifier for forms and other application actions.",
+      "version": "1.0.0",
+      "author": "WebDecoy",
+      "compose_url": "https://registry.getarcane.app/templates/fcaptcha/compose.yaml",
+      "env_url": "https://registry.getarcane.app/templates/fcaptcha/.env.example",
+      "documentation_url": "https://github.com/getarcaneapp/templates/tree/main/templates/fcaptcha",
+      "icon_url": "https://webdecoy.com/logo.png",
+      "content_hash": "998ec5822c67b4caf266e09ab71ce31907592a9824583ecde4ae97354d5f8c45",
+      "tags": ["security", "development"]
     },
     {
       "id": "filebrowser",
