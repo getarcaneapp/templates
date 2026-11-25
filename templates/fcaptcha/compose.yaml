@@ -1,0 +1,22 @@
+x-arcane:
+  icon: https://webdecoy.com/logo.png
+  urls:
+    - https://github.com/WebDecoy/FCaptcha
+
+services:
+  fcaptcha:
+    image: ghcr.io/webdecoy/fcaptcha:latest
+    restart: unless-stopped
+    environment:
+      FCAPTCHA_SECRET: ${FCAPTCHA_SECRET:?Set FCAPTCHA_SECRET before deploying}
+      FCAPTCHA_VERIFY_SECRET: ${FCAPTCHA_VERIFY_SECRET:?Set FCAPTCHA_VERIFY_SECRET before deploying}
+      PORT: "3000"
+    ports:
+      - "${FCAPTCHA_BIND_ADDRESS:-127.0.0.1}:${FCAPTCHA_HOST_PORT:-3000}:3000"
+    healthcheck:
+      test: [CMD, wget, --quiet, --tries=1, --spider, http://localhost:3000/health]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+    labels:
+      com.getarcaneapp.arcane.icon: https://webdecoy.com/logo.png
