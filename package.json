@@ -9,32 +9,32 @@
     "lint": "vp run type-check && vp run generate && vp run format:check && vp run validate",
     "type-check": "tsc --noEmit && pnpm --filter @arcane-templates/site check",
     "test": "vp test",
-    "validate": "tsx scripts/lint-templates.ts",
-    "generate": "tsx scripts/build-registry.ts",
+    "validate": "vpx scripts/lint-templates.ts",
+    "generate": "vpx scripts/build-registry.ts",
     "ci": "vp run lint && vp run test && vp run generate",
     "stage": "rm -rf build && vp run build:site && cp registry.json schema.json build/ && cp -R templates/. build/templates/",
     "deploy": "vp run stage && wrangler version deploy",
     "dev": "pnpm --filter @arcane-templates/site dev",
     "prepare": "vp config",
     "snyk": "snyk test --all-projects --dev",
-    "lint:templates": "tsx scripts/lint-templates.ts",
+    "lint:templates": "vpx scripts/lint-templates.ts",
     "build:site": "pnpm --filter @arcane-templates/site build",
     "dev:worker": "vp run generate && vp run stage && wrangler dev",
-    "new": "tsx scripts/new-template.ts"
+    "new": "vpx scripts/new-template.ts"
   },
   "devDependencies": {
-    "@types/node": "^26.6.6",
+    "@types/node": "^26.6.11",
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
     "tsx": "^4.23.15",
     "typescript": "7.0.2",
     "vite": "catalog:",
     "vite-plus": "catalog:",
-    "wrangler": "^4.162.0",
+    "wrangler": "^4.168.0",
     "yaml": "^2.9.1"
   },
   "engines": {
     "node": ">=26"
   },
-  "packageManager": "pnpm@12.21.0+sha512.66fd8278ee28935ce951792d34367ff3af5c432a2756445823029533835b8da529bbe0be5130afd56ed0713fb8789e47bad82d93bd5ae2fe54b15562d6276ef0"
+  "packageManager": "pnpm@12.24.0+sha512.5f90f50a48aa40f01dc43bd3acb528922fd899d3b909015fdb23af73bb31c578f29ceb29be9a4d6f0146adb34206aac332796043cc5024b815ef76288cbac767"
 }
