@@ -15,7 +15,7 @@ catalog:
   vite: npm:@voidzero-dev/vite-plus-core@8.3.8001
   vite-plus: 1.8.0
   ws: ">=8.23.0"
-  undici: ">=8.12.4"
+  undici: ">=8.13.1"
   typescript: ">=7.0.2"
 
 overrides:
